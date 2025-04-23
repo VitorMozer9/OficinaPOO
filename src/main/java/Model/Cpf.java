@@ -1,0 +1,76 @@
+package Model;
+
+/**
+ * Representa um CPF e fornece um método para validação do código e um método para pseudoanonimização de cpf.
+ */
+public class Cpf {
+    private String numeroCPF;
+    
+/**
+* Construtor da classe {@code Cpf}.
+* Inicializa o CPF com código especificado.
+* 
+* @param numeroCPF código do CPF no formato XXX.XXX.XXX-XX
+*/    
+    public Cpf(String numeroCPF){
+        this.numeroCPF = numeroCPF;
+    }
+        
+    public String getNumeroCpf(){
+        return numeroCPF;
+    }
+    
+/**
+ * Determina o telefone da pessoa.
+ * 
+ * @param telefone Telefone novo da pessoa.
+ */  
+    public void setNumeroCpf(String numeroCPF){
+        this.numeroCPF = numeroCPF;
+    }
+    
+/**
+* Verifica se um códifo ce CPF é válido.
+* Utiliza o cálculo de dígitos verificadores para validar o CPF.
+* 
+* @param codigo Códigol do CPF a ser validado.
+* @return true se o cpf for válido
+*/
+    public static boolean validaCPF(String codigoCpf){
+        int soma, resto, primeiroDigito, segundoDigito;
+        
+        codigoCpf = codigoCpf.replaceAll("[^\\d]", ""); 
+        
+        if (codigoCpf == null || codigoCpf.length() != 11){
+            return false;
+        }
+        
+        soma = 0;
+        for (int i = 0; i < 9; i++){
+            soma = soma + Character.getNumericValue(codigoCpf.charAt(i)) * (10 - i);
+        }
+        
+        resto = 11 - (soma % 11);
+        primeiroDigito = (resto >= 10) ? 0 : resto;
+        
+        if (primeiroDigito != Character.getNumericValue(codigoCpf.charAt(9))) { 
+            return false;
+        }
+        
+        soma = 0;
+        for(int i = 0; i < 10; i++){
+            soma = soma + Character.getNumericValue(codigoCpf.charAt(i)) * (11 - i);    
+        }
+        
+        resto = 11 - (soma % 11);
+        segundoDigito = (resto >= 10) ? 0 : resto;
+        
+        if (segundoDigito != Character.getNumericValue(codigoCpf.charAt(10))) { 
+            return false;
+        }
+        
+        return true;
+        
+    }
+    
+}

@@ -1,0 +1,43 @@
+-J-Duser.language=
+-J-Duser.country=
+@options
+@packages
+-encoding
+'UTF-8'
+-protected
+--release
+23
+-sourcepath
+'C:/Users/vecto/OneDrive/Documentos/NetBeansProjects/OficinaPOO/src/main/java'
+-author
+-bottom
+'Copyright &#169; 2025. All rights reserved.'
+-charset
+'UTF-8'
+-d
+'C:/Users/vecto/OneDrive/Documentos/NetBeansProjects/OficinaPOO/target/reports/apidocs'
+-docencoding
+'UTF-8'
+-doctitle
+'OficinaPOO 1.0-SNAPSHOT API'
+-use
+-version
+-windowtitle
+'OficinaPOO 1.0-SNAPSHOT API'
+Main
+Model
+C:\Users\vecto\OneDrive\Documentos\NetBeansProjects\OficinaPOO\src\main\java = 1745241944960
+C:\Users\vecto\OneDrive\Documentos\NetBeansProjects\OficinaPOO\target\reports\apidocs\allclasses-index.html = 1745251465843
+C:\Users\vecto\OneDrive\Documentos\NetBeansProjects\OficinaPOO\target\reports\apidocs\allpackages-index.html = 1745251465848
+C:\Users\vecto\OneDrive\Documentos\NetBeansProjects\OficinaPOO\target\reports\apidocs\element-list = 1745251465762
+C:\Users\vecto\OneDrive\Documentos\NetBeansProjects\OficinaPOO\target\reports\apidocs\help-doc.html = 1745251465880
+C:\Users\vecto\OneDrive\Documentos\NetBeansProjects\OficinaPOO\target\reports\apidocs\index-all.html = 1745251465869
+C:\Users\vecto\OneDrive\Documentos\NetBeansProjects\OficinaPOO\target\reports\apidocs\index.html = 1745251465830
+C:\Users\vecto\OneDrive\Documentos\NetBeansProjects\OficinaPOO\target\reports\apidocs\member-search-index.js = 1745251465856
+C:\Users\vecto\OneDrive\Documentos\NetBeansProjects\OficinaPOO\target\reports\apidocs\module-search-index.js = 1745251465852
+C:\Users\vecto\OneDrive\Documentos\NetBeansProjects\OficinaPOO\target\reports\apidocs\overview-summary.html = 1745251465874
+C:\Users\vecto\OneDrive\Documentos\NetBeansProjects\OficinaPOO\target\reports\apidocs\overview-tree.html = 1745251465824
+C:\Users\vecto\OneDrive\Documentos\NetBeansProjects\OficinaPOO\target\reports\apidocs\package-search-index.js = 1745251465854
+C:\Users\vecto\OneDrive\Documentos\NetBeansProjects\OficinaPOO\target\reports\apidocs\search.html = 1745251465872
+C:\Users\vecto\OneDrive\Documentos\NetBeansProjects\OficinaPOO\target\reports\apidocs\tag-search-index.js = 1745251465858
+C:\Users\vecto\OneDrive\Documentos\NetBeansProjects\OficinaPOO\target\reports\apidocs\type-search-index.js = 1745251465855
