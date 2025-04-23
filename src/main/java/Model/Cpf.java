@@ -15,7 +15,12 @@ public class Cpf {
     public Cpf(String numeroCPF){
         this.numeroCPF = numeroCPF;
     }
-        
+    
+/**
+ * Pega o cpf da pessoa.
+ * 
+ * @return numeroCPF pessoa.
+ */     
     public String getNumeroCpf(){
         return numeroCPF;
     }
