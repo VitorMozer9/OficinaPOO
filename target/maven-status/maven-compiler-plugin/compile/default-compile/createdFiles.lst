@@ -1,3 +1,4 @@
 Main\OficinaPOO.class
-Model\Pessoa.class
+Model\Funcionario.class
 Model\Cpf.class
+Model\Pessoa.class

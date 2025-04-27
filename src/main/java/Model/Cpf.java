@@ -38,12 +38,11 @@ public class Cpf {
 * Verifica se um códifo ce CPF é válido.
 * Utiliza o cálculo de dígitos verificadores para validar o CPF.
 * 
-* @param codigo Códigol do CPF a ser validado.
-* @return true se o cpf for válido
+* @param codigo Código do CPF a ser validado.
+* @return true se o cpf for válido e false caso seja inválido
 */
     public static boolean validaCPF(String codigoCpf){
-        int soma, resto, primeiroDigito, segundoDigito;
-        
+        int soma, resto, primeiroDigito, segundoDigito;       
         codigoCpf = codigoCpf.replaceAll("[^\\d]", ""); 
         
         if (codigoCpf == null || codigoCpf.length() != 11){
@@ -76,6 +75,20 @@ public class Cpf {
         
         return true;
         
+    }
+    
+/**
+* Retorna o CPF pseudo-anonimizado no formato "***.XXX.XXX-**". 
+* 
+* Por meio do Override no método toString de Object. 
+* @return CPF com os primeiros e últimos dígitos anonimizados.
+*/       
+    @Override
+    public String toString(){
+        
+        String[] codigoSeparado = numeroCPF.split("[-,.]");
+        
+        return "***." + codigoSeparado[1] + "." + codigoSeparado[2] + "-**";
     }
     
 }

@@ -36,35 +36,85 @@ public class Funcionario extends Pessoa{
         
     }
     
+ /**
+ * Pega o usuário do Funcionário
+ * 
+ * @return usuário do Funcionário.
+ */ 
     public String getUsuario(){
         return usuario;
     }
     
+/**
+ * Determina o usuário do Funcionário.
+ * 
+ * @param usuario Novo usuário do Funcionário.
+ */ 
     public void setUsuario(String usuario){
         this.usuario = usuario;
     }
-    
+     
+/**
+ * Pega a senha do Funcionário
+ * 
+ * @return senha do Funcionário.
+ */
     public String getSenha(){
         return senha;
     }
     
+/**
+ * Determina a senha do Funcionário.
+ * 
+ * @param senha Nova senha do Funcionário.
+ */ 
     public void setSenha(String senha){
         this.senha = senha;
-    }
+    } 
     
+/**
+ * Pega o cargo do Funcionário
+ * 
+ * @return cargo do Funcionário.
+ */
     public String getCargo(){
         return cargo;
     }
     
+/**
+ * Determina o cargo do Funcionário.
+ * 
+ * @param cargo Novo cargo do Funcionário.
+ */ 
     public void setCargo(String cargo){
         this.cargo = cargo;
     }
     
+/**
+ * Pega o salário do Funcionário
+ * 
+ * @return salário do Funcionário.
+ */
     public double getSalario(){
         return salario;
     }
     
+/**
+ * Determina o salário do Funcionário.
+ * 
+ * @param salario Novo salário do Funcionário.
+ */ 
     public void setSalario(double salario){
         this.salario = salario;
+    }
+    
+/**
+* Sobrescreve o método toString para retornar o nome do funcionário.
+* Consegue o nome do funcionário pois a classe Funcionario é subvlasse de Pessoa, logo posso chamar o metodo getNome().
+* @return Nome do funcionário.
+*/
+    @Override
+    public String toString() {
+        return this.getNome();
     }
 }

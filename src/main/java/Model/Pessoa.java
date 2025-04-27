@@ -119,4 +119,14 @@ public abstract class Pessoa {
     public void setCpf(Cpf cpf){
         this.cpf = cpf;
     }
+    
+/**
+* Sobrescreve o método toString para retornar o nome da pessoa.
+*
+* @return Nome pessoa.
+*/
+    @Override
+    public String toString(){
+        return nome;
+    }
 }
