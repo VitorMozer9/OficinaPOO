@@ -1,4 +1,6 @@
 Main\OficinaPOO.class
 Model\Funcionario.class
+Model\Cliente.class
 Model\Cpf.class
 Model\Pessoa.class
+Model\Veiculo.class
