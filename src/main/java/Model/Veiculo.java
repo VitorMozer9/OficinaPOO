@@ -1,11 +1,25 @@
 package Model;
 
+/**
+ * Representação dos veículos que irão ser reparados na oficina, apresentando: modelo  do veículo, placa do veículo, status do veículo e ano de sua fabricação.
+ */
+
 public class Veiculo {
     
     private String modeloVeiculo;
     private String placaVeiculo;
     private String statusVeiculo;
     private int anoDeFabricacao;
+    
+/**
+ * Construtor da classe Veúculo (@code Veículo).
+ * Inicializa um novo veículo com suas informações básicas.  
+ * 
+ * @param modeloVeiculo
+ * @param placaVeiculo
+ * @param statusVeiculo
+ * @param anoDeFabricacao 
+ */
     
     public Veiculo(String modeloVeiculo, String placaVeiculo, String statusVeiculo, int anoDeFabricacao){
         this.anoDeFabricacao = anoDeFabricacao;
@@ -14,38 +28,88 @@ public class Veiculo {
         this.anoDeFabricacao = anoDeFabricacao;
     }
     
+    /**
+     * Pega o modelo do veículo
+     * 
+     * @return modelo do Veiculo
+     */
     public String getModeloVeiculo(){
         return modeloVeiculo;
     }
+    
+    /**
+     * Determina o modelo do Veículo
+     * 
+     * @param modeloVeiculo novo modelo de Veículo
+     */
     
     public void setModeloVeiculo(String modeloVeiculo){
         this.modeloVeiculo = modeloVeiculo;
     }
     
+    /**
+     * Pega a placa do Veículo
+     * 
+     * @return placa do Veículo
+     */
     public String getPlacaVeiculo(){
         return placaVeiculo;
     }
     
+    /**
+     * Determina a placa do Veículo
+     * 
+     * @param placaVeiculo nova placa de Veículo
+     */
     public void setPlacaVeiculo(String placaVeiculo){
         this.placaVeiculo = placaVeiculo;
     }
     
+    /**
+     * Pega o status do Veículo
+     * 
+     * @return status do Veículo
+     */
     public String getStatusVeiculo(){
         return statusVeiculo;
     }
     
+    /** 
+     * Determina o status do Veículo
+     * 
+     * @param statusVeiculo novo status do Veículo
+     */
     public void setStatstusVeiculo(String statusVeiculo){
         this.statusVeiculo = statusVeiculo;
     }
     
+    /**
+     * Pega o ano de fabricação do Veículo
+     * 
+     * @return ano de fabricação do Veículo
+     */
     public int getAnoDeFabricacao(){
         return anoDeFabricacao;
     }
     
+    /**
+     * Determina o ano de fabricação do Veículo
+     * 
+     * @param anoDeFabricacao  novo ano de fabricação do Veículo
+     */
     public void setAnoDeFabricacao(int anoDeFabricacao){
         this.anoDeFabricacao = anoDeFabricacao;
     }
     
+    /**
+     * Valida a placa do Veículo 
+     * Remove os caracteres especias da placa ("-"," ")
+     * Verifica se não foi preenchido o número da placa 
+     * Verifica se a placa do Veículo está no padrão antigo(três letras seguidas de 4 números aleatorios), ou no do Mercosul(três letras seguidas de um número, uma letra e mais dois números aleatorios) 
+     *
+     * @param placaVeiculo código para validação da placa do Veículo
+     * @return false se não foi inserido o número da placa e o padrão da placa de acordo com o número inserido sendo paddraoMercosul e padraoAntigo
+     */
     public static boolean validaPlaca(String placaVeiculo){
         String placa = placaVeiculo.replaceAll("-", "").trim().toUpperCase();
         
