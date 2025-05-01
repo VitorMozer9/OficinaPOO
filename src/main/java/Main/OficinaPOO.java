@@ -14,7 +14,7 @@ public class OficinaPOO {
         String cpfAvulso = "906.884.200-52";
         Cpf cpfPessoa = new Cpf(cpfAvulso);
         
-        Veiculo carro = new Veiculo("Modelo", "BRA2E19", "Manutenção", 2005);
+        Veiculo carro = new Veiculo("Modelo", "BRA2E19", "Manutenção", 2005,1234.67);
         
         Manutencao OS = new Manutencao("Quase pronto", "carburador com problema","Troca de carburador por injeção");
         
