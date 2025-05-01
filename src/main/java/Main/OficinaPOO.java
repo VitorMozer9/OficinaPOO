@@ -1,6 +1,9 @@
 package Main;
 
+import Model.Cliente;
 import Model.Cpf;
+import Model.Funcionario;
+import Model.Manutencao;
 import Model.Pessoa;
 import Model.Veiculo;
 
@@ -10,13 +13,21 @@ public class OficinaPOO {
         String cpfAvulso = "906.884.200-52";
         Cpf cpfPessoa = new Cpf(cpfAvulso);
         
-        Veiculo carro = new Veiculo("Modelo", "HEE-7480", "Manutenção", 2005);
+        Veiculo carro = new Veiculo("Modelo", "BRA2E19", "Manutenção", 2005);
+        
+        Manutencao OS = new Manutencao("Quase pronto", "carburador com problema","Troca de carburador por injeção");
+        
+        Cliente cliente = new Cliente("Vitor", "Rua areão", "389765432","vitão@gmail.com",cpfPessoa);
+        
+        Funcionario func = new Funcionario("Bauru", "Moradia", "3896754321", "Bauru@gmail.com",cpfPessoa, "Bauruzão","123","mecanico",1200.32);
         
         System.out.println("Cpf sem anonimização " + cpfPessoa.getNumeroCpf());
         System.out.println("Cpf anonimizado " + cpfPessoa.toString());
         
         System.out.println("Placa do veiculo: " + carro.getPlacaVeiculo());
         System.out.println("A placa é valida? " + Veiculo.validaPlaca(carro.getPlacaVeiculo()));
+        
+        System.out.println(OS.geraOrdemDeServiço(cliente, OS, func));
         
         //System.out.println("Retorno :" + Cpf.validaCPF("906.884.200-52"));
     }

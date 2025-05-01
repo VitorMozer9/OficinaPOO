@@ -1,5 +1,7 @@
-Main\OficinaPOO.class
 Model\Funcionario.class
+Model\Manutencao.class
+Model\Pecas.class
+Main\OficinaPOO.class
 Model\Cliente.class
 Model\Cpf.class
 Model\Pessoa.class

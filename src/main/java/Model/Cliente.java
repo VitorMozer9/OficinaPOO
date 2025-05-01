@@ -24,7 +24,7 @@ public class Cliente extends Pessoa{
 * @param cpf           CPF do cliente.
 * @param idCliente     Identificador único do cliente.
 */
-    public Cliente(String nome, String endereco, String telefone, String email, Cpf cpf, int idCliente) {
+    public Cliente(String nome, String endereco, String telefone, String email, Cpf cpf) {
         super(nome, endereco, telefone, email, cpf);
         
         this.idCliente = ++ultimoIdCliente;
@@ -49,5 +49,5 @@ public class Cliente extends Pessoa{
     public String toString() {
         return this.getNome() + ": " + idCliente;
     }
-
+    
 }

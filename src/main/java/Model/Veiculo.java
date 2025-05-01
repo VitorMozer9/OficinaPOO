@@ -1,7 +1,7 @@
 package Model;
 
 /**
- * Representação dos veículos que irão ser reparados na oficina, apresentando: modelo  do veículo, placa do veículo, status do veículo e ano de sua fabricação.
+ * Representação dos veículos da oficina, apresentando: modelo  do veículo, placa do veículo, status do veículo e ano de sua fabricação.
  */
 
 public class Veiculo {
@@ -122,6 +122,11 @@ public class Veiculo {
         
         return padraoMercosul || padraoAntigo;
     
+    }
+    
+    @Override
+    public String toString(){
+        return modeloVeiculo;
     }
     
 }
