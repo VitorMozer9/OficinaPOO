@@ -1,8 +1,6 @@
 package Model;
 
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 public class Manutencao {
@@ -62,42 +60,5 @@ public class Manutencao {
     public List<Pecas> getPecasUtilizadas() {
         return pecasUtilizadas;
     }
-    
-    public String geraOrdemDeServiço(Cliente infoCliente, Manutencao infoManutencao, Funcionario infoFunc){
-        
-    StringBuilder ordemServico = new StringBuilder();
-    Date dataAtual = new Date();
-    SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy 'às' HH:mm");
-    String dataFormatada = formato.format(dataAtual);
-
-    ordemServico.append("============================================================\n");
-    ordemServico.append("  Ordem de Serviço ").append(this.idManutencao).append("\n");
-    ordemServico.append("============================================================\n");
-    ordemServico.append("CLIENTE:\n");
-    ordemServico.append("Nome: ").append(infoCliente.getNome()).append("\n");
-    ordemServico.append("Endereço: ").append(infoCliente.getEndereco()).append("\n");
-    ordemServico.append("Telefone: ").append(infoCliente.getTelefone()).append("\n");
-//    ordemServico.append("CPF: ").append(infoCliente.getCpf().toString()).append("\n");
-    ordemServico.append("------------------------------------------------------------\n");
-    ordemServico.append("DIAGNÓSTICO:\n");
-    ordemServico.append(infoManutencao.getDescricaoManutencao()).append("\n");
-    ordemServico.append("------------------------------------------------------------\n");
-    ordemServico.append("SOLUÇÃO APLICADA:\n");
-    ordemServico.append(infoManutencao.getSolucaoManutencao()).append("\n");
-    ordemServico.append("------------------------------------------------------------\n");
-    ordemServico.append("PEÇAS TROCADAS:\n");
-    for (String descricaoPecas : infoManutencao.getListaDePecas()) {
-        ordemServico.append("- ").append(descricaoPecas).append("\n");
-    }
-    ordemServico.append("------------------------------------------------------------\n");
-    ordemServico.append("Data do Serviço: ").append(dataFormatada).append("\n");
-    ordemServico.append("Técnico responsável: ").append(infoFunc.getNome()).append("\n");
-    ordemServico.append("Total do Serviço: R$ xxxxx\n");
-    ordemServico.append("============================================================\n");
-
-    return ordemServico.toString();
-        
-    }
-            
-    
+               
 }
