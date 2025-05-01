@@ -1,11 +1,13 @@
 package Model;
 
 public class Elevador {
+    private int idElevador;
     private String tipoElevador;
     private boolean estaOcupado;
     private double pesoMaximo;
     
-    public Elevador(String tipoElevador, boolean estaOcupado, double pesoMaximo){
+    public Elevador(int idElevador, String tipoElevador, boolean estaOcupado, double pesoMaximo){
+        this.idElevador = idElevador;
         this.estaOcupado = estaOcupado;
         this.pesoMaximo = pesoMaximo;
         this.tipoElevador = tipoElevador;
@@ -35,6 +37,13 @@ public class Elevador {
         this.pesoMaximo = pesoMaximo;
     }
     
-    
+    @Override
+    public String toString() {
+        if (estaOcupado = true) {
+            return "O elevador " + idElevador + " do tipo " + tipoElevador + " esta ocupado."; 
+        } else {
+           return "O elevador " + idElevador + " do tipo " + tipoElevador + " esta livre.";  
+        }
+    }
     
 }

@@ -55,6 +55,13 @@ public class Agendamento {
             
     public void setDataHora(Calendar dataHora){
         this.dataHora = dataHora;
-    }        
+    }
+    
+    @Override
+    public String toString() {
+        
+        return "Agendamento realizado. Traga o veícilo no dia" + this.dataHora; 
+                
+    }
     
 }
