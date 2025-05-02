@@ -10,6 +10,7 @@ public class Veiculo {
     private String placaVeiculo;
     private String statusVeiculo;
     private int anoDeFabricacao;
+    private double peso; 
     
 /**
  * Construtor da classe Veúculo (@code Veículo).
@@ -21,11 +22,12 @@ public class Veiculo {
  * @param anoDeFabricacao 
  */
     
-    public Veiculo(String modeloVeiculo, String placaVeiculo, String statusVeiculo, int anoDeFabricacao){
+    public Veiculo(String modeloVeiculo, String placaVeiculo, String statusVeiculo, int anoDeFabricacao, double peso){
         this.anoDeFabricacao = anoDeFabricacao;
         this.modeloVeiculo = modeloVeiculo;
         this.placaVeiculo = placaVeiculo;
         this.anoDeFabricacao = anoDeFabricacao;
+        this.peso = peso;
     }
     
     /**
@@ -99,6 +101,24 @@ public class Veiculo {
      */
     public void setAnoDeFabricacao(int anoDeFabricacao){
         this.anoDeFabricacao = anoDeFabricacao;
+    }
+    
+    /**
+     * Pega o peso do Veículo
+     * 
+     * @return peso do Veículo
+     */
+    public double getPeso(){
+        return peso;
+    }
+    
+    /**
+     * Determina o peso do Veículo
+     * 
+     * @param peso novo ano de fabricação do Veículo
+     */
+    public void setPeso(double peso){
+        this.peso = peso;
     }
     
     /**
