@@ -1,11 +1,13 @@
-Model\Funcionario.class
 Model\Manutencao.class
 Model\Pecas.class
 Model\Agendamento.class
 Model\OrdemDeServico.class
 Model\Elevador.class
-Main\OficinaPOO.class
 Model\Cliente.class
 Model\Cpf.class
+Model\Funcionario.class
+controller\ClienteController.class
+Main\OficinaPOO$1.class
+Main\OficinaPOO.class
 Model\Pessoa.class
 Model\Veiculo.class

@@ -55,7 +55,7 @@ public class Elevador {
     }
     
     /**
-     * Deffine o estado do elecador.
+     * Define o estado do eleador.
      * 
      * @param estaOcupado Novo estado.
      */

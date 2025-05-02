@@ -26,9 +26,9 @@ public class Cpf {
     }
     
 /**
- * Determina o telefone da pessoa.
+ * Determina o número de Cpf da pessoa.
  * 
- * @param telefone Telefone novo da pessoa.
+ * @param numeroCPF Telefone novo da pessoa.
  */  
     public void setNumeroCpf(String numeroCPF){
         this.numeroCPF = numeroCPF;
@@ -38,7 +38,7 @@ public class Cpf {
 * Verifica se um códifo ce CPF é válido.
 * Utiliza o cálculo de dígitos verificadores para validar o CPF.
 * 
-* @param codigo Código do CPF a ser validado.
+* @param codigoCpf Código do CPF a ser validado.
 * @return true se o cpf for válido e false caso seja inválido
 */
     public static boolean validaCPF(String codigoCpf){
