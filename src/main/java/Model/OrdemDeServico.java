@@ -3,12 +3,25 @@ package Model;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+/**
+ * Representação de um chamado para uma ordem de serviço, que irá aparecer no sistema indicando o nome do cliente, o funcionário responsável
+ * pelo atendimento e análise inicial do veículo, o tipo da manutenção, e a data em que esse serviço foi solicitado.
+ * 
+ */
 public class OrdemDeServico {
     private Cliente cliente;
     private Funcionario tecnicoResponsavel;
     private Manutencao manutencao;
     private Date dataServico;
 
+    /**
+     * Construtor da classe (@code OrdemDeServico).
+     * Inicia uma nova ordem de serviço com as informações forncecidas pelo usuário.
+     * 
+     * @param cliente               Pega as informações do cliente.
+     * @param tecnicoResponsavel    Nome do funcionário reponsável.
+     * @param manutencao            Pega as informações da manutenção.
+     */
     public OrdemDeServico(Cliente cliente, Funcionario tecnicoResponsavel, Manutencao manutencao) {
         this.cliente = cliente;
         this.tecnicoResponsavel = tecnicoResponsavel;
@@ -16,6 +29,12 @@ public class OrdemDeServico {
         this.dataServico = new Date();
     }
 
+    /**
+     * Sobrescreve o método toString para retornar no sistema uma representação da ordem de serviço com suas informações separadas e detalhadas
+     * para cada um dos pontos (cliente, tecnico responsavel e manutenção).
+     * 
+     * @return Informações da ordem de serviço.
+     */
     @Override
     public String toString() {
         SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy 'às' HH:mm");
