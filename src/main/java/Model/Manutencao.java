@@ -75,26 +75,46 @@ public class Manutencao {
     }
 
     /**
-     * Obtém a descrição do que será feito para a realização da manutenção.]
+     * Obtém a descrição do que será feito para a realização da manutenção.
      * 
-     * @return Uma descrição 
+     * @return Uma descrição da pré manutenção.
      */
     public String getDescricaoManutencao() {
         return descricaoManutencao;
     }
 
+    /**
+     * Define o quais passos serão tomados paraa conclusão da manutenção.
+     * 
+     * @param descricaoManutencao  Nova descrição da pré manutenção.
+     */
     public void setDescricaoManutencao(String descricaoManutencao) {
         this.descricaoManutencao = descricaoManutencao;
     }
 
+    /**
+     * Obtém após a manutenção, o que foi feito para consertar o Veículo.
+     * 
+     * @return Descrição para a solução da manutenção.
+     */
     public String getSolucaoManutencao() {
         return solucaoManutencao;
     }
 
+    /**
+     * Define após a manutenção, o que foi feito para consertar o Veículo.
+     * 
+     * @param solucaoManutencao Nova descrição de solução da manutenção. 
+     */
     public void setSolucaoManutencao(String solucaoManutencao) {
         this.solucaoManutencao = solucaoManutencao;
     }
 
+    /**
+     * Obtém a lista das peças que foram usadas para o reparo do Veículo.
+     * 
+     * @return Lista de peças usadas na manutenção.
+     */
     public List<Pecas> getPecasUtilizadas() {
         return pecasUtilizadas;
     }
