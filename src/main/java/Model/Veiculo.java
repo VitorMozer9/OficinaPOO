@@ -9,7 +9,7 @@ public class Veiculo {
     private int idCliente;
     private String modeloVeiculo;
     private String placaVeiculo;
-    private Manutencao statusVeiculo;
+    private String statusVeiculo;
     private int anoDeFabricacao;
     private double peso; 
     
@@ -74,7 +74,7 @@ public class Veiculo {
      * 
      * @return status do Veículo
      */
-    public Manutencao getStatusVeiculo(){
+    public String getStatusVeiculo(){
         return statusVeiculo;
     }
     
@@ -83,7 +83,7 @@ public class Veiculo {
      * 
      * @param statusVeiculo novo status do Veículo
      */
-    public void setStatstusVeiculo(Manutencao statusVeiculo){
+    public void setStatstusVeiculo(String statusVeiculo){
         this.statusVeiculo = statusVeiculo;
     }
     

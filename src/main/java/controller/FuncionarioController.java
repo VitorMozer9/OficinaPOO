@@ -8,9 +8,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class FuncionarioController {
-     private FuncionarioView viewFuncionario = new FuncionarioView();
+    private FuncionarioView viewFuncionario = new FuncionarioView();
     private List<Funcionario> listaFuncionario = new ArrayList<>();
-    //private final String salvaClientes = "data%sclientes.json".formatted(File.separator); 
     
     public void adicionaFuncionario(){
         String nome = viewFuncionario.getNomeFunc();
@@ -36,15 +35,6 @@ public class FuncionarioController {
         System.out.println("Funcionário adicionado com sucesso!");
          
     }
-    
-//     private void salvarClientes() {
-//        Gson gson = new Gson();
-//        try (FileWriter writer = new FileWriter(salvaClientes)) {
-//            gson.toJson(listaClientes, writer);
-//        } catch (IOException e) {
-//            System.out.println("Erro ao salvar cliente: " + e.getMessage());
-//        }
-//    }
      
     public void executaMenuFuncionario(){
         int opcao = 0; 

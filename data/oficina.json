@@ -31,7 +31,21 @@
             }
         }
     ],
-    "funcionario": [],
+    "funcionario": [
+        {
+            "usuario": "adsfsdf",
+            "senha": "sfvsdf",
+            "cargo": "adfdf",
+            "salario": 12.45,
+            "nome": "teste",
+            "endereco": "asdfsdf",
+            "telefone": "234234",
+            "email": "sdfsdf",
+            "cpf": {
+                "numeroCPF": "683.736.690-43"
+            }
+        }
+    ],
     "veiculos": [],
     "pecas": []
 }
