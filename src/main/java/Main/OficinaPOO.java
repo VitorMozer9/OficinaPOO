@@ -71,7 +71,9 @@ public class OficinaPOO {
         clientes.add(cliente);
     }
     
-    
+    public void addFuncionario(Funcionario funcionario){
+        this.funcionario.add(funcionario);
+    }
     
     public static void main(String[] args) {
         System.setOut(new PrintStream(System.out, true, StandardCharsets.UTF_8));

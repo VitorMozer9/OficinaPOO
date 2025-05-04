@@ -9,6 +9,26 @@
             "cpf": {
                 "numeroCPF": "345343432"
             }
+        },
+        {
+            "idCliente": 1,
+            "nome": "talita",
+            "endereco": "farinha seca",
+            "telefone": "34567890897",
+            "email": "talitao@hjy.nom",
+            "cpf": {
+                "numeroCPF": "12345678998]"
+            }
+        },
+        {
+            "idCliente": 2,
+            "nome": "a",
+            "endereco": "a",
+            "telefone": "a",
+            "email": "a",
+            "cpf": {
+                "numeroCPF": "a"
+            }
         }
     ],
     "funcionario": [],

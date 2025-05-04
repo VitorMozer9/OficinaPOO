@@ -7,6 +7,7 @@ public class Sistema {
     
     private TelaInicial telaInicial = new TelaInicial();
     private ClienteController clienteController = new ClienteController();
+    private FuncionarioController funcionarioController = new FuncionarioController();
     
     public void iniciaSistema() {
         boolean rodando = true;
@@ -20,9 +21,9 @@ public class Sistema {
                     clienteController.executaMenuCliente();
                 }
                 
-//                case 2 -> {
-//                    funcionarioController.executaMenuFuncionario();
-//                }
+                case 2 -> {
+                    funcionarioController.executaMenuFuncionario();
+                }
 //                
 //                case 3 -> {
 //                    veiculoController.executaMenuVeiculo();

@@ -1,9 +1,9 @@
 Model\Manutencao.class
 Model\Pecas.class
 Model\Agendamento.class
+View\FuncionarioView.class
 Model\OrdemDeServico.class
 Model\Elevador.class
-controller\OficinaController.class
 Model\Cliente.class
 Model\Cpf.class
 Model\Funcionario.class
@@ -13,5 +13,6 @@ View\ClienteView.class
 View\TelaInicial.class
 controller\Sistema.class
 Main\OficinaPOO.class
+controller\FuncionarioController.class
 Model\Pessoa.class
 Model\Veiculo.class

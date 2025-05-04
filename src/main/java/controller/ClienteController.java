@@ -8,7 +8,7 @@ import com.google.gson.Gson;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.util.ArrayList;
+import java.util.ArrayList;   
 import java.util.List;
 
 public class ClienteController {
@@ -22,7 +22,11 @@ public class ClienteController {
         String telefone = viewCliente.getFoneCliente();
         String email = viewCliente.getEmailCliente();
         String codigoCpf = viewCliente.getCpfCliente();
-
+        if (!Cpf.validaCPF(codigoCpf)){
+            System.out.println("CPF inválido!!");
+            return;
+        }
+        
         Cpf cpf = new Cpf(codigoCpf); 
 
         Cliente novoCliente = new Cliente(nome, endereco, telefone, email, cpf);
