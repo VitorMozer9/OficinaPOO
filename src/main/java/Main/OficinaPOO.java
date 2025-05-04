@@ -79,6 +79,10 @@ public class OficinaPOO {
         veiculos.add(veiculo);
     }
     
+    public void addPeca(Pecas peca){
+        pecas.add(peca);
+    }
+    
     public static void main(String[] args) {
         System.setOut(new PrintStream(System.out, true, StandardCharsets.UTF_8));
         Sistema sistemaOficina = new Sistema();
