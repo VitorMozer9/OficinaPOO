@@ -3,11 +3,15 @@ Model\Pecas.class
 Model\Agendamento.class
 Model\OrdemDeServico.class
 Model\Elevador.class
+controller\OficinaController.class
 Model\Cliente.class
 Model\Cpf.class
 Model\Funcionario.class
 controller\ClienteController.class
 Main\OficinaPOO$1.class
+View\ClienteView.class
+View\TelaInicial.class
+controller\Sistema.class
 Main\OficinaPOO.class
 Model\Pessoa.class
 Model\Veiculo.class

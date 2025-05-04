@@ -1,0 +1,17 @@
+{
+    "clientes": [
+        {
+            "idCliente": 1,
+            "nome": "vitor",
+            "endereco": "juanlandia",
+            "telefone": "12334453",
+            "email": "alanzão.pneu@pneuzao.com.juan",
+            "cpf": {
+                "numeroCPF": "345343432"
+            }
+        }
+    ],
+    "funcionario": [],
+    "veiculos": [],
+    "pecas": []
+}

@@ -118,5 +118,10 @@ public class Manutencao {
     public List<Pecas> getPecasUtilizadas() {
         return pecasUtilizadas;
     }
+    
+    @Override
+    public String toString(){
+        return descricaoManutencao;
+    }
                
 }

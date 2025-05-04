@@ -6,9 +6,10 @@ package Model;
 
 public class Veiculo {
     
+    private int idCliente;
     private String modeloVeiculo;
     private String placaVeiculo;
-    private String statusVeiculo;
+    private Manutencao statusVeiculo;
     private int anoDeFabricacao;
     private double peso; 
     
@@ -22,7 +23,8 @@ public class Veiculo {
  * @param anoDeFabricacao 
  */
     
-    public Veiculo(String modeloVeiculo, String placaVeiculo, String statusVeiculo, int anoDeFabricacao, double peso){
+    public Veiculo(int idCliente,String modeloVeiculo, String placaVeiculo, String statusVeiculo, int anoDeFabricacao, double peso) {
+        this.idCliente = idCliente; 
         this.anoDeFabricacao = anoDeFabricacao;
         this.modeloVeiculo = modeloVeiculo;
         this.placaVeiculo = placaVeiculo;
@@ -72,7 +74,7 @@ public class Veiculo {
      * 
      * @return status do Veículo
      */
-    public String getStatusVeiculo(){
+    public Manutencao getStatusVeiculo(){
         return statusVeiculo;
     }
     
@@ -81,7 +83,7 @@ public class Veiculo {
      * 
      * @param statusVeiculo novo status do Veículo
      */
-    public void setStatstusVeiculo(String statusVeiculo){
+    public void setStatstusVeiculo(Manutencao statusVeiculo){
         this.statusVeiculo = statusVeiculo;
     }
     
