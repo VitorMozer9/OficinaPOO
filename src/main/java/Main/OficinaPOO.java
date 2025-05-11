@@ -34,10 +34,10 @@ public class OficinaPOO {
         pecas = new ArrayList<>();
     }
     
-    private static OficinaPOO instancia = new OficinaPOO();
+    private static OficinaPOO instanciaOficina = new OficinaPOO();
     
     public static OficinaPOO getInstancia(){
-        return instancia; //Singleton
+        return instanciaOficina; //Singleton
     }
     
     
@@ -46,7 +46,7 @@ public class OficinaPOO {
     public static boolean salvarDados(OficinaPOO oficina) {
         Gson gson = new Gson();
         try (FileWriter writer = new FileWriter(caminhoJson)) {
-            gson.toJson(instancia, writer);
+            gson.toJson(instanciaOficina, writer);
         } catch (IOException e) {
             System.out.println("Erro ao salvar dados: " + e.getMessage());
             return false;
@@ -58,9 +58,8 @@ public class OficinaPOO {
     public static boolean carregaDados() {
         Gson gson = new Gson();
         try (FileReader reader = new FileReader(caminhoJson)) {
-            TypeToken tipo = new TypeToken<OficinaPOO>() {
-            };           
-            instancia = (OficinaPOO)gson.fromJson(reader,tipo);            
+            TypeToken tipo = new TypeToken<OficinaPOO>() {};           
+            instanciaOficina = (OficinaPOO)gson.fromJson(reader,tipo);            
         } catch (IOException e) {
             return false;
         }
@@ -81,6 +80,10 @@ public class OficinaPOO {
     
     public void addPeca(Pecas peca){
         pecas.add(peca);
+    }
+    
+    public ArrayList<Cliente> getClientes(){
+        return clientes;
     }
     
     public static void main(String[] args) {

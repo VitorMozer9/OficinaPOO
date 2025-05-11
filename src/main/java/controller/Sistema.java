@@ -8,6 +8,8 @@ public class Sistema {
     private TelaInicial telaInicial = new TelaInicial();
     private ClienteController clienteController = new ClienteController();
     private FuncionarioController funcionarioController = new FuncionarioController();
+    private VeiculoController veiculoController = new VeiculoController();
+    private PecasController pecasController = new PecasController();
     
     public void iniciaSistema() {
         boolean rodando = true;
@@ -24,14 +26,14 @@ public class Sistema {
                 case 2 -> {
                     funcionarioController.executaMenuFuncionario();
                 }
-//                
-//                case 3 -> {
-//                    veiculoController.executaMenuVeiculo();
-//                }
-//                
-//                case 4 -> {
-//                    pecasController.executaMenuPecas();
-//                }
+                
+                case 3 -> {
+                    veiculoController.executaMenuVeiculo();
+                }
+                
+                case 4 -> {
+                    pecasController.executaMenuPecas();
+                }
                 
 //                case 5 -> {
 //                    financeiroController.executaMenuFinanceiro();

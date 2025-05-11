@@ -12,11 +12,24 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ClienteController {
+    //public static int ultimoIdCliente = 0;  
     private ClienteView viewCliente = new ClienteView();
     private List<Cliente> listaClientes = new ArrayList<>();
     //private final String salvaClientes = "data%sclientes.json".formatted(File.separator); 
     
+    public int geraIdCliente(){
+        List<Cliente> listaClientes = OficinaPOO.getInstancia().getClientes();
+        int maiorIdCliente = 0;
+        for (Cliente cadaCliente : listaClientes){
+            if(cadaCliente.getIdCliente() > maiorIdCliente){
+                maiorIdCliente = cadaCliente.getIdCliente();
+            }
+        }
+        return maiorIdCliente + 1;
+    }
+    
     public void adicionaCliente(){
+        int idCliente = geraIdCliente();
         String nome = viewCliente.getNomeCliente();
         String endereco = viewCliente.getEnderecoCliente();
         String telefone = viewCliente.getFoneCliente();
@@ -29,10 +42,10 @@ public class ClienteController {
         
         Cpf cpf = new Cpf(codigoCpf); 
 
-        Cliente novoCliente = new Cliente(nome, endereco, telefone, email, cpf);
+        Cliente novoCliente = new Cliente(nome, endereco, telefone, email, cpf,idCliente);
         listaClientes.add(novoCliente);
         OficinaPOO.getInstancia().addCliente(novoCliente);
-        System.out.println("Cliente adicionado com sucesso!");
+        System.out.println("Cliente adicionado com sucesso! ID do cliente: " + idCliente);
          
     }
     

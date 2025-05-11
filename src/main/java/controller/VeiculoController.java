@@ -29,7 +29,7 @@ public class VeiculoController {
          
     }
      
-    public void executaMenuFuncionario(){
+    public void executaMenuVeiculo(){
         int opcao = 0; 
         
         while(opcao != 5){

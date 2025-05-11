@@ -8,7 +8,7 @@ public class Cliente extends Pessoa{
 /**
  * Atributo estático com o intuito de incrementar um digito cada vez que é criado um novo cliente. 
  */
-    public static int ultimoIdCliente = 0;
+    //public static int ultimoIdCliente = 0;
     
     private int idCliente;
     
@@ -23,10 +23,10 @@ public class Cliente extends Pessoa{
 * @param email         Email do cliente.
 * @param cpf           CPF do cliente.
 */
-    public Cliente(String nome, String endereco, String telefone, String email, Cpf cpf) {
+    public Cliente(String nome, String endereco, String telefone, String email, Cpf cpf, int idCliente) {
         super(nome, endereco, telefone, email, cpf);
         
-        this.idCliente = ++ultimoIdCliente;
+        this.idCliente = idCliente;
     }
     
 /**
@@ -35,6 +35,11 @@ public class Cliente extends Pessoa{
  * Atributo não necesita de um set, vito que o idCliente é determinado pela propria classe, a cada criação de um objeto de Cliente
  * @return ID do cliente.
  */
+    
+//    public int geraIdCliente(){
+//        return this.idCliente = ++ultimoIdCliente;
+//    }
+    
     public int getIdCliente(){
         return idCliente;
     }
