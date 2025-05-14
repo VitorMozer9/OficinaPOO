@@ -37,11 +37,11 @@ public class OficinaPOO {
     private static OficinaPOO instanciaOficina = new OficinaPOO();
     
     public static OficinaPOO getInstancia(){
-        return instanciaOficina; //Singleton
+        return instanciaOficina; 
     }
     
     
-     private static final String caminhoJson = "data%soficina.json".formatted(File.separator);
+    private static final String caminhoJson = "data%soficina.json".formatted(File.separator);
 
     public static boolean salvarDados(OficinaPOO oficina) {
         Gson gson = new Gson();

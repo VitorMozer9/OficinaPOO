@@ -11,21 +11,30 @@ import java.io.IOException;
 import java.util.ArrayList;   
 import java.util.List;
 
-public class ClienteController {
-    //public static int ultimoIdCliente = 0;  
+public class ClienteController { 
     private ClienteView viewCliente = new ClienteView();
-    private List<Cliente> listaClientes = new ArrayList<>();
+    //List<Cliente> listaClientes = OficinaPOO.getInstancia().getClientes();
+    //private List<Cliente> listaClientes = new ArrayList<>();
     //private final String salvaClientes = "data%sclientes.json".formatted(File.separator); 
     
     public int geraIdCliente(){
-        List<Cliente> listaClientes = OficinaPOO.getInstancia().getClientes();
+        //List<Cliente> listaClientes = OficinaPOO.getInstancia().getClientes();
         int maiorIdCliente = 0;
-        for (Cliente cadaCliente : listaClientes){
+        for (Cliente cadaCliente : OficinaPOO.getInstancia().getClientes()){
             if(cadaCliente.getIdCliente() > maiorIdCliente){
                 maiorIdCliente = cadaCliente.getIdCliente();
             }
         }
         return maiorIdCliente + 1;
+    }
+    
+    public Cliente buscarCliente(int id){
+        for(Cliente clientes : OficinaPOO.getInstancia().getClientes()){
+            if (clientes.getIdCliente() == id){
+                return clientes;
+            }    
+        }
+        return null;
     }
     
     public void adicionaCliente(){
@@ -43,10 +52,44 @@ public class ClienteController {
         Cpf cpf = new Cpf(codigoCpf); 
 
         Cliente novoCliente = new Cliente(nome, endereco, telefone, email, cpf,idCliente);
-        listaClientes.add(novoCliente);
+        //listaClientes.add(novoCliente);
         OficinaPOO.getInstancia().addCliente(novoCliente);
         System.out.println("Cliente adicionado com sucesso! ID do cliente: " + idCliente);
          
+    }
+    
+    public void mostrarCliente(){
+        int id = viewCliente.getIdCliente();
+        Cliente cliente = buscarCliente(id);
+        viewCliente.mostraCliente(cliente);
+    }
+    
+    public void removeCliente(){
+        int id = viewCliente.getIdCliente();
+        Cliente cliente = buscarCliente(id);
+        
+        if (cliente == null){
+            System.out.println("Cliente não encontrado!");
+            return;
+        }
+        
+        viewCliente.mostraCliente(cliente);
+        
+        String opcaoConfirmacao = viewCliente.confirmaExclusaoCliente();
+        if (!opcaoConfirmacao.equalsIgnoreCase("S")) {
+            System.out.println("Operação abortada!!");
+            return;
+        }
+        
+        OficinaPOO.getInstancia().getClientes().remove(cliente);
+        
+        if(OficinaPOO.salvarDados(OficinaPOO.getInstancia())){
+            System.out.println("Cliente removido com sucesso!");
+        }else{
+            System.out.println("Falha ao remover cliente! :(");
+        }
+        
+        
     }
     
 //     private void salvarClientes() {
@@ -71,14 +114,13 @@ public class ClienteController {
 //                case 2 -> {
 //                    editaCliente();
 //                }
-//                case 3 -> {
-//                    removeCliente();
-//                }
-//                case 4 -> {
-//                    mostraCliente();
+                case 3 -> {
+                    removeCliente();
+                }
+                case 4 -> {
+                    mostrarCliente();
                 }
             }
         }
-}
-
- 
+    }
+} 

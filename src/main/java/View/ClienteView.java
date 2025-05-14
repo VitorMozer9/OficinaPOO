@@ -1,5 +1,6 @@
 package View;
 
+import Model.Cliente;
 import java.util.Scanner;
 
 public class ClienteView {
@@ -41,6 +42,28 @@ public class ClienteView {
     
     public String getCpfCliente(){
         System.out.println("Digite o CPF do cliente: ");
+        return leituraDados.nextLine();
+    }
+    
+    public int getIdCliente(){
+        System.out.println("Digite o ID do cliente: ");
+        int idCliente = leituraDados.nextInt();
+        leituraDados.nextLine();
+        return idCliente;
+    }
+    
+    public void mostraCliente(Cliente cliente){
+        System.out.println("ID: " + cliente.getIdCliente()      + "\n" + 
+                           "Nome: " + cliente.getNome()         + "\n" +
+                           "Endereço: " + cliente.getEndereco() + "\n" +
+                           "Telefone: " + cliente.getEndereco() + "\n" +
+                           "E-Mail: " + cliente.getEmail()      + "\n" + 
+                           "CPF: " + cliente.getCpf());
+    }
+    
+    public String confirmaExclusaoCliente(){
+        System.out.println("Tem certeza que deseja remover este cliente? \n"
+                         + "Digite [S] para confirmar ou [N] para abortar a operação!!");
         return leituraDados.nextLine();
     }
     
