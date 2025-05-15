@@ -2,9 +2,22 @@ package View;
 
 import java.util.Scanner;
 
+/**
+ * Classe responsável pela interface de usuário para a gestão dos funcionários.
+ * Forncendo métodos para incluir, editar, remover e mostrar os dados dos funcionários.
+ */
 public class FuncionarioView {
+    
+    /**
+     * Scanner para leitura e entrada do usuário.
+     */
     Scanner leituraDados = new Scanner(System.in);
     
+    /**
+     * Exibe as opções disponiveis no menu do funcionário e retorna a opção escolhida.
+     * 
+     * @return um número inteiro de acordo com a opção escolhida pelo usuário.
+     */
     public int mostraOpcoesFuncionario(){
         System.out.println("Digite a opção que deseja exucutar: \n");
         System.out.println("1 - Incluir Funcionário");
@@ -19,51 +32,101 @@ public class FuncionarioView {
         return opcao;
     }
     
+    /**
+     * Solicita e retorna o nome do funcionário inserido pelo usuário.
+     * 
+     * @return nome do funcionário.
+     */
     public String getNomeFunc(){
         System.out.println("Digite o nome do Funcionário: ");
         return leituraDados.nextLine();
         }
     
+    /**
+     * Solicita e retorna o endereço do funicionário inserido pelo usuário.
+     * 
+     * @return endereço do funcionário.
+     */
     public String getEnderecoFunc(){
         System.out.println("Digite o endereço do Funcionário: ");
         return leituraDados.nextLine();
     }
     
+    /**
+     * Solicita e retorna o telefone do funcionário inserido pelo usuário.
+     * 
+     * @return telefone do funcionário.
+     */
     public String getFoneFunc(){
         System.out.println("Digite o telefone do Funcionário: ");
         return leituraDados.nextLine();
     }
     
+    /**
+     * Solicita e retorna o email do funcionário inserido pelo usuário.
+     * 
+     * @return email do funcionário.
+     */
     public String getEmailFunc(){
         System.out.println("Digite o email do Funcionário: ");
         return leituraDados.nextLine();
     }
     
+    /**
+     * Solicita e retorna o CPF do funconário inserido pelo usuário.
+     * 
+     * @return CPF do funcionário. 
+     */
     public String getCpfFunc(){
         System.out.println("Digite o CPF do Funcionário: ");
         return leituraDados.nextLine();
     }
     
+    /**
+     * Solicita e retorna o login do funcionário inserido pelo usuário.
+     * 
+     * @return Login do funcionário.
+     */
     public String getUsuarioFunc() {
         System.out.println("Digite o login de usuário do funcionário: ");
         return leituraDados.nextLine();
     }
     
+    /**
+     * Solcita e retorna a senha do funcionário inserido pelo usuário.
+     * 
+     * @return Senha do funcionário.
+     */
     public String getSenhaFunc() {
         System.out.println("Digite a senha do funcionário: ");
         return leituraDados.nextLine();
     }
     
+    /**
+     * Solicita e retorna o cargo do funcionário inserido pelo usuário.
+     * 
+     * @return Cargo do funcionário.
+     */
     public String getCargoFunc() {
        System.out.println("Digite o cargo do funcionário: ");
        return leituraDados.nextLine();
     }
     
+    /**
+     * Solicita e retorna o salário do funcionário inserido pelo usuário.
+     * 
+     * @return Salário do funcionário. 
+     */
      public double getSalarioFunc() {
         System.out.println("Digite o salário do funcionário: ");
         return leituraDados.nextDouble();
     }
     
+     /**
+      * Exibe as opções de campos que podem ser editados e retorna a escolha do usuário.
+      * 
+      * @return número inteiro correspondente ao campo selecionado (1, 2, 3, 4 ou 5).
+      */
     public int editaCliente(){
         System.out.println("Digite o campo que você gostaria de editar!");
         System.out.println("1 - Endereço");

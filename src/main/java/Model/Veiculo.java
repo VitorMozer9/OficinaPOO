@@ -146,6 +146,11 @@ public class Veiculo {
     
     }
     
+    /**
+     * Sobrescreve o método toString para retornar o modelo do veículo.
+     * 
+     * @return 
+     */
     @Override
     public String toString(){
         return modeloVeiculo;
