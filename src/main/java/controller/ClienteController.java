@@ -92,6 +92,43 @@ public class ClienteController {
         
     }
     
+    public void editarCliente(){
+        int idCliente = viewCliente.getIdCliente();
+        Cliente cliente = buscarCliente(idCliente);
+        viewCliente.mostraCliente(cliente);
+        
+        int opcaoModCliente = viewCliente.editaCliente();
+        
+        switch(opcaoModCliente){
+            case 1 -> {
+                String novoEndereco = viewCliente.getEnderecoCliente();
+                editaEndereco(cliente, novoEndereco);
+
+            }
+            case 2 -> {
+                String novoTelefone = viewCliente.getFoneCliente();
+                editaTelefone(cliente, novoTelefone);
+            }
+            case 3 -> {
+                String novoEmail = viewCliente.getEmailCliente();
+                editaEmail(cliente, novoEmail);
+            }
+            
+        }
+    }
+    
+    public void editaEndereco(Cliente cliente, String novoEndereco){
+        cliente.setEndereco(novoEndereco);
+    }
+    
+    public void editaTelefone(Cliente cliente, String novoTelefone){
+        cliente.setTelefone(novoTelefone);
+    }
+    
+    public void editaEmail(Cliente cliente, String novoEmail){
+        cliente.setEmail(novoEmail);
+    }   
+    
 //     private void salvarClientes() {
 //        Gson gson = new Gson();
 //        try (FileWriter writer = new FileWriter(salvaClientes)) {
@@ -111,9 +148,9 @@ public class ClienteController {
                 case 1 -> {
                     adicionaCliente();
                 }
-//                case 2 -> {
-//                    editaCliente();
-//                }
+                case 2 -> {
+                    editarCliente();
+                }
                 case 3 -> {
                     removeCliente();
                 }
