@@ -6,10 +6,19 @@ import View.VeiculoView;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Classe responsável pela gerência dos veículos da oficina.
+ * Fornece métodos para adicionar e executar um menu para veículos.
+ */
 public class VeiculoController {
     private VeiculoView viewVeiculo = new VeiculoView();
     private List<Veiculo> listaVeiculo = new ArrayList<>();
     
+    /**
+     * Reponsável por coletar os dados de veículo utilizando a view, validando a placa do veículo de acordo com o seu padrão
+     * e adicionado o novo veículo ao sistema.
+     * Exibe uma mensagem de erro ou sucesso de adição do novo veículo. 
+     */
     public void adicionaVeiculo(){
         int idCliente = viewVeiculo.getIdCliente();
         String modelo = viewVeiculo.getModeloVeiculo();
@@ -29,6 +38,10 @@ public class VeiculoController {
          
     }
      
+    /**
+     * Exibe um menu de opções do funcionário e executa a ação solicitada pelo usuário.
+     * O menu permanece até que o usuário solicite a opção de sair.
+     */
     public void executaMenuVeiculo(){
         int opcao = 0; 
         

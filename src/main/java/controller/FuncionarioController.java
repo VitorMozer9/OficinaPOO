@@ -7,10 +7,18 @@ import View.FuncionarioView;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Classe responsável pela gerencia dos funcionários.
+ * Fornece métodos para adicionar e mostrar o menu de informações de funcionário.
+ */
 public class FuncionarioController {
     private FuncionarioView viewFuncionario = new FuncionarioView();
     private List<Funcionario> listaFuncionario = new ArrayList<>();
     
+    /**
+     * Coleta os dados do funcionário a partir da view, válida o seu CPF e adicina o novo funcionário ao sistema.
+     * Exibe uma mensagem de sucesso ou erro de validação para o usuário. 
+     */
     public void adicionaFuncionario(){
         String nome = viewFuncionario.getNomeFunc();
         String endereco = viewFuncionario.getEnderecoFunc();
@@ -36,6 +44,10 @@ public class FuncionarioController {
          
     }
      
+    /**
+     * Exibe o menu de opções do funcionário e executa a ação selecionada pelo usuário.
+     * O menu permanece até que o usuário escolha a opção de sair.
+     */
     public void executaMenuFuncionario(){
         int opcao = 0; 
         
