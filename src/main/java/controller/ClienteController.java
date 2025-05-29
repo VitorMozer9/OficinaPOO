@@ -11,12 +11,21 @@ import java.io.IOException;
 import java.util.ArrayList;   
 import java.util.List;
 
+/**
+ * Classe responsável pela gerência dos clientes.
+ * Fornece métodos para adicionar, remover, buscar e exibir iformações dos clientes.
+ */
 public class ClienteController { 
     private ClienteView viewCliente = new ClienteView();
     //List<Cliente> listaClientes = OficinaPOO.getInstancia().getClientes();
     //private List<Cliente> listaClientes = new ArrayList<>();
     //private final String salvaClientes = "data%sclientes.json".formatted(File.separator); 
     
+    /**
+     * Gera um novo ID de cliente, baseado no maior ID já registrado.
+     * 
+     * @return novo ID do cliente (incrementado em relação ao maior ID atual).
+     */
     public int geraIdCliente(){
         //List<Cliente> listaClientes = OficinaPOO.getInstancia().getClientes();
         int maiorIdCliente = 0;
@@ -28,6 +37,12 @@ public class ClienteController {
         return maiorIdCliente + 1;
     }
     
+    /**
+     * Busca cliente com base no ID informado.
+     * 
+     * @param id ID do cliente a ser buscado.
+     * @return Objeto Cliente relacionado ao ID, ou null se não encontrado. 
+     */
     public Cliente buscarCliente(int id){
         for(Cliente clientes : OficinaPOO.getInstancia().getClientes()){
             if (clientes.getIdCliente() == id){
@@ -37,6 +52,10 @@ public class ClienteController {
         return null;
     }
     
+    /**
+     * Coleta dados do cliente a partir da view, valida o CPF e adiciona o novo cliente ao sistema.
+     * Exibe mensagem de sucesso ou erro de validação.
+     */
     public void adicionaCliente(){
         int idCliente = geraIdCliente();
         String nome = viewCliente.getNomeCliente();
@@ -58,12 +77,19 @@ public class ClienteController {
          
     }
     
+    /**
+     * Mostra as informações dos clientes com base no ID informado pela view 
+     */
     public void mostrarCliente(){
         int id = viewCliente.getIdCliente();
         Cliente cliente = buscarCliente(id);
         viewCliente.mostraCliente(cliente);
     }
     
+    /**
+     * Remove um cliente do sistema após confirmação do usuário.
+     * Exibe mensagem de erro, confirmação ou falha na operação.
+     */
     public void removeCliente(){
         int id = viewCliente.getIdCliente();
         Cliente cliente = buscarCliente(id);
@@ -92,6 +118,10 @@ public class ClienteController {
         
     }
     
+    /**
+     * Edita os dados anteriores fornecidos para Cliente.
+     * Selecionando de acordo com a opção selecionada pelo usuário.
+     */
     public void editarCliente(){
         int idCliente = viewCliente.getIdCliente();
         Cliente cliente = buscarCliente(idCliente);
@@ -117,14 +147,32 @@ public class ClienteController {
         }
     }
     
+    /**
+     * Edita o endereço que foi fornecido anteriormente para cliente.
+     * 
+     * @param cliente Cliente selecionado para ser editado.
+     * @param novoEndereco Novo endereço fornecido para o Cliente, sobrescrevendo o anterior.
+     */
     public void editaEndereco(Cliente cliente, String novoEndereco){
         cliente.setEndereco(novoEndereco);
     }
     
+    /**
+     * Edita o telefone que foi fornecido anteriormente para cliente.
+     * 
+     * @param cliente Cliente selecionado para ser editado.
+     * @param novoTelefone Novo telefone fornecido para o Cliente, sobrescrevendo o anterior.
+     */
     public void editaTelefone(Cliente cliente, String novoTelefone){
         cliente.setTelefone(novoTelefone);
     }
     
+    /**
+     * Edita o email que foi anteriormente fornecido para cliente.
+     * 
+     * @param cliente Cliente selecinado para ser editado.
+     * @param novoEmail Novo email fornecido para o Cliente, sobrescrevendo o anterior.
+     */
     public void editaEmail(Cliente cliente, String novoEmail){
         cliente.setEmail(novoEmail);
     }   
@@ -138,6 +186,10 @@ public class ClienteController {
 //        }
 //    }
      
+    /**
+     * Exibe o menu de opções do cliente e executa a ação selecionada pelo usuário.
+     * O menu permanece ativo até que o usuário escolha a opção de sair.
+     */
     public void executaMenuCliente(){
         int opcao = 0; 
         
