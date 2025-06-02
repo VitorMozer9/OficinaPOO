@@ -25,7 +25,7 @@ public class ClienteView {
         System.out.println("2 - Editar Cliente");
         System.out.println("3 - Remover Cliente");
         System.out.println("4 - Mostrar dados de um Cliente");
-        System.out.println("5 - Sair");
+        System.out.println("5 - Sair \n");
         System.out.println();
 
         int opcao = leituraDados.nextInt();
@@ -104,9 +104,9 @@ public class ClienteView {
         System.out.println("ID: " + cliente.getIdCliente()      + "\n" + 
                            "Nome: " + cliente.getNome()         + "\n" +
                            "Endereço: " + cliente.getEndereco() + "\n" +
-                           "Telefone: " + cliente.getEndereco() + "\n" +
+                           "Telefone: " + cliente.getTelefone() + "\n" +
                            "E-Mail: " + cliente.getEmail()      + "\n" + 
-                           "CPF: " + cliente.getCpf());
+                           "CPF: " + cliente.getCpf()           + "\n");
     }
     
     /**

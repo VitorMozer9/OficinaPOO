@@ -4,21 +4,10 @@ import Main.OficinaPOO;
 import Model.Cliente;
 import Model.Cpf;
 import View.ClienteView;
-import com.google.gson.Gson;
-import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.util.ArrayList;   
-import java.util.List;
-
 public class ClienteController { 
     private ClienteView viewCliente = new ClienteView();
-    //List<Cliente> listaClientes = OficinaPOO.getInstancia().getClientes();
-    //private List<Cliente> listaClientes = new ArrayList<>();
-    //private final String salvaClientes = "data%sclientes.json".formatted(File.separator); 
     
     public int geraIdCliente(){
-        //List<Cliente> listaClientes = OficinaPOO.getInstancia().getClientes();
         int maiorIdCliente = 0;
         for (Cliente cadaCliente : OficinaPOO.getInstancia().getClientes()){
             if(cadaCliente.getIdCliente() > maiorIdCliente){
@@ -29,10 +18,16 @@ public class ClienteController {
     }
     
     public Cliente buscarCliente(int id){
-        for(Cliente clientes : OficinaPOO.getInstancia().getClientes()){
-            if (clientes.getIdCliente() == id){
-                return clientes;
-            }    
+        try{
+            for(Cliente clientes : OficinaPOO.getInstancia().getClientes()){
+                if (clientes.getIdCliente() == id){
+                    return clientes;
+                }
+            }   
+        }
+        catch(Exception e){
+            System.out.println("Falha ao buscar cliente!!!");
+            return null;
         }
         return null;
     }
@@ -52,15 +47,23 @@ public class ClienteController {
         Cpf cpf = new Cpf(codigoCpf); 
 
         Cliente novoCliente = new Cliente(nome, endereco, telefone, email, cpf,idCliente);
-        //listaClientes.add(novoCliente);
         OficinaPOO.getInstancia().addCliente(novoCliente);
-        System.out.println("Cliente adicionado com sucesso! ID do cliente: " + idCliente);
-         
+        if (OficinaPOO.salvarDados(OficinaPOO.getInstancia())){
+            System.out.println("Cliente adicionado com sucesso! ID do cliente: " + idCliente);
+        }else{
+            System.out.println("Erro ao adicionar cliente!");
+        }
     }
     
     public void mostrarCliente(){
         int id = viewCliente.getIdCliente();
         Cliente cliente = buscarCliente(id);
+        
+        if (cliente == null){
+            System.out.println("Cliente não encontrado!");
+            return;
+        }
+        
         viewCliente.mostraCliente(cliente);
     }
     
@@ -95,7 +98,14 @@ public class ClienteController {
     public void editarCliente(){
         int idCliente = viewCliente.getIdCliente();
         Cliente cliente = buscarCliente(idCliente);
+        
+        if (cliente == null){
+            System.out.println("Cliente não encontrado!!");
+            return;
+        }
+        
         viewCliente.mostraCliente(cliente);
+        
         
         int opcaoModCliente = viewCliente.editaCliente();
         
@@ -103,7 +113,6 @@ public class ClienteController {
             case 1 -> {
                 String novoEndereco = viewCliente.getEnderecoCliente();
                 editaEndereco(cliente, novoEndereco);
-
             }
             case 2 -> {
                 String novoTelefone = viewCliente.getFoneCliente();
@@ -114,6 +123,12 @@ public class ClienteController {
                 editaEmail(cliente, novoEmail);
             }
             
+        }
+        
+        if (OficinaPOO.salvarDados(OficinaPOO.getInstancia())) {
+            System.out.println("Alterações salvas com sucesso.");
+        } else {
+            System.out.println("Erro ao salvar alterações.");
         }
     }
     
@@ -129,14 +144,6 @@ public class ClienteController {
         cliente.setEmail(novoEmail);
     }   
     
-//     private void salvarClientes() {
-//        Gson gson = new Gson();
-//        try (FileWriter writer = new FileWriter(salvaClientes)) {
-//            gson.toJson(listaClientes, writer);
-//        } catch (IOException e) {
-//            System.out.println("Erro ao salvar cliente: " + e.getMessage());
-//        }
-//    }
      
     public void executaMenuCliente(){
         int opcao = 0; 

@@ -4,7 +4,7 @@ import java.util.Scanner;
 
 /**
  * Classe responsável pela tela inicial do sistema.
- * Definindo o menu principal que dá acesso a alguma areas do sistema e mostrando mensagens relacionadas a manippulação dos dados.
+ * Definindo o menu principal que permite acesso a algumas áreas do sistema e mostrando mensagens relacionadas a manipulação dos dados.
  */
 public class TelaInicial {
     
@@ -15,8 +15,8 @@ public class TelaInicial {
     
     /**
      * Exibe o menu principal com todas as areas disponiveis do sistema.
-     * Apresenta algumas funcionalidades como: cadastrode clientes, cadastro de funcionários, cadastro de peças, gerar ordem de serviço e
-     * acessar a area financeira do sistema.
+     * Apresenta algumas funcionalidades como: cadastro de clientes, cadastro de funcionários, cadastro de peças, gerar ordem de serviço e
+     * acessar a área financeira do sistema.
      * 
      * @return Número inteiro representando a área selecionada pelo usuário.
      */
@@ -27,7 +27,7 @@ public class TelaInicial {
         System.out.println("4 - Gerar Ordem de Serviço");
         System.out.println("5 - Financeiro");
         System.out.println("6 - Sair");
-        System.out.println("Digite para qual espaço deseja ser redirecionado ");
+        System.out.println("Digite para qual espaço deseja ser redirecionado \n");
         
         return leituraDados.nextInt();
     }
