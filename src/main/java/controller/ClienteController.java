@@ -4,20 +4,11 @@ import Main.OficinaPOO;
 import Model.Cliente;
 import Model.Cpf;
 import View.ClienteView;
-<<<<<<< HEAD
-=======
-import com.google.gson.Gson;
-import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.util.ArrayList;   
-import java.util.List;
 
 /**
  * Classe responsável pela gerência dos clientes.
  * Fornece métodos para adicionar, remover, buscar e exibir iformações dos clientes.
  */
->>>>>>> 368e60068557d442e68f49c6984b8a4b905c92d7
 public class ClienteController { 
     private ClienteView viewCliente = new ClienteView();
     
@@ -225,6 +216,10 @@ public class ClienteController {
                 }
                 case 4 -> {
                     mostrarCliente();
+                }
+                
+                default -> {
+                    System.out.println("Opção inválida! Tente novamente.");
                 }
             }
         }

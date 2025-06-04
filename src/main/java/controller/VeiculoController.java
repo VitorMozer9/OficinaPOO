@@ -12,13 +12,27 @@ import java.util.List;
  */
 public class VeiculoController {
     private VeiculoView viewVeiculo = new VeiculoView();
-    private List<Veiculo> listaVeiculo = new ArrayList<>();
+    
+    public Veiculo buscaVeiculo(String placaVeiculo){
+        try{
+            for(Veiculo veiculo : OficinaPOO.getInstancia().getVeiculo()){
+                if(placaVeiculo.equals(viewVeiculo.getPlacaVeiculo())){
+                    return veiculo;
+                }
+            }    
+        }
+        catch(Exception e){
+             System.out.println("Falha ao buscar cliente!!!");
+            return null;
+        }
+        return null;
+    }
     
     /**
      * Reponsável por coletar os dados de veículo utilizando a view, validando a placa do veículo de acordo com o seu padrão
      * e adicionado o novo veículo ao sistema.
      * Exibe uma mensagem de erro ou sucesso de adição do novo veículo. 
-     */
+     */ 
     public void adicionaVeiculo(){
         int idCliente = viewVeiculo.getIdCliente();
         String modelo = viewVeiculo.getModeloVeiculo();
@@ -31,15 +45,81 @@ public class VeiculoController {
             return;
         }
 
-        Veiculo novoVeiculo = new Veiculo(idCliente,modelo,placa,status,anoFabricacao,peso);
-        listaVeiculo.add(novoVeiculo);
+        Veiculo novoVeiculo = new Veiculo(idCliente, modelo, placa, status, anoFabricacao, peso);
         OficinaPOO.getInstancia().addVeiculo(novoVeiculo);
-        System.out.println("Veículo adicionado com sucesso!");
-         
+        if (OficinaPOO.salvarDados(OficinaPOO.getInstancia())){
+            System.out.println("Veículo adicionado com sucesso!");
+        }else{
+            System.out.println("Falha ao adicionar veículo!");
+        }
+    }
+    
+      public void mostrarVeiculo(){
+        String placaVeiculo = viewVeiculo.getPlacaVeiculo();
+        Veiculo veiculo = buscaVeiculo(placaVeiculo);
+        
+        if (veiculo == null){
+            System.out.println("Veículo não encontrado!");
+            return;
+        }
+        
+        viewVeiculo.mostraVeiculo(veiculo);
+    }
+      
+    public void removeVeiculo(){
+        String placaVeiculo = viewVeiculo.getPlacaVeiculo();
+        Veiculo veiculo = buscaVeiculo(placaVeiculo);
+        
+        if (veiculo == null){
+            System.out.println("Veículo não encontrado!");
+            return;
+        }
+        
+        viewVeiculo.mostraVeiculo(veiculo);
+        
+        String opcaoConfirmacao = viewVeiculo.confirmaExclusaoVeiculo();
+        if (!opcaoConfirmacao.equalsIgnoreCase("S")) {
+            System.out.println("Operação abortada!!");
+            return;
+        }
+        
+        OficinaPOO.getInstancia().getVeiculo().remove(veiculo);
+        
+        if(OficinaPOO.salvarDados(OficinaPOO.getInstancia())){
+            System.out.println("Veículo removido com sucesso!");
+        }else{
+            System.out.println("Falha ao remover veículo :(");
+        }
+            
+    }
+    
+    public void editarVeiculo(){
+        String placaVeiculo = viewVeiculo.getPlacaVeiculo();
+        Veiculo veiculo = buscaVeiculo(placaVeiculo);
+        
+        if (veiculo == null){
+            System.out.println("Veículo não encontrado!");
+            return;
+        }
+        
+        viewVeiculo.mostraVeiculo(veiculo);
+            
+        String novoStatusVeiculo = viewVeiculo.getStatusVeiculo();
+        editaStatusVeiculo(veiculo, novoStatusVeiculo);
+        
+        if (OficinaPOO.salvarDados(OficinaPOO.getInstancia())) {
+            System.out.println("Alterações salvas com sucesso.");
+        } else {
+            System.out.println("Erro ao salvar alterações.");
+        }
+    }
+    
+    public void editaStatusVeiculo(Veiculo veiculo, String novoStatus){
+        veiculo.setStatstusVeiculo(novoStatus);
     }
      
     /**
-     * Exibe um menu de opções do funcionário e executa a ação solicitada pelo usuário.
+     * Exibe um menu de opções do veículo e executa a ação solicitada pelo usuário.
      * O menu permanece até que o usuário solicite a opção de sair.
      */
     public void executaMenuVeiculo(){
@@ -52,14 +132,19 @@ public class VeiculoController {
                 case 1 -> {
                     adicionaVeiculo();
                 }
-//                case 2 -> {
-//                    editaCliente();
-//                }
-//                case 3 -> {
-//                    removeCliente();
-//                }
-//                case 4 -> {
-//                    mostraCliente();
+                case 2 -> {
+                    editarVeiculo();
+                }
+                case 3 -> {
+                    removeVeiculo();
+                }
+                case 4 -> {
+                    mostrarVeiculo();
+                }
+                
+                default -> {
+                    System.out.println("Opção inválida! Tente novamente.");
+                   }
                 }
             }
         }

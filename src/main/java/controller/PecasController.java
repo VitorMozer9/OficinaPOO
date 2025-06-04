@@ -53,6 +53,11 @@ public class PecasController {
 //                }
 //                case 4 -> {
 //                    mostraCliente();
+                
+                default -> {
+                    System.out.println("Opção inválida! Tente novamente.");
+                }
+                
                 }
             }
         }

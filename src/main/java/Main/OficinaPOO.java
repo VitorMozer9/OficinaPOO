@@ -86,6 +86,10 @@ public class OficinaPOO {
         return clientes;
     }
     
+    public ArrayList<Veiculo> getVeiculo(){
+        return veiculos;
+    } 
+    
     public static void main(String[] args) {
         System.setOut(new PrintStream(System.out, true, StandardCharsets.UTF_8));
         Sistema sistemaOficina = new Sistema();

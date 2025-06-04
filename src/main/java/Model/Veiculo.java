@@ -32,6 +32,14 @@ public class Veiculo {
         this.peso = peso;
     }
     
+    public int getIdCliente(){
+        return idCliente;
+    }
+    
+    public void setIdCliente(int idCliente){
+        this.idCliente = idCliente;
+    }
+    
     /**
      * Pega o modelo do veículo
      * 

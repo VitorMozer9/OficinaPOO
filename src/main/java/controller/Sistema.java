@@ -36,10 +36,23 @@ public class Sistema {
                 }
                 
 //                case 5 -> {
-//                    financeiroController.executaMenuFinanceiro();
+//                    loja.executaMenuLoja();
 //                }
                 
-                case 6 -> {
+//                case 6 ->{
+//                    agendamento.executaMenuAgendamento();
+//                }
+//                
+//                case 7 -> {
+//                    os.executaMenuOrdemDeServico();
+//                }
+//                
+                
+//                case 8 -> {
+//                    financeiroController.executaMenuFinanceiro();
+//                }    
+               
+                case 9 -> {
                     System.out.println("Encerrando sistema...");
                     OficinaPOO.salvarDados(OficinaPOO.getInstancia());
                     rodando = false;

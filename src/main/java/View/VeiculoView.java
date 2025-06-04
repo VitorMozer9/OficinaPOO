@@ -1,5 +1,6 @@
 package View;
 
+import Model.Veiculo;
 import java.util.Scanner;
 
 /**
@@ -81,6 +82,20 @@ public class VeiculoView {
         return leituraDados.nextInt();
     }
     
+        public void mostraVeiculo(Veiculo veiculo){
+        System.out.println("ID Cliente: " + veiculo.getIdCliente()              + "\n" + 
+                           "Modelo: " + veiculo.getModeloVeiculo()              + "\n" +
+                           "Placa: " + veiculo.getPlacaVeiculo()                + "\n" +
+                           "Ano de Fabricação: " + veiculo.getAnoDeFabricacao() + "\n" +
+                           "Peso: " + veiculo.getPeso()                         + "\n"); 
+    }
+        
+    public String confirmaExclusaoVeiculo(){
+        System.out.println("Tem certeza que deseja remover este veículo? \n"
+                         + "Digite [S] para confirmar ou [N] para abortar a operação!!");
+        return leituraDados.nextLine();
+    }
+    
     /**
      * Solicita e retorna o peso do veículo inserido pelo usuário.
      * 
@@ -89,24 +104,6 @@ public class VeiculoView {
     public double getPesoVeiculo() {
         System.out.println("Digite o peso do veículo: ");
         return leituraDados.nextDouble();
-    }
-    
-    /**
-     * Exibe as opções de campos que podem ser editados e retorna a escolha do usuário.
-     * 
-     * @return número inteiro correspondente ao campo selecionado (1, 2, 3, 4 ou 5). 
-     */
-    public int editaCliente(){
-        System.out.println("Digite o campo que você gostaria de editar!");
-        System.out.println("1 - ID Cliente");
-        System.out.println("2 - Modelo");
-        System.out.println("3 - Status veículo");
-        System.out.println("4 - Ano de Fabricação");
-        System.out.println("5 - Peso");
-      
-        int opcao = leituraDados.nextInt();
-        leituraDados.nextLine();
-        return opcao;
     }
     
 }
