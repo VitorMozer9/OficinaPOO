@@ -1,5 +1,6 @@
 package View;
 
+import Model.Funcionario;
 import java.util.Scanner;
 
 /**
@@ -30,6 +31,13 @@ public class FuncionarioView {
         int opcao = leituraDados.nextInt();
         leituraDados.nextLine();
         return opcao;
+    }
+    
+    public int getIdFuncionario(){
+        System.out.println("Digite o ID do FUncionário!");
+        int id = leituraDados.nextInt();
+        leituraDados.nextLine();
+        return id;
     }
     
     /**
@@ -119,8 +127,29 @@ public class FuncionarioView {
      */
      public double getSalarioFunc() {
         System.out.println("Digite o salário do funcionário: ");
-        return leituraDados.nextDouble();
+        double salario = leituraDados.nextDouble();
+        leituraDados.nextLine();
+        return salario;
     }
+     
+     public void mostraFuncionario(Funcionario funcionario){
+         System.out.println("ID: " + funcionario.getIdFuncionario() + "\n" +
+                            "Nome: " + funcionario.getNome() + "\n" +
+                            "Endereço: " + funcionario.getEndereco() + "\n" +
+                            "Telefone: " + funcionario.getTelefone() + "\n" +
+                            "E-mail: " + funcionario.getEmail() + "\n" +
+                            "CPF: " + funcionario.getCpf() + "\n" +
+                            "Usuário: " + funcionario.getUsuario() + "\n" +
+                            "Senha: ******************* \n" +
+                            "Cargo: " + funcionario.getCargo() + "\n" +
+                            "Salário: " + funcionario.getSalario());
+     }
+     
+     public String confirmaExclusaoFuncionario(){
+        System.out.println("Tem certeza que deseja remover este funcionário? \n"
+                         + "Digite [S] para confirmar ou [N] para abortar a operação!!");
+        return leituraDados.nextLine();
+     }
     
      /**
       * Exibe as opções de campos que podem ser editados e retorna a escolha do usuário.
@@ -132,8 +161,11 @@ public class FuncionarioView {
         System.out.println("1 - Endereço");
         System.out.println("2 - Telefone");
         System.out.println("3 - E-mail");
-        System.out.println("4 - Usuário");
-        System.out.println("5 - Senha");
+        //System.out.println("4 - Usuário");
+        System.out.println("4 - Senha");
+        //necessário ser gerente
+        System.out.println("5 - Cargo");
+        System.out.println("6 - Salário");
       
         int opcao = leituraDados.nextInt();
         leituraDados.nextLine();

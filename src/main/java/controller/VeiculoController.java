@@ -13,10 +13,18 @@ import java.util.List;
 public class VeiculoController {
     private VeiculoView viewVeiculo = new VeiculoView();
     
-    public Veiculo buscaVeiculo(String placaVeiculo){
+    public Veiculo buscaVeiculo(String placaVeiculoBusca){
         try{
+            if (placaVeiculoBusca == null) {
+            System.out.println("Veículo não encontrado!");
+            return null;
+        }
+            
             for(Veiculo veiculo : OficinaPOO.getInstancia().getVeiculo()){
-                if(placaVeiculo.equals(viewVeiculo.getPlacaVeiculo())){
+                
+                String placaNaLista = veiculo.getPlacaVeiculo();
+                
+                if(placaNaLista != null && placaVeiculoBusca.equals(placaNaLista)){
                     return veiculo;
                 }
             }    
@@ -103,7 +111,8 @@ public class VeiculoController {
         }
         
         viewVeiculo.mostraVeiculo(veiculo);
-            
+        
+        System.out.println("Alteração de status do veículo");
         String novoStatusVeiculo = viewVeiculo.getStatusVeiculo();
         editaStatusVeiculo(veiculo, novoStatusVeiculo);
         

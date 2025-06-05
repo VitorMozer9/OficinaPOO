@@ -7,6 +7,7 @@ package Model;
  * Esta classe herda as propriedades básicas da classe {@code Pessoa}.
  */
 public class Funcionario extends Pessoa{
+    private int idFuncionario;
     private String usuario;
     private String senha;
     private String cargo;
@@ -27,13 +28,18 @@ public class Funcionario extends Pessoa{
  * @param salario  Salário do funcionário.
  */    
     
-    public Funcionario(String nome, String endereco, String telefone, String email, Cpf cpf, String usuario, String senha, String cargo, double salario) {
+    public Funcionario(String nome, String endereco, String telefone, String email, Cpf cpf, String usuario, String senha, String cargo, double salario, int idFuncionario) {
         super(nome, endereco, telefone, email, cpf);
+        this.idFuncionario = idFuncionario;
         this.usuario = usuario;
         this.senha = senha;
         this.cargo = cargo;
         this.salario = salario;
         
+    }
+    
+    public int getIdFuncionario(){
+        return idFuncionario;
     }
     
  /**

@@ -1,5 +1,6 @@
 package View;
 
+import Model.Pecas;
 import java.util.Scanner;
 
 /**
@@ -39,7 +40,9 @@ public class PecasView {
      */
     public int getIdPeca(){
         System.out.println("Digite o ID da Peça: ");
-        return leituraDados.nextInt();
+        int idPeca = leituraDados.nextInt();
+        leituraDados.nextLine();
+        return idPeca;
     }
     
     /**
@@ -62,12 +65,26 @@ public class PecasView {
         return leituraDados.nextDouble();
     }
     
+    public void mostraPeca(Pecas pecas){
+        System.out.println("ID: " +  pecas.getIdPeca()                     + "\n" + 
+                           "Descrição: " + pecas.getDescicao()             + "\n" +
+                           "Quantidade: " + pecas.getQuantidadeEmEstoque() + "\n" +
+                           "Disponível em Estoque: " + pecas.getDisponivel()          + "\n" + 
+                           "Valor: " + pecas.getValorPeca()                + "\n");
+    }
+    
+    public String confirmaExclusaoPeca(){
+        System.out.println("Tem certeza que deseja remover esta peça? \n"
+                         + "Digite [S] para confirmar ou [N] para abortar a operação!!");
+        return leituraDados.nextLine();
+    }
+    
     /**
      * Exibe as opções de campos que podem ser editados e retorna a escolha do usuário.
      * 
      * @return número inteiro correspondente ao campo selecionado (1 ou 2). 
      */
-    public int editaCliente(){
+    public int editaPeca(){
         System.out.println("Digite o campo que você gostaria de editar!");
         System.out.println("1 - Descrição");
         System.out.println("2 - Valor");

@@ -39,7 +39,9 @@ public class VeiculoView {
      */
     public int getIdCliente(){
         System.out.println("Digite o ID do cliente dono do veículo: ");
-        return leituraDados.nextInt();
+        int idCliente = leituraDados.nextInt();
+        leituraDados.nextLine();
+        return idCliente;
         }
     
     /**
@@ -87,7 +89,8 @@ public class VeiculoView {
                            "Modelo: " + veiculo.getModeloVeiculo()              + "\n" +
                            "Placa: " + veiculo.getPlacaVeiculo()                + "\n" +
                            "Ano de Fabricação: " + veiculo.getAnoDeFabricacao() + "\n" +
-                           "Peso: " + veiculo.getPeso()                         + "\n"); 
+                           "Status do veículo: " + veiculo.getStatusVeiculo()   + "\n" +
+                           "Peso: " + veiculo.getPeso()                         + "\n");
     }
         
     public String confirmaExclusaoVeiculo(){

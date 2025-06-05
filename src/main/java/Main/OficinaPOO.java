@@ -47,7 +47,8 @@ public class OficinaPOO {
         Gson gson = new Gson();
         try (FileWriter writer = new FileWriter(caminhoJson)) {
             gson.toJson(instanciaOficina, writer);
-        } catch (IOException e) {
+        } 
+        catch (IOException e) {
             System.out.println("Erro ao salvar dados: " + e.getMessage());
             return false;
         }
@@ -88,7 +89,15 @@ public class OficinaPOO {
     
     public ArrayList<Veiculo> getVeiculo(){
         return veiculos;
-    } 
+    }
+    
+    public ArrayList<Funcionario> getFuncionario(){
+        return funcionario;
+    }
+    
+    public ArrayList<Pecas> getPecas(){
+        return pecas;
+    }
     
     public static void main(String[] args) {
         System.setOut(new PrintStream(System.out, true, StandardCharsets.UTF_8));

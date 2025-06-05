@@ -10,8 +10,6 @@ public class Pecas {
     private int quantidadeEmEstoque;
     private boolean disponivel;
     
-    public static int ultimoIdPeca = 0;
-    
     /**
      * Construtor da classe (@code Pecas).
      * Innicia uma nova verificação da peça no estoque, mostrando seu código, valor, quantidade no estoque, se ainda há no estoque e uma breve descrição sobre ela.
@@ -23,7 +21,7 @@ public class Pecas {
      * @param disponivel            Verificação de disponibilidade da peça.
      */
     public Pecas(int idPeca, String descricao, double valorPeca, int quantidadeEmEstoque,boolean disponivel){
-        this.idPeca = ++ultimoIdPeca;
+        this.idPeca = idPeca;
         this.descricao = descricao;
         this.valorPeca = valorPeca;
         this.quantidadeEmEstoque = quantidadeEmEstoque;
