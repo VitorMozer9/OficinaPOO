@@ -9,7 +9,7 @@ public class Sistema {
     private ClienteController clienteController = new ClienteController();
     private FuncionarioController funcionarioController = new FuncionarioController();
     private VeiculoController veiculoController = new VeiculoController();
-    private PecasController pecasController = new PecasController();
+    private ProdutoEstoqueController pecasController = new ProdutoEstoqueController();
     
     public void iniciaSistema() {
         boolean rodando = true;
@@ -32,7 +32,7 @@ public class Sistema {
                 }
                 
                 case 4 -> {
-                    pecasController.executaMenuPecas();
+                    pecasController.executaMenuProdutos();
                 }
                 
 //                case 5 -> {

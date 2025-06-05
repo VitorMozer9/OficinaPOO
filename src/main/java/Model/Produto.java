@@ -3,27 +3,26 @@ package Model;
 /**
  * Representação das peças, identificadas por um número, contidas no estoque da loja da oficina, que irão ser vendidas ou utilizadas para o reparo dos Veículos que estão nela.
  */
-public class Pecas {
-    private int idPeca;
+public class Produto {
+    private int idProduto;
     private String descricao;
-    private double valorPeca;
+    private double valorProduto;
     private int quantidadeEmEstoque;
     private boolean disponivel;
     
     /**
-     * Construtor da classe (@code Pecas).
-     * Innicia uma nova verificação da peça no estoque, mostrando seu código, valor, quantidade no estoque, se ainda há no estoque e uma breve descrição sobre ela.
+     * Construtor da classe (@code Pecas).Innicia uma nova verificação da peça no estoque, mostrando seu código, valor, quantidade no estoque, se ainda há no estoque e uma breve descrição sobre ela.
      * 
      * @param idPeca                Código de identificação da peça.
      * @param descricao             Descrição da peça.
-     * @param valorPeca             Valor da peça.
+     * @param valorProduto             Valor da peça.
      * @param quantidadeEmEstoque   Quantidade existente da peça no estoque.
      * @param disponivel            Verificação de disponibilidade da peça.
      */
-    public Pecas(int idPeca, String descricao, double valorPeca, int quantidadeEmEstoque,boolean disponivel){
-        this.idPeca = idPeca;
+    public Produto(int idProduto, String descricao, double valorProduto, int quantidadeEmEstoque,boolean disponivel){
+        this.idProduto = idProduto;
         this.descricao = descricao;
-        this.valorPeca = valorPeca;
+        this.valorProduto = valorProduto;
         this.quantidadeEmEstoque = quantidadeEmEstoque;
         this.disponivel = disponivel;
         
@@ -34,17 +33,17 @@ public class Pecas {
      * 
      * @return Código da peça.
      */
-    public int getIdPeca(){
-        return idPeca;
+    public int getIdProduto(){
+        return idProduto;
     }
     
     /**
      * Define o número de identificação da peça.
      * 
-     * @param idPeca Novo número de uma nova peça.
+     * @param idProduto Novo número de uma nova peça.
      */
-    public void setIdPeca(int idPeca){
-        this.idPeca = idPeca;
+    public void setIdProduto(int idProduto){
+        this.idProduto = idProduto;
     }
     
     /**
@@ -70,17 +69,17 @@ public class Pecas {
      * 
      * @return Valor da peça.
      */
-    public double getValorPeca(){
-        return valorPeca;
+    public double getValorProduto(){
+        return valorProduto;
     }
     
     /**
      * Define o valor de uma peça.
      * 
-     * @param valorPeca Valor para uma nova peça.
+     * @param valorProduto Valor para uma nova peça.
      */
-    public void setValorPeca(double valorPeca){
-        this.valorPeca = valorPeca;
+    public void setValorProduto(double valorProduto){
+        this.valorProduto = valorProduto;
     }
     
     /**

@@ -1,13 +1,13 @@
 package View;
 
-import Model.Pecas;
+import Model.Produto;
 import java.util.Scanner;
 
 /**
  * Classe responsável pelas interações com o usuário relacionadas as peças.
  * Realizando entradas e saídas de dados para operações como incluir, editar, remover, e mostrar dados da peça.
  */
-public class PecasView {
+public class ProdutoEstoqueView {
     
     /**
      * Scanner para leitura de dados inseridos pelo usuário.
@@ -19,12 +19,12 @@ public class PecasView {
      * 
      * @return um número inteiro correspondente à opção selecionada pelo usuário.
      */
-    public int mostraOpcoesPeca(){
+    public int mostraOpcoesProduto(){
         System.out.println("Digite a opção que deseja exucutar: \n");
-        System.out.println("1 - Incluir Peça");
-        System.out.println("2 - Editar Peça");
-        System.out.println("3 - Remover Peça");
-        System.out.println("4 - Mostrar dados de uma Peça");
+        System.out.println("1 - Incluir produto");
+        System.out.println("2 - Editar produto");
+        System.out.println("3 - Remover produto");
+        System.out.println("4 - Mostrar dados de um produto");
         System.out.println("5 - Sair");
         System.out.println();
 
@@ -38,11 +38,11 @@ public class PecasView {
      * 
      * @return ID da peça.
      */
-    public int getIdPeca(){
-        System.out.println("Digite o ID da Peça: ");
-        int idPeca = leituraDados.nextInt();
+    public int getIdProduto(){
+        System.out.println("Digite o ID do produto: ");
+        int idProduto = leituraDados.nextInt();
         leituraDados.nextLine();
-        return idPeca;
+        return idProduto;
     }
     
     /**
@@ -51,8 +51,13 @@ public class PecasView {
      * @return Descrição da peça.
      */
     public String getDescricao(){
-        System.out.println("Digite a descrição da peça: ");
+        System.out.println("Digite a descrição do produto: ");
         return leituraDados.nextLine();
+    }
+    
+    public int getQuantidadeProduto(){
+        System.out.println("Digite a quantidade do produto: ");
+        return leituraDados.nextInt();
     }
     
     /**
@@ -60,21 +65,21 @@ public class PecasView {
      * 
      * @return Valor da peça.
      */
-    public double getValorPeca(){
-        System.out.println("Digite o valor da peça: ");
+    public double getValorProduto(){
+        System.out.println("Digite o valor do produto: ");
         return leituraDados.nextDouble();
     }
     
-    public void mostraPeca(Pecas pecas){
-        System.out.println("ID: " +  pecas.getIdPeca()                     + "\n" + 
-                           "Descrição: " + pecas.getDescicao()             + "\n" +
-                           "Quantidade: " + pecas.getQuantidadeEmEstoque() + "\n" +
-                           "Disponível em Estoque: " + pecas.getDisponivel()          + "\n" + 
-                           "Valor: " + pecas.getValorPeca()                + "\n");
+    public void mostraProduto(Produto produto){
+        System.out.println("ID: " +  produto.getIdProduto()                     + "\n" + 
+                           "Descrição: " + produto.getDescicao()             + "\n" +
+                           "Quantidade: " + produto.getQuantidadeEmEstoque() + "\n" +
+                           "Disponível em Estoque: " + produto.getDisponivel()          + "\n" + 
+                           "Valor: " + produto.getValorProduto()                + "\n");
     }
     
-    public String confirmaExclusaoPeca(){
-        System.out.println("Tem certeza que deseja remover esta peça? \n"
+    public String confirmaExclusaoProduto(){
+        System.out.println("Tem certeza que deseja remover este produto? \n"
                          + "Digite [S] para confirmar ou [N] para abortar a operação!!");
         return leituraDados.nextLine();
     }
@@ -84,7 +89,7 @@ public class PecasView {
      * 
      * @return número inteiro correspondente ao campo selecionado (1 ou 2). 
      */
-    public int editaPeca(){
+    public int editaProduto(){
         System.out.println("Digite o campo que você gostaria de editar!");
         System.out.println("1 - Descrição");
         System.out.println("2 - Valor");

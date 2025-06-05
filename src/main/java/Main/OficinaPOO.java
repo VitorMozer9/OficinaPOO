@@ -5,7 +5,7 @@ import Model.Cpf;
 import Model.Funcionario;
 import Model.Manutencao;
 import Model.OrdemDeServico;
-import Model.Pecas;
+import Model.Produto;
 import Model.Pessoa;
 import Model.Veiculo;
 import com.google.gson.Gson;
@@ -25,13 +25,13 @@ public class OficinaPOO {
     private ArrayList<Cliente> clientes;
     private ArrayList<Funcionario> funcionario;
     private ArrayList<Veiculo> veiculos;
-    private ArrayList<Pecas> pecas;
+    private ArrayList<Produto> produtos;
     
     private OficinaPOO(){
         clientes = new ArrayList<>();
         funcionario = new ArrayList<>();
         veiculos = new ArrayList<>();
-        pecas = new ArrayList<>();
+        produtos = new ArrayList<>();
     }
     
     private static OficinaPOO instanciaOficina = new OficinaPOO();
@@ -79,8 +79,8 @@ public class OficinaPOO {
         veiculos.add(veiculo);
     }
     
-    public void addPeca(Pecas peca){
-        pecas.add(peca);
+    public void addProduto(Produto produto){
+        produtos.add(produto);
     }
     
     public ArrayList<Cliente> getClientes(){
@@ -95,8 +95,8 @@ public class OficinaPOO {
         return funcionario;
     }
     
-    public ArrayList<Pecas> getPecas(){
-        return pecas;
+    public ArrayList<Produto> getProdutos(){
+        return produtos;
     }
     
     public static void main(String[] args) {

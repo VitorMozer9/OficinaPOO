@@ -13,7 +13,7 @@ public class Manutencao {
     private String descricaoManutencao;
     private String solucaoManutencao;
     private double valorTotal;
-    private List<Pecas> pecasUtilizadas;
+    private List<Produto> pecasUtilizadas;
     
     public static int ultimoIdManutencao = 0;
 
@@ -39,7 +39,7 @@ public class Manutencao {
      * 
      * @param peca 
      */
-    public void adcionaPeca(Pecas peca){
+    public void adcionaPeca(Produto peca){
         this.pecasUtilizadas.add(peca);
     }
     
@@ -50,7 +50,7 @@ public class Manutencao {
      */
     public List<String> getListaDePecas(){
         ArrayList<String> listaPecas = new ArrayList<>();
-        for(Pecas peca : pecasUtilizadas){
+        for(Produto peca : pecasUtilizadas){
             listaPecas.add(peca.getDescicao());
         }
         return listaPecas; 
@@ -115,7 +115,7 @@ public class Manutencao {
      * 
      * @return Lista de peças usadas na manutenção.
      */
-    public List<Pecas> getPecasUtilizadas() {
+    public List<Produto> getPecasUtilizadas() {
         return pecasUtilizadas;
     }
     
