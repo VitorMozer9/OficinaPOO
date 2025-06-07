@@ -13,6 +13,14 @@ import java.util.List;
 public class VeiculoController {
     private VeiculoView viewVeiculo = new VeiculoView();
     
+     /**
+     * Busca um veículo no sistema com base na placa informada.
+     * Realiza uma busca linear na lista de veículos registrados na (@link OficinaPOO).
+     *
+     * @param placaVeiculoBusca A placa do veículo a ser buscado. Pode ser (@code null).
+     * @return O objeto (@link Veiculo) associado à placa, ou (@code null) se o veículo
+     * não for encontrado ou se ocorrer uma falha durante a busca.
+     */
     public Veiculo buscaVeiculo(String placaVeiculoBusca){
         try{
             if (placaVeiculoBusca == null) {
@@ -62,6 +70,11 @@ public class VeiculoController {
         }
     }
     
+    /**
+     * Solicita a placa de um veículo ao usuário através da (@link VeiculoView), busca o veículo correspondente e 
+     * exibe suas informações detalhadas.
+     * Se o veículo não for encontrado, uma mensagem de "Veículo não encontrado!" é exibida.
+     */
       public void mostrarVeiculo(){
         String placaVeiculo = viewVeiculo.getPlacaVeiculo();
         Veiculo veiculo = buscaVeiculo(placaVeiculo);
@@ -74,6 +87,12 @@ public class VeiculoController {
         viewVeiculo.mostraVeiculo(veiculo);
     }
       
+    /**
+     * Remove um veículo do sistema. 
+     * Primeiramente, solicita a placa do veículo, busca-o, e exibe suas informações para confirmação. 
+     * Após a confirmação do usuário, o veículo é removido da lista de veículos e os dados são salvos.
+     * Exibe mensagens de erro, confirmação ou de aborto da operação se não for efetuado com sucesso.
+     */
     public void removeVeiculo(){
         String placaVeiculo = viewVeiculo.getPlacaVeiculo();
         Veiculo veiculo = buscaVeiculo(placaVeiculo);
@@ -101,6 +120,13 @@ public class VeiculoController {
             
     }
     
+    /**
+     * Permite a edição de dados de um veículo existente, especificando o seu status.
+     * Primeiro, solicita a placa do veículo, busca-o e exibe seus dados atuais.
+     * Em seguida, solicita o novo status do veículo e atualiza o objeto (@link Veiculo).
+     * As alterações são persistidas no sistema.
+     * Exibe uma mensagem se o veículo não for encontrado ou se ocorrer um erro ao salvar as alterações.
+     */
     public void editarVeiculo(){
         String placaVeiculo = viewVeiculo.getPlacaVeiculo();
         Veiculo veiculo = buscaVeiculo(placaVeiculo);
@@ -123,6 +149,12 @@ public class VeiculoController {
         }
     }
     
+    /**
+     * Edita o status de um veículo específico.
+     *
+     * @param veiculo O objeto (@link Veiculo) cujos dados serão atualizados.
+     * @param novoStatus O novo status a ser atribuído ao veículo.
+     */
     public void editaStatusVeiculo(Veiculo veiculo, String novoStatus){
         veiculo.setStatstusVeiculo(novoStatus);
     }

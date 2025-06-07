@@ -3,6 +3,12 @@ package controller;
 import Main.OficinaPOO;
 import View.TelaInicial;
 
+/**
+ * A classe Sistema é a principal classe de controle e gerenciamento da oficina.
+ * Ela orquestra a interaçõa entre as diferentes funcionalidades (clientes, funcionários, veículos, produtos) e gerencia
+ * o fluxo geral do programa, exibindo o menu principal e delegando as operações para os respectivos controladores.
+ * O sistema carrega os dados persistidos no ínicio e salva-os ao ser encerrado.
+ */
 public class Sistema {
     
     private TelaInicial telaInicial = new TelaInicial();
@@ -11,6 +17,13 @@ public class Sistema {
     private VeiculoController veiculoController = new VeiculoController();
     private ProdutoEstoqueController pecasController = new ProdutoEstoqueController();
     
+    /**
+     * Inicia o sistema da oficina.
+     * Este método carrega os dados persistidos, exibe o menu de opções principal para o usuário e, com base na seleção,
+     * delegando a execução para o controlador correspondente.
+     * O loop continua até que o usuário escolha a opção de sair.
+     * Ao sair, os dados são salvos.
+     */
     public void iniciaSistema() {
         boolean rodando = true;
         OficinaPOO.carregaDados();
