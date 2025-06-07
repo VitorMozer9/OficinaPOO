@@ -14,6 +14,11 @@ import java.util.List;
 public class ProdutoEstoqueController {
     private ProdutoEstoqueView viewProduto = new ProdutoEstoqueView();
     
+    /**
+     * Gera um novo ID para um produto, baseado no maior ID já registrado no sistema.
+     * Isso garante que cada novo produto tenha um ID único.
+     * * @return O novo ID do produto, incrementado em relação ao maior ID atual.
+     */
     public int geraIdProduto(){
         int maiorIdProduto = 0;
         for(Produto cadaPeca : OficinaPOO.getInstancia().getProdutos()){
@@ -41,6 +46,13 @@ public class ProdutoEstoqueController {
          
     }
     
+     /**
+     * Busca um produto no sistema com base no ID informado.
+     *
+     * @param idProduto O ID do produto a ser buscado.
+     * @return O objeto (@link Produto) relacionado ao ID fornecido, ou (@code null) se nenhum produto for encontrado
+     * ou se ocorrer uma falha durante a busca.
+     */
     public Produto buscaProduto(int idProduto){
         try{
             for(Produto cadaProduto : OficinaPOO.getInstancia().getProdutos()){
@@ -57,6 +69,11 @@ public class ProdutoEstoqueController {
         return null;
     }
     
+     /**
+     * Solicita um ID de produto ao usuário através da (@link ProdutoEstoqueView), busca o produto correspondente e exibe
+     * suas informações detalhadas.
+     * Se o produto não for encontrado, uma mensagem de "Produto não encontrada!!" é exibida.
+     */
     public void mostrarProduto(){
         int idProduto = viewProduto.getIdProduto();
         Produto produto = buscaProduto(idProduto);
@@ -69,6 +86,12 @@ public class ProdutoEstoqueController {
         viewProduto.mostraProduto(produto);
     }
     
+    /**
+     * Remove um produto do sistema.
+     * Primeiro, solicita o ID do produto, busca-o, e exibe suas informações para confirmação.
+     * Após a confirmação do usuário, o produto é removido da lista de produtos e os dados são salvos.
+     * Exibe mensagens de erro, confirmação ou de aborto da operação.
+     */
     public void removeProduto(){
         int idProduto = viewProduto.getIdProduto();
         Produto produto = buscaProduto(idProduto);
@@ -95,6 +118,14 @@ public class ProdutoEstoqueController {
         }
     }
     
+     /**
+     * Permite a edição de dados de um produto existente. 
+     * Primeiro, solicita o ID do produto, busca-o e exibe seus dados atuais.
+     * Em seguida, um menu de opções de edição é apresentado e, de acordo com a escolha do usuário, 
+     * os dados específicos (descrição ou valor) são atualizados.
+     * As alterações são persistidas no sistema.
+     * Exibe uma mensagem se o produto não for encontrado ou se ocorrer um erro ao salvar as alterações.
+     */
     public void editaProduto(){
         int idProduto = viewProduto.getIdProduto();
         Produto produto = buscaProduto(idProduto);
@@ -129,10 +160,22 @@ public class ProdutoEstoqueController {
         }
     }
     
+     /**
+     * Edita a descrição de um produto específico.
+     *
+     * @param produto O objeto (@link Produto) cujos dados serão atualizados.
+     * @param novaDescricao A nova descrição a ser atribuída ao produto.
+     */
     public void editaDesc(Produto produto, String novaDescricao){
         produto.setDescricao(novaDescricao);
     }
     
+      /**
+     * Edita o valor de um produto específico.
+     *
+     * @param produto O objeto (@link Produto) cujos dados serão atualizados.
+     * @param novoValor O novo valor a ser atribuído ao produto.
+     */
     public void editaValor(Produto produto, double novoValor){
         produto.setValorProduto(novoValor);
     }

@@ -14,6 +14,12 @@ import java.util.List;
 public class FuncionarioController {
     private FuncionarioView viewFuncionario = new FuncionarioView();
     
+    /**
+     * Gera um novo ID para funcionário, baseado no maior ID já registrado no sistema.
+     * Isso garante que cada novo funcionário tenha um ID único.
+     * 
+     * @return O novo ID do funcionário, incrementa em relação ao maior ID atual.
+     */
     public int geraIdFuncionario(){
         int maiorID = 0;
         for(Funcionario cadaFuncionario : OficinaPOO.getInstancia().getFuncionario()){
@@ -25,6 +31,12 @@ public class FuncionarioController {
     }
     
     
+    /**
+     * Busca um funcionário no sistema com base no ID informado.
+     * 
+     * @param idFuncionario O ID do funcionário a ser buscado.
+     * @return O objeto (@link Funcionario) relacionado ao ID fornecido, ou (@code null) se nenhum funcionário for encontrado.
+     */
     public Funcionario buscaFuncionario(int idFuncionario){
         try{    
             for(Funcionario funcionario : OficinaPOO.getInstancia().getFuncionario()){
@@ -72,6 +84,11 @@ public class FuncionarioController {
          
     }
     
+    /**
+     * Solicita um ID de funcionário ao úsuario através da (@link FuncionarioView), busca o funcionário correspondente 
+     * e exibe suas informações detalhadas.
+     * Se o funcionário não for encontrado, uma mensagem de "Funcionário Não encontrado!" é exibido.
+     */
     public void mostrarFuncionario(){
         int id = viewFuncionario.getIdFuncionario();
         Funcionario funcionario = buscaFuncionario(id);
@@ -84,6 +101,12 @@ public class FuncionarioController {
         viewFuncionario.mostraFuncionario(funcionario);
     }
     
+    /**
+     * Remove o funcionário do sistema.
+     * Primeiramente, solicita o ID do funcionário, busca-o, e exibe suas informações para confirmação.
+     * Após a confirmação do usuário, o funcionário é removido da lista de funcionários e os dados são salvos.
+     * Exibe mensagens de erro, confirmação ou de aborto da operação
+     */
     public void removeFuncionario(){
         int idFunc = viewFuncionario.getIdFuncionario();
         Funcionario funcionario = buscaFuncionario(idFunc);
@@ -110,6 +133,13 @@ public class FuncionarioController {
         }
     }
     
+    /**
+     * Prepara a edição dos dados de um funcionário existente. 
+     * O usuário é solicitado a informar o ID do funcionário, e após a busca e exibição dos dados atuais, 
+     * a lógica de edição será iniciada.
+     * As alterações devem ser salvas após a conclusão da edição em métodos subsequentes.
+     * Exibe uma mensagem se o funcionário não for encontrado.
+     */
     public void editaFuncionario(){
         int idfuncionario = viewFuncionario.getIdFuncionario();
         Funcionario funcionario = buscaFuncionario(idfuncionario);
@@ -159,26 +189,62 @@ public class FuncionarioController {
         }
     }
     
+    /**
+     * Edita o endereço de um funcionário específico.
+     * 
+     * @param funcionario O objeto (@link Funcionario) cujos dads serão utilizados.
+     * @param novoEndereco O novo  endereço a ser atribuído ao funcionário.
+     */
     public void editaEndereco(Funcionario funcionario, String novoEndereco){
         funcionario.setEndereco(novoEndereco);
     }
 
+    /**
+     * Edita o telefone de um funcionário específico.
+     *
+     * @param funcionario O objeto (@link Funcionario) cujos dados serão atualizados.
+     * @param novoTelefone O novo telefone a ser atribuído ao funcionário.
+     */
     public void editaTelefone(Funcionario funcionario, String novoTelefone){
         funcionario.setTelefone(novoTelefone);
     }
 
+     /**
+     * Edita o e-mail de um funcionário específico.
+     *
+     * @param funcionario O objeto (@link Funcionario) cujos dados serão atualizados.
+     * @param novoEmail O novo e-mail a ser atribuído ao funcionário.
+     */
     public void editaEmail(Funcionario funcionario, String novoEmail){
         funcionario.setEmail(novoEmail);
     }
     
+     /**
+     * Edita a senha de acesso de um funcionário específico.
+     *
+     * @param funcionario O objeto {@link Funcionario} cujos dados serão atualizados.
+     * @param novaSenha A nova senha a ser atribuída ao funcionário.
+     */
     public void editaSenha(Funcionario funcionario, String novaSenha){
         funcionario.setSenha(novaSenha);
     }
     
+    /**
+     * Edita o cargo de um funcionário específico.
+     *
+     * @param funcionario O objeto {@link Funcionario} cujos dados serão atualizados.
+     * @param novoCargo O novo cargo a ser atribuído ao funcionário.
+     */
     public void editaCargo(Funcionario funcionario, String novoCargo){
         funcionario.setCargo(novoCargo);
     }
     
+      /**
+     * Edita o salário de um funcionário específico.
+     *
+     * @param funcionario O objeto {@link Funcionario} cujos dados serão atualizados.
+     * @param novoSalario O novo salário a ser atribuído ao funcionário.
+     */
     public void editaSalario(Funcionario funcionario, double novoSalario){
         funcionario.setSalario(novoSalario);
     }
