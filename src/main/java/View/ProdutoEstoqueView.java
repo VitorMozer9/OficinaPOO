@@ -20,13 +20,12 @@ public class ProdutoEstoqueView {
      * @return um número inteiro correspondente à opção selecionada pelo usuário.
      */
     public int mostraOpcoesProduto(){
-        System.out.println("Digite a opção que deseja exucutar: \n");
+        System.out.println("Digite a opção que deseja exucutar: ");
         System.out.println("1 - Incluir produto");
         System.out.println("2 - Editar produto");
         System.out.println("3 - Remover produto");
         System.out.println("4 - Mostrar dados de um produto");
         System.out.println("5 - Sair");
-        System.out.println();
 
         int opcao = leituraDados.nextInt();
         leituraDados.nextLine();

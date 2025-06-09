@@ -20,13 +20,12 @@ public class ClienteView {
      * @return um número inteiro correspondente à opção selecionada pelo usuário.
      */
     public int mostraOpcoesCliente(){
-        System.out.println("Digite a opção que deseja exucutar: \n");
+        System.out.println("Digite a opção que deseja exucutar: ");
         System.out.println("1 - Incluir Cliente");
         System.out.println("2 - Editar Cliente");
         System.out.println("3 - Remover Cliente");
         System.out.println("4 - Mostrar dados de um Cliente");
-        System.out.println("5 - Sair \n");
-        System.out.println();
+        System.out.println("5 - Sair");
 
         int opcao = leituraDados.nextInt();
         leituraDados.nextLine();
