@@ -3,30 +3,30 @@ package Model;
 import Main.OficinaPOO;
 import View.ClienteView;
 import controller.ClienteController;
+import java.util.List;
 
-public class ClienteDAO {
+public class ClienteDAO extends GenericDAO<Cliente>{
     private ClienteView viewCliente = new ClienteView();
     
+    @Override
+    protected List<Cliente> getLista(){
+        return OficinaPOO.getInstancia().getClientes();
+    }
+    
+    @Override
+    protected Comparable<?> getChave(Cliente cliente){
+        return cliente.getIdCliente();
+    }
+    
     /**
-     * Busca cliente com base no ID informado.1
-     * 1
+     * Busca cliente com base no ID informado.
+     * 
      * 
      * @param id ID do cliente a ser buscado.
      * @return Objeto Cliente relacionado ao ID, ou null se não encontrado. 
      */
-    public Cliente buscarCliente(int id){
-        try{
-            for(Cliente clientes : OficinaPOO.getInstancia().getClientes()){
-                if (clientes.getIdCliente() == id){
-                    return clientes;
-                }
-            }   
-        }
-        catch(Exception e){
-            System.out.println("Falha ao buscar cliente!!!");
-            return null;
-        }
-        return null;
+    public Cliente buscarCliente(int id) {
+        return buscaPorChave(id); 
     }
     
     /**
@@ -49,27 +49,18 @@ public class ClienteDAO {
         Cpf cpf = new Cpf(codigoCpf); 
 
         Cliente novoCliente = new Cliente(nome, endereco, telefone, email, cpf,idCliente);
-        OficinaPOO.getInstancia().addCliente(novoCliente);
-        if (OficinaPOO.salvarDados(OficinaPOO.getInstancia())){
-            System.out.println("Cliente adicionado com sucesso! ID do cliente: " + idCliente);
-        }else{
-            System.out.println("Erro ao adicionar cliente!");
-        }
+            
+        adicionaDados(novoCliente);
+        
+        System.out.println("Cliente adicionado com sucesso! ID do cliente: " + idCliente);
+    
     }
     
     /**
      * Mostra as informações dos clientes com base no ID informado pela view 
      */
     public void mostrarCliente(){
-        int id = viewCliente.getIdCliente();
-        Cliente cliente = buscarCliente(id);
-        
-        if (cliente == null){
-            System.out.println("Cliente não encontrado!");
-            return;
-        }
-        
-        viewCliente.mostraCliente(cliente);
+        mostraDados(viewCliente::getIdCliente, viewCliente::mostraCliente);
     }
     
     /**
@@ -93,15 +84,12 @@ public class ClienteDAO {
             return;
         }
         
-        OficinaPOO.getInstancia().getClientes().remove(cliente);
-        
-        if(OficinaPOO.salvarDados(OficinaPOO.getInstancia())){
-            System.out.println("Cliente removido com sucesso!");
-        }else{
+         if (removeDados(cliente)) {
+        System.out.println("Cliente removido com sucesso!");
+        } 
+        else {
             System.out.println("Falha ao remover cliente! :(");
-        }
-        
-        
+        }       
     }
     
     /**
@@ -109,70 +97,16 @@ public class ClienteDAO {
      * Selecionando de acordo com a opção selecionada pelo usuário.
      */
     public void editarCliente(){
-        int idCliente = viewCliente.getIdCliente();
-        Cliente cliente = buscarCliente(idCliente);
-        
-        if (cliente == null){
-            System.out.println("Cliente não encontrado!!");
-            return;
-        }
-        
-        viewCliente.mostraCliente(cliente);
-        
-        
-        int opcaoModCliente = viewCliente.editaCliente();
-        
-        switch(opcaoModCliente){
-            case 1 -> {
-                String novoEndereco = viewCliente.getEnderecoCliente();
-                editaEndereco(cliente, novoEndereco);
-            }
-            case 2 -> {
-                String novoTelefone = viewCliente.getFoneCliente();
-                editaTelefone(cliente, novoTelefone);
-            }
-            case 3 -> {
-                String novoEmail = viewCliente.getEmailCliente();
-                editaEmail(cliente, novoEmail);
-            }
+        editaDados(viewCliente::getIdCliente, cliente -> {
+            viewCliente.mostraCliente(cliente);
+            int opcao = viewCliente.editaCliente();
             
-        }
-        
-        if (OficinaPOO.salvarDados(OficinaPOO.getInstancia())) {
-            System.out.println("Alterações salvas com sucesso.");
-        } else {
-            System.out.println("Erro ao salvar alterações.");
-        }
-    }
-    
-    /**
-     * Edita o endereço que foi fornecido anteriormente para cliente.
-     * 
-     * @param cliente Cliente selecionado para ser editado.
-     * @param novoEndereco Novo endereço fornecido para o Cliente, sobrescrevendo o anterior.
-     */
-    public void editaEndereco(Cliente cliente, String novoEndereco){
-        cliente.setEndereco(novoEndereco);
-    }
-    
-    /**
-     * Edita o telefone que foi fornecido anteriormente para cliente.
-     * 
-     * @param cliente Cliente selecionado para ser editado.
-     * @param novoTelefone Novo telefone fornecido para o Cliente, sobrescrevendo o anterior.
-     */
-    public void editaTelefone(Cliente cliente, String novoTelefone){
-        cliente.setTelefone(novoTelefone);
-    }
-    
-    /**
-     * Edita o email que foi anteriormente fornecido para cliente.
-     * 
-     * @param cliente Cliente selecinado para ser editado.
-     * @param novoEmail Novo email fornecido para o Cliente, sobrescrevendo o anterior.
-     */
-    public void editaEmail(Cliente cliente, String novoEmail){
-        cliente.setEmail(novoEmail);
-    }
-    
+            switch (opcao){
+                case 1 -> cliente.setEndereco(viewCliente.getEnderecoCliente());
+                case 2 -> cliente.setTelefone(viewCliente.getFoneCliente());
+                case 3 -> cliente.setEmail(viewCliente.getEmailCliente());
+            }
+        });
+            
+    }    
 }

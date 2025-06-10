@@ -18,6 +18,7 @@ View\FuncionarioView.class
 Model\OrdemDeServico.class
 Model\Elevador.class
 Model\Conta.class
+Model\GenericDAO.class
 Model\Cpf.class
 Main\OficinaPOO$1.class
 Model\ProdutoEstoqueDAO.class
