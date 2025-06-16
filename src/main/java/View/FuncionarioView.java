@@ -155,7 +155,7 @@ public class FuncionarioView {
       * 
       * @return número inteiro correspondente ao campo selecionado (1, 2, 3, 4 ou 5).
       */
-    public int editaCliente(){
+    public int editaFuncionario(){
         System.out.println("Digite o campo que você gostaria de editar!");
         System.out.println("1 - Endereço");
         System.out.println("2 - Telefone");

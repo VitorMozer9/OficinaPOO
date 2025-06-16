@@ -9,6 +9,7 @@ controller\ClienteController.class
 Model\ClienteDAO$1.class
 View\TelaInicial.class
 controller\Sistema.class
+Model\ProdutoEstoqueDAO$1.class
 Main\OficinaPOO.class
 View\VeiculoView.class
 controller\FuncionarioController.class
@@ -24,6 +25,8 @@ Model\Cpf.class
 Main\OficinaPOO$1.class
 Model\ProdutoEstoqueDAO.class
 View\ClienteView.class
+Model\FuncionarioDAO$1.class
 View\ProdutoEstoqueView.class
 Model\VeiculoDAO.class
 Model\Pessoa.class
+Model\VeiculoDAO$1.class

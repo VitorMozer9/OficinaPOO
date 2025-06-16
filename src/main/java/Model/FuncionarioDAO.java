@@ -2,88 +2,56 @@ package Model;
 
 import Main.OficinaPOO;
 import View.FuncionarioView;
-import com.google.gson.reflect.TypeToken;
 import controller.FuncionarioController;
+import com.google.gson.reflect.TypeToken;
 import java.util.List;
 
-public class FuncionarioDAO extends GenericDAO{
+public class FuncionarioDAO extends GenericDAO<Funcionario> {
     private FuncionarioView viewFuncionario = new FuncionarioView();
-    
+
     public FuncionarioDAO() {
         super("data/funcionarios.json", new TypeToken<List<Funcionario>>() {}.getType());
     }
-    
+
     @Override
-    protected Comparable<?> getChave(Funcionario funcionario){
+    protected Comparable<?> getChave(Funcionario funcionario) {
         return funcionario.getIdFuncionario();
     }
-    
-    /**
-     * Busca um funcionário no sistema com base no ID informado.
-     * 
-     * @param idFuncionario O ID do funcionário a ser buscado.
-     * @return O objeto (@link Funcionario) relacionado ao ID fornecido, ou (@code null) se nenhum funcionário for encontrado.
-     */
-    public Funcionario buscaFuncionario(int idFuncionario){
-        return buscaPorChave(idFuncionario);
+
+    public Funcionario buscaFuncionario(int id) {
+        return buscaPorChave(id);
     }
-    /**
-     * Coleta os dados do funcionário a partir da view, válida o seu CPF e adicina o novo funcionário ao sistema.
-     * Exibe uma mensagem de sucesso ou erro de validação para o usuário. 
-     */
-    public void adicionaFuncionario(){
+
+    public void adicionaFuncionario() {
         int idFunc = FuncionarioController.geraIdFuncionario();
         String nome = viewFuncionario.getNomeFunc();
         String endereco = viewFuncionario.getEnderecoFunc();
         String telefone = viewFuncionario.getFoneFunc();
         String email = viewFuncionario.getEmailFunc();
         String codigoCpf = viewFuncionario.getCpfFunc();
-        if (!Cpf.validaCPF(codigoCpf)){
+        if (!Cpf.validaCPF(codigoCpf)) {
             System.out.println("CPF inválido!!");
             return;
         }
-        
+
         String usuario = viewFuncionario.getUsuarioFunc();
         String senha = viewFuncionario.getSenhaFunc();
         String cargo = viewFuncionario.getCargoFunc();
         double salario = viewFuncionario.getSalarioFunc();
-        
-        Cpf cpf = new Cpf(codigoCpf); 
+        Cpf cpf = new Cpf(codigoCpf);
 
-        Funcionario novoFuncionario = new Funcionario(nome, endereco, telefone, email, cpf,usuario,senha,cargo,salario,idFunc);
+        Funcionario novoFuncionario = new Funcionario(nome, endereco, telefone, email, cpf, usuario, senha, cargo, salario, idFunc);
         adicionaDados(novoFuncionario);
-        
-        System.out.println("Funcionário adicionado com sucesso!" + "id: " + idFunc);
-        
-         
+        System.out.println("Funcionário adicionado com sucesso! ID: " + idFunc);
     }
-    
-    /**
-     * Solicita um ID de funcionário ao úsuario através da (@link FuncionarioView), busca o funcionário correspondente 
-     * e exibe suas informações detalhadas.
-     * Se o funcionário não for encontrado, uma mensagem de "Funcionário Não encontrado!" é exibido.
-     */
-    public void mostrarFuncionario(){
+
+    public void mostrarFuncionario() {
+        mostraDados(viewFuncionario::getIdFuncionario, viewFuncionario::mostraFuncionario);
+    }
+
+       public void removeFuncionario(){
         int id = viewFuncionario.getIdFuncionario();
         Funcionario funcionario = buscaFuncionario(id);
-        
-        if (funcionario == null){
-            System.out.println("Funcionário não encontrado!");
-            return;
-        }
-        
-        viewFuncionario.mostraFuncionario(funcionario);
-    }
-    
-    /**
-     * Remove o funcionário do sistema.
-     * Primeiramente, solicita o ID do funcionário, busca-o, e exibe suas informações para confirmação.
-     * Após a confirmação do usuário, o funcionário é removido da lista de funcionários e os dados são salvos.
-     * Exibe mensagens de erro, confirmação ou de aborto da operação
-     */
-    public void removeFuncionario(){
-        int idFunc = viewFuncionario.getIdFuncionario();
-        Funcionario funcionario = buscaFuncionario(idFunc);
         
         if (funcionario == null){
             System.out.println("Funcionário não encontrado!");
@@ -98,129 +66,26 @@ public class FuncionarioDAO extends GenericDAO{
             return;
         }
         
-        OficinaPOO.getInstancia().getFuncionario().remove(funcionario);
-        
-        if(OficinaPOO.salvarDados(OficinaPOO.getInstancia())){
-            System.out.println("Funcionário removido com sucesso!");
-        }else{
-            System.out.println("Falha ao remover funcionário! :(");
-        }
-    }
-    
-    /**
-     * Prepara a edição dos dados de um funcionário existente. 
-     * O usuário é solicitado a informar o ID do funcionário, e após a busca e exibição dos dados atuais, 
-     * a lógica de edição será iniciada.
-     * As alterações devem ser salvas após a conclusão da edição em métodos subsequentes.
-     * Exibe uma mensagem se o funcionário não for encontrado.
-     */
-    public void editaFuncionario(){
-        int idfuncionario = viewFuncionario.getIdFuncionario();
-        Funcionario funcionario = buscaFuncionario(idfuncionario);
-        
-        if (funcionario == null){
-            System.out.println("Funcionário não encontrado!!");
-            return;
-        }
-        
-        viewFuncionario.mostraFuncionario(funcionario);
-        
-        
-        int opcaoModCliente = viewFuncionario.editaCliente();
-        
-        switch(opcaoModCliente){
-            case 1 -> {
-                String novoEndereco = viewFuncionario.getEnderecoFunc();
-                editaEndereco(funcionario, novoEndereco);
-            }
-            case 2 -> {
-                String novoTelefone = viewFuncionario.getFoneFunc();
-                editaTelefone(funcionario, novoTelefone);
-            }
-            case 3 -> {
-                String novoEmail = viewFuncionario.getEmailFunc();
-                editaEmail(funcionario, novoEmail);
-            }
-            case 4 ->{
-                String novaSenha = viewFuncionario.getSenhaFunc();
-                editaSenha(funcionario, novaSenha);
-            }
-            case 5 ->{
-                String novoCargo = viewFuncionario.getCargoFunc();
-                editaCargo(funcionario, novoCargo);
-            }
-            case 6 ->{
-                double novoSalario = viewFuncionario.getSalarioFunc();
-                editaSalario(funcionario, novoSalario);
-            }
-            
-        }
-        
-        if (OficinaPOO.salvarDados(OficinaPOO.getInstancia())) {
-            System.out.println("Alterações salvas com sucesso.");
-        } else {
-            System.out.println("Erro ao salvar alterações.");
-        }
-    }
-    
-    /**
-     * Edita o endereço de um funcionário específico.
-     * 
-     * @param funcionario O objeto (@link Funcionario) cujos dads serão utilizados.
-     * @param novoEndereco O novo  endereço a ser atribuído ao funcionário.
-     */
-    public void editaEndereco(Funcionario funcionario, String novoEndereco){
-        funcionario.setEndereco(novoEndereco);
+         if (removeDados(funcionario)) {
+        System.out.println("Funcionário removido com sucesso!");
+        } 
+        else {
+            System.out.println("Falha ao remover Funcionário! :(");
+        }       
     }
 
-    /**
-     * Edita o telefone de um funcionário específico.
-     *
-     * @param funcionario O objeto (@link Funcionario) cujos dados serão atualizados.
-     * @param novoTelefone O novo telefone a ser atribuído ao funcionário.
-     */
-    public void editaTelefone(Funcionario funcionario, String novoTelefone){
-        funcionario.setTelefone(novoTelefone);
+    public void editaFuncionario() {
+        editaDados(viewFuncionario::getIdFuncionario, funcionario -> {
+            viewFuncionario.mostraFuncionario(funcionario);
+            int opcao = viewFuncionario.editaFuncionario();
+            switch (opcao) {
+                case 1 -> funcionario.setEndereco(viewFuncionario.getEnderecoFunc());
+                case 2 -> funcionario.setTelefone(viewFuncionario.getFoneFunc());
+                case 3 -> funcionario.setEmail(viewFuncionario.getEmailFunc());
+                case 4 -> funcionario.setSenha(viewFuncionario.getSenhaFunc());
+                case 5 -> funcionario.setCargo(viewFuncionario.getCargoFunc());
+                case 6 -> funcionario.setSalario(viewFuncionario.getSalarioFunc());
+            }
+        });
     }
-
-     /**
-     * Edita o e-mail de um funcionário específico.
-     *
-     * @param funcionario O objeto (@link Funcionario) cujos dados serão atualizados.
-     * @param novoEmail O novo e-mail a ser atribuído ao funcionário.
-     */
-    public void editaEmail(Funcionario funcionario, String novoEmail){
-        funcionario.setEmail(novoEmail);
-    }
-    
-     /**
-     * Edita a senha de acesso de um funcionário específico.
-     *
-     * @param funcionario O objeto {@link Funcionario} cujos dados serão atualizados.
-     * @param novaSenha A nova senha a ser atribuída ao funcionário.
-     */
-    public void editaSenha(Funcionario funcionario, String novaSenha){
-        funcionario.setSenha(novaSenha);
-    }
-    
-    /**
-     * Edita o cargo de um funcionário específico.
-     *
-     * @param funcionario O objeto {@link Funcionario} cujos dados serão atualizados.
-     * @param novoCargo O novo cargo a ser atribuído ao funcionário.
-     */
-    public void editaCargo(Funcionario funcionario, String novoCargo){
-        funcionario.setCargo(novoCargo);
-    }
-    
-      /**
-     * Edita o salário de um funcionário específico.
-     *
-     * @param funcionario O objeto {@link Funcionario} cujos dados serão atualizados.
-     * @param novoSalario O novo salário a ser atribuído ao funcionário.
-     */
-    public void editaSalario(Funcionario funcionario, double novoSalario){
-        funcionario.setSalario(novoSalario);
-    }
-    
 }

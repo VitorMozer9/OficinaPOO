@@ -13,29 +13,17 @@ public class ClienteDAO extends GenericDAO<Cliente>{
     public ClienteDAO() {
         super("data/clientes.json", new TypeToken<List<Cliente>>() {}.getType());
     }
-    
-    
+       
     @Override
     
     protected Comparable<?> getChave(Cliente cliente){
         return cliente.getIdCliente();
     }
     
-    /**
-     * Busca cliente com base no ID informado.
-     * 
-     * 
-     * @param id ID do cliente a ser buscado.
-     * @return Objeto Cliente relacionado ao ID, ou null se não encontrado. 
-     */
     public Cliente buscarCliente(int id) {
         return buscaPorChave(id); 
     }
     
-    /**
-     * Coleta dados do cliente a partir da view, valida o CPF e adiciona o novo cliente ao sistema.
-     * Exibe mensagem de sucesso ou erro de validação.
-     */
     public void adicionaCliente(){
         int idCliente = ClienteController.geraIdCliente();
         
