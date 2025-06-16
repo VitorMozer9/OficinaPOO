@@ -3,17 +3,20 @@ package Model;
 import Main.OficinaPOO;
 import View.ClienteView;
 import controller.ClienteController;
+import java.lang.reflect.Type;
+import com.google.gson.reflect.TypeToken;
 import java.util.List;
 
 public class ClienteDAO extends GenericDAO<Cliente>{
     private ClienteView viewCliente = new ClienteView();
     
-    @Override
-    protected List<Cliente> getLista(){
-        return OficinaPOO.getInstancia().getClientes();
+    public ClienteDAO() {
+        super("data/clientes.json", new TypeToken<List<Cliente>>() {}.getType());
     }
     
+    
     @Override
+    
     protected Comparable<?> getChave(Cliente cliente){
         return cliente.getIdCliente();
     }

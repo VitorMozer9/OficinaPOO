@@ -1,18 +1,59 @@
 package Model;
 
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.lang.reflect.Type;
+import java.util.ArrayList;
+import java.util.List;
 import Main.OficinaPOO;
 import java.util.List;
 import java.util.function.Consumer;
 import java.util.function.Supplier;
 
-public abstract class GenericDAO<T> { //<T> seria um parametro de tipo, ele indica uma classe generica ou metodo generioco, pode assumir qualquer valor
+public abstract class GenericDAO<T> {
     
-    protected abstract List<T> getLista();
+    private final String caminhoDoJson;
+    private final Type tipoDaLista;
+    private List<T> listaObjeto;
+    
+    public GenericDAO(String caminhoDoJson, Type tipoDaLista){
+        this.caminhoDoJson = caminhoDoJson;
+        this.tipoDaLista = tipoDaLista;
+        this.listaObjeto = new ArrayList<>();
+        carregaDados();
+    }
+    
+    
+    
+    protected List<T> getLista(){
+        return listaObjeto;
+    };
     
     protected abstract Comparable<?> getChave(T objeto);
     
-    protected boolean salvarDados(){
-        return OficinaPOO.salvarDados(OficinaPOO.getInstancia());
+    public boolean salvarDados(){
+        try (FileWriter writer = new FileWriter(caminhoDoJson)) {
+            new Gson().toJson(listaObjeto, writer);
+            return true;
+        } catch (IOException e) {
+            System.out.println("Erro ao salvar dados: " + e.getMessage());
+            return false;
+        }
+    }
+    
+    public boolean carregaDados(){
+        try(FileReader reader = new FileReader(caminhoDoJson)){
+            this.listaObjeto = new Gson().fromJson(reader, tipoDaLista);
+            return true;
+            
+        } catch (Exception e){
+            this.listaObjeto = new ArrayList<>();
+            return false;
+        }
+        
     }
     
     public void adicionaDados(T dados){
@@ -25,7 +66,7 @@ public abstract class GenericDAO<T> { //<T> seria um parametro de tipo, ele indi
         return dadosRemovidos && salvarDados();
     }
     
-    public T buscaPorChave (Comparable<?> chave) {   //<String>  ||| <?> wildcard aceita qualquer tipo
+    public T buscaPorChave (Comparable<?> chave) {   
         try{
             for(T objetoEntidade : getLista()){
                 if (getChave(objetoEntidade).equals(chave)){

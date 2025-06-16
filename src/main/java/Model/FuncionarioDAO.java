@@ -2,10 +2,21 @@ package Model;
 
 import Main.OficinaPOO;
 import View.FuncionarioView;
+import com.google.gson.reflect.TypeToken;
 import controller.FuncionarioController;
+import java.util.List;
 
-public class FuncionarioDAO {
+public class FuncionarioDAO extends GenericDAO{
     private FuncionarioView viewFuncionario = new FuncionarioView();
+    
+    public FuncionarioDAO() {
+        super("data/funcionarios.json", new TypeToken<List<Funcionario>>() {}.getType());
+    }
+    
+    @Override
+    protected Comparable<?> getChave(Funcionario funcionario){
+        return funcionario.getIdFuncionario();
+    }
     
     /**
      * Busca um funcionário no sistema com base no ID informado.
@@ -14,18 +25,7 @@ public class FuncionarioDAO {
      * @return O objeto (@link Funcionario) relacionado ao ID fornecido, ou (@code null) se nenhum funcionário for encontrado.
      */
     public Funcionario buscaFuncionario(int idFuncionario){
-        try{    
-            for(Funcionario funcionario : OficinaPOO.getInstancia().getFuncionario()){
-                if (funcionario.getIdFuncionario() == idFuncionario) {
-                    return funcionario;
-                }
-            }
-        }
-        catch(Exception e){
-            System.out.println("Falha ao buscar Funcionário!!");
-            return null;
-        }
-        return null;
+        return buscaPorChave(idFuncionario);
     }
     /**
      * Coleta os dados do funcionário a partir da view, válida o seu CPF e adicina o novo funcionário ao sistema.
@@ -51,12 +51,10 @@ public class FuncionarioDAO {
         Cpf cpf = new Cpf(codigoCpf); 
 
         Funcionario novoFuncionario = new Funcionario(nome, endereco, telefone, email, cpf,usuario,senha,cargo,salario,idFunc);
-        OficinaPOO.getInstancia().addFuncionario(novoFuncionario);
-        if(OficinaPOO.salvarDados(OficinaPOO.getInstancia()))
-            System.out.println("Funcionário adicionado com sucesso!" + "id: " + idFunc);
-        else{
-            System.out.println("Falha ao adicionar Funcionário!");
-        }
+        adicionaDados(novoFuncionario);
+        
+        System.out.println("Funcionário adicionado com sucesso!" + "id: " + idFunc);
+        
          
     }
     

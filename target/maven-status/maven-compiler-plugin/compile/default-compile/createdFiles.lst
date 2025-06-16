@@ -6,6 +6,7 @@ Model\Cliente.class
 Model\Produto.class
 Model\Funcionario.class
 controller\ClienteController.class
+Model\ClienteDAO$1.class
 View\TelaInicial.class
 controller\Sistema.class
 Main\OficinaPOO.class

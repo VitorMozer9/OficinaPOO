@@ -1,12 +1,12 @@
 [
     {
-        "idCliente": 1,
-        "nome": "juan alan",
-        "endereco": "alan juan",
-        "telefone": "453454353",
-        "email": "juan.alan@gmail",
+        "idCliente": 15,
+        "nome": "Balita",
+        "endereco": "rua farinha dry",
+        "telefone": "56565656",
+        "email": "balitao@gmail.com",
         "cpf": {
-            "numeroCPF": "234523423423"
+            "numeroCPF": "024.451.860-21"
         }
     }
 ]
