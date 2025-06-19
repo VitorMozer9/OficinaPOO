@@ -20,12 +20,27 @@ public class ClienteDAO extends GenericDAO<Cliente>{
         return cliente.getIdCliente();
     }
     
+    /**
+     * Gera um novo ID de cliente, baseado no maior ID já registrado.
+     * 
+     * @return novo ID do cliente (incrementado em relação ao maior ID atual).
+     */
+    public int geraIdCliente(){
+        int maiorIdCliente = 0;
+        for (Cliente cadaCliente : getLista()){
+            if(cadaCliente.getIdCliente() > maiorIdCliente){
+                maiorIdCliente = cadaCliente.getIdCliente();
+            }
+        }
+        return maiorIdCliente + 1;
+    }
+    
     public Cliente buscarCliente(int id) {
         return buscaPorChave(id); 
     }
     
     public void adicionaCliente(){
-        int idCliente = ClienteController.geraIdCliente();
+        int idCliente = geraIdCliente();
         
         String nome = viewCliente.getNomeCliente();
         String endereco = viewCliente.getEnderecoCliente();

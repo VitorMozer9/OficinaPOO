@@ -12,22 +12,6 @@ import View.ProdutoEstoqueView;
 public class ProdutoEstoqueController {
     private ProdutoEstoqueView viewProduto = new ProdutoEstoqueView();
     private ProdutoEstoqueDAO produtoEstoqueDao = new ProdutoEstoqueDAO();
-    
-    /**
-     * Gera um novo ID para um produto, baseado no maior ID já registrado no sistema.
-     * Isso garante que cada novo produto tenha um ID único.
-     * * @return O novo ID do produto, incrementado em relação ao maior ID atual.
-     */
-    public static int geraIdProduto(){
-        int maiorIdProduto = 0;
-        for(Produto cadaPeca : OficinaPOO.getInstancia().getProdutos()){
-            if(cadaPeca.getIdProduto() > maiorIdProduto){
-                maiorIdProduto = cadaPeca.getIdProduto();
-            }
-            
-        }
-        return maiorIdProduto + 1;
-    }
      
     /**
      * Exibe o menu de opções para as Peças e executa a ação solicitada pelo usuário.

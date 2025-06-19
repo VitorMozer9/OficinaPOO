@@ -13,21 +13,6 @@ import View.ClienteView;
 public class ClienteController {
     private ClienteDAO clienteDao = new ClienteDAO();
     private ClienteView viewCliente = new ClienteView();
-    
-    /**
-     * Gera um novo ID de cliente, baseado no maior ID já registrado.
-     * 
-     * @return novo ID do cliente (incrementado em relação ao maior ID atual).
-     */
-    public static int geraIdCliente(){
-        int maiorIdCliente = 0;
-        for (Cliente cadaCliente : OficinaPOO.getInstancia().getClientes()){
-            if(cadaCliente.getIdCliente() > maiorIdCliente){
-                maiorIdCliente = cadaCliente.getIdCliente();
-            }
-        }
-        return maiorIdCliente + 1;
-    }
      
     /**
      * Exibe o menu de opções do cliente e executa a ação selecionada pelo usuário.

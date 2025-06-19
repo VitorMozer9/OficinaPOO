@@ -21,9 +21,25 @@ public class ProdutoEstoqueDAO extends GenericDAO<Produto> {
     public Produto buscaProduto(int id) {
         return buscaPorChave(id);
     }
+    
+    /**
+     * Gera um novo ID para um produto, baseado no maior ID já registrado no sistema.
+     * Isso garante que cada novo produto tenha um ID único.
+     * * @return O novo ID do produto, incrementado em relação ao maior ID atual.
+     */
+    public int geraIdProduto(){
+        int maiorIdProduto = 0;
+        for(Produto cadaPeca : getLista()){
+            if(cadaPeca.getIdProduto() > maiorIdProduto){
+                maiorIdProduto = cadaPeca.getIdProduto();
+            }
+            
+        }
+        return maiorIdProduto + 1;
+    }
 
     public void adicionaProduto() {
-        int idProduto = ProdutoEstoqueController.geraIdProduto();
+        int idProduto = geraIdProduto();
         String descricao = viewProduto.getDescricao();
         double valor = viewProduto.getValorProduto();
         int quantidade = viewProduto.getQuantidadeProduto();

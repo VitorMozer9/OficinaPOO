@@ -21,9 +21,25 @@ public class FuncionarioDAO extends GenericDAO<Funcionario> {
     public Funcionario buscaFuncionario(int id) {
         return buscaPorChave(id);
     }
+    
+    /**
+     * Gera um novo ID para funcionário, baseado no maior ID já registrado no sistema.
+     * Isso garante que cada novo funcionário tenha um ID único.
+     * 
+     * @return O novo ID do funcionário, incrementa em relação ao maior ID atual.
+     */
+    public int geraIdFuncionario(){
+        int maiorID = 0;
+        for(Funcionario cadaFuncionario : getLista()){
+            if (cadaFuncionario.getIdFuncionario() > maiorID){
+                maiorID = cadaFuncionario.getIdFuncionario();
+            }
+        }
+        return maiorID + 1;
+    }
 
     public void adicionaFuncionario() {
-        int idFunc = FuncionarioController.geraIdFuncionario();
+        int idFunc = geraIdFuncionario();
         String nome = viewFuncionario.getNomeFunc();
         String endereco = viewFuncionario.getEnderecoFunc();
         String telefone = viewFuncionario.getFoneFunc();

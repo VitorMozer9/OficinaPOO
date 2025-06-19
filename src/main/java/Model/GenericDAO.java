@@ -28,7 +28,7 @@ public abstract class GenericDAO<T> {
     
     
     
-    protected List<T> getLista(){
+    public List<T> getLista(){
         return listaObjeto;
     };
     

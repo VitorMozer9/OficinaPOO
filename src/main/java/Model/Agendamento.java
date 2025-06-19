@@ -11,7 +11,7 @@ public class Agendamento {
     
     private int idAgendamento;
     private int idCliente;
-    private double valorInspecao;
+    private static final double VALOR_AGENDAMENTO = 50.00;
     private String mecanicoResponsavel;
     public Calendar dataHora;
     
@@ -25,7 +25,7 @@ public class Agendamento {
      * @param mecanicoResponsavel   Nome do mecânico que fez a inspeção.
      * @param dataHora              Data e hora de retorno para manutenção do veículo.
      */
-    public Agendamento(int idAgendamento, int idCliente, double valorInspecao, String mecanicoResponsavel, Calendar dataHora){
+    public Agendamento(int idAgendamento, int idCliente, String mecanicoResponsavel, Calendar dataHora){
         this.idAgendamento = idAgendamento;
         this.idCliente = idCliente;
         this.mecanicoResponsavel = mecanicoResponsavel;
@@ -37,7 +37,7 @@ public class Agendamento {
      * 
      * @return Número de agendamento.
      */
-    public int geIdAgendamento(){
+    public int getIdAgendamento(){
         return idAgendamento;
     }
     
@@ -73,18 +73,10 @@ public class Agendamento {
      * 
      * @return Valor da inspeção.
      */
-    public double getValorInspecao(){
-        return valorInspecao;
+    public double getValorAgendamento(){
+        return VALOR_AGENDAMENTO;
     }
     
-    /**
-     * Define um valor para a inspeção do veículo.
-     * 
-     * @param valorInspecao Novo valor de inspeção.
-     */
-    public void setValorInspecao(double valorInspecao){
-        this.valorInspecao = valorInspecao;
-    }
     
     /**
      * Obtém o nome do mecânico responsável pela inspeção.

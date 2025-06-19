@@ -1,6 +1,10 @@
 package controller;
 
 import Main.OficinaPOO;
+import Model.ClienteDAO;
+import Model.FuncionarioDAO;
+import Model.ProdutoEstoqueDAO;
+import Model.VeiculoDAO;
 import View.TelaInicial;
 
 /**
@@ -17,6 +21,11 @@ public class Sistema {
     private VeiculoController veiculoController = new VeiculoController();
     private ProdutoEstoqueController pecasController = new ProdutoEstoqueController();
     
+    private ClienteDAO clienteDao = new ClienteDAO();
+    private FuncionarioDAO funcionarioDao = new FuncionarioDAO();
+    private VeiculoDAO veiculoDao = new VeiculoDAO();
+    private ProdutoEstoqueDAO produtoDao = new ProdutoEstoqueDAO();
+    
     /**
      * Inicia o sistema da oficina.
      * Este método carrega os dados persistidos, exibe o menu de opções principal para o usuário e, com base na seleção,
@@ -26,7 +35,6 @@ public class Sistema {
      */
     public void iniciaSistema() {
         boolean rodando = true;
-        OficinaPOO.carregaDados();
         
         while (rodando) {
             int opcaoDisponivel = telaInicial.mostraOpcoesDisponiveis();
@@ -67,7 +75,10 @@ public class Sistema {
                
                 case 9 -> {
                     System.out.println("Encerrando sistema...");
-                    OficinaPOO.salvarDados(OficinaPOO.getInstancia());
+                    clienteDao.salvarDados(); 
+                    funcionarioDao.salvarDados();
+                    veiculoDao.salvarDados();
+                    produtoDao.salvarDados();
                     rodando = false;
                 }
                 

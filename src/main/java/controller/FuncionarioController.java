@@ -14,22 +14,6 @@ public class FuncionarioController {
     private FuncionarioDAO funcionarioDAO = new FuncionarioDAO();
     
     /**
-     * Gera um novo ID para funcionário, baseado no maior ID já registrado no sistema.
-     * Isso garante que cada novo funcionário tenha um ID único.
-     * 
-     * @return O novo ID do funcionário, incrementa em relação ao maior ID atual.
-     */
-    public static int geraIdFuncionario(){
-        int maiorID = 0;
-        for(Funcionario cadaFuncionario : OficinaPOO.getInstancia().getFuncionario()){
-            if (cadaFuncionario.getIdFuncionario() > maiorID){
-                maiorID = cadaFuncionario.getIdFuncionario();
-            }
-        }
-        return maiorID + 1;
-    }
-    
-    /**
      * Exibe o menu de opções do funcionário e executa a ação selecionada pelo usuário.
      * O menu permanece até que o usuário escolha a opção de sair.
      */

@@ -19,14 +19,15 @@ Model\Agendamento.class
 View\FuncionarioView.class
 Model\OrdemDeServico.class
 Model\Elevador.class
+controller\AgendamentoController.class
 Model\Conta.class
 Model\GenericDAO.class
 Model\Cpf.class
-Main\OficinaPOO$1.class
 Model\ProdutoEstoqueDAO.class
 View\ClienteView.class
 Model\FuncionarioDAO$1.class
 View\ProdutoEstoqueView.class
 Model\VeiculoDAO.class
+View\AgendamentoView.class
 Model\Pessoa.class
 Model\VeiculoDAO$1.class
