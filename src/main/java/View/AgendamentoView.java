@@ -13,7 +13,8 @@ public class AgendamentoView {
         System.out.println("3 - Cancelar agendamento");
         System.out.println("4 - Editar agendamento");
         System.out.println("5 - Mostrar agendamento");
-        System.out.println("6 - Sair");
+        System.out.println("6 - Mostrar vagas disponíveis");
+        System.out.println("7 - Sair");
 
         int opcao = leituraDados.nextInt();
         leituraDados.nextLine();

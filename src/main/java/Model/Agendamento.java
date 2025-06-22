@@ -47,6 +47,10 @@ public class Agendamento {
         return idAgendamento;
     }
     
+    public int getIdElevador(){
+        return idElevador;
+    }
+    
     public void setIdElevador(int idElevador){
         this.idElevador = idElevador;
     }

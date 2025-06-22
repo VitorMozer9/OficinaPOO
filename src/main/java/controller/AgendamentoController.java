@@ -1,8 +1,10 @@
 package controller;
 
+import Model.Agendamento;
 import Model.AgendamentoDAO;
 import View.AgendamentoView;
 import java.util.Calendar;
+import java.util.List;
 
 public class AgendamentoController {
     AgendamentoView viewAgendamento = new AgendamentoView();
@@ -22,10 +24,30 @@ public class AgendamentoController {
         return dataHorario;
     }
     
+    public void mostraVagasDisponiveis(List<Agendamento> agendamentos) {
+        System.out.println("\nAGENDAMENTOS");
+        for (int hora = 8; hora <= 18; hora++) {
+            boolean ocupado = false;
+            for (Agendamento agendamento : agendamentos) {
+                int agendamentoHora = agendamento.getDataHora().get(Calendar.HOUR_OF_DAY);
+                if (agendamentoHora == hora) {
+                    System.out.println(
+                            hora + " Horário OCUPADO pelo Cliente " + "ID: " + agendamento.getIdCliente() + " ID Elevador: " + agendamento.getIdElevador());
+                    ocupado = true;
+                    break;
+                }
+            }
+            
+            if (!ocupado) {
+                System.out.println(hora + " Horário DISPONÍVEL");
+            }
+        }
+    }
+    
     public void executaMenuAgendamento(){
         int opcao = 0; 
         
-        while(opcao != 6){
+        while(opcao != 7){
             opcao = viewAgendamento.mostraOpcoesAgendamento();
             
             switch (opcao){
@@ -43,6 +65,10 @@ public class AgendamentoController {
                 }
                 case 5 -> {
                     agendamentoDao.mostrarAgendamento();
+                }
+                
+                case 6 -> {
+                    mostraVagasDisponiveis(agendamentoDao.getLista());
                 }
                 
                 default -> {
