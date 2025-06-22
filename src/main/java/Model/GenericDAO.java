@@ -24,9 +24,7 @@ public abstract class GenericDAO<T> {
         this.tipoDaLista = tipoDaLista;
         this.listaObjeto = new ArrayList<>();
         carregaDados();
-    }
-    
-    
+    } 
     
     public List<T> getLista(){
         return listaObjeto;

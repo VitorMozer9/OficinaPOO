@@ -1,6 +1,7 @@
 package controller;
 
 import Main.OficinaPOO;
+import Model.AgendamentoDAO;
 import Model.ClienteDAO;
 import Model.FuncionarioDAO;
 import Model.ProdutoEstoqueDAO;
@@ -20,11 +21,13 @@ public class Sistema {
     private FuncionarioController funcionarioController = new FuncionarioController();
     private VeiculoController veiculoController = new VeiculoController();
     private ProdutoEstoqueController pecasController = new ProdutoEstoqueController();
+    private AgendamentoController agendamentoController = new AgendamentoController();
     
     private ClienteDAO clienteDao = new ClienteDAO();
     private FuncionarioDAO funcionarioDao = new FuncionarioDAO();
     private VeiculoDAO veiculoDao = new VeiculoDAO();
     private ProdutoEstoqueDAO produtoDao = new ProdutoEstoqueDAO();
+    private AgendamentoDAO agendamentoDao = new AgendamentoDAO();
     
     /**
      * Inicia o sistema da oficina.
@@ -60,9 +63,9 @@ public class Sistema {
 //                    loja.executaMenuLoja();
 //                }
                 
-//                case 6 ->{
-//                    agendamento.executaMenuAgendamento();
-//                }
+                case 6 ->{
+                    agendamentoController.executaMenuAgendamento();
+                }
 //                
 //                case 7 -> {
 //                    os.executaMenuOrdemDeServico();
@@ -79,6 +82,7 @@ public class Sistema {
                     funcionarioDao.salvarDados();
                     veiculoDao.salvarDados();
                     produtoDao.salvarDados();
+                    agendamentoDao.salvarDados();
                     rodando = false;
                 }
                 

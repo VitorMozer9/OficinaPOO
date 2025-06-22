@@ -36,21 +36,52 @@ public class AgendamentoView {
         return leituraDados.nextLine();
     }
     
+    public int getTipoAgendamento(){
+        System.out.println("Digite a opção do tipo do agendamento");
+        System.out.println("1 - Manutenção");
+        System.out.println("2 - Revisão");
+        System.out.println("3 - Outro");
+        
+        return leituraDados.nextInt();
+//        leituraDados.nextLine();
+//        return opcao;
+    }
+    
+    public String getDescricaoOutro(){
+        int opcao = getTipoAgendamento();
+        if (opcao == 3) {
+            System.out.println("Você selecionou a opção 'outro', favor escrever a descrição do agendamento manualmente: ");
+        return leituraDados.nextLine(); 
+        }
+        return null;
+    }
+    
     public String getDataHorarioAgendamento(){
         System.out.println("Digite o Horario: [DD MM AAAA HH MM]");
         return leituraDados.nextLine();
     }
     
     public void mostraAgendamento(Agendamento agendamento){
+        String tipoTexto = agendamento.retornaTipoAgendamento(agendamento.getTipoAgendamento());
+        String descricaoOutro = "";
+        
+        if (agendamento.getTipoAgendamento() == 3) {
+            descricaoOutro = " (" + getDescricaoOutro() + ")";
+        }
+        
         System.out.println("ID do agendamento: " + agendamento.getIdAgendamento() + "\n" + 
                            "ID do cliente: " + agendamento.getIdCliente() + "\n" +
-                           "Agendamento marcado para: " + agendamento.getDataHora() + "\n" +
-                           "OBSERVAÇÃO: AGENDAMENTOS CONFIRMADOS TEM A TAXA PADRÃO DE R$50,00");
+                           "Mecânico responsável: " + agendamento.getMecanicoResponsavel() + "\n" +
+                           "Status agendamento: " + agendamento.getStatusAgendamento() + "\n" +
+                           "Agendamento marcado para: " + agendamento.getDataHora().getTime() + "\n" +
+                           "Tipo do agendamento: " + tipoTexto + descricaoOutro  + "\n" +       
+                           "\nOBSERVAÇÃO: AGENDAMENTOS CONFIRMADOS TEM A TAXA PADRÃO DE R$50,00" + "\n");
     }
     
     public String confirmaExclusaoDoAgendamento(){
         System.out.println("Tem certeza que deseja cancelar este agendamento? \n"
-                         + "Digite [S] para confirmar ou [N] para abortar a operação!!");
+                         + "Digite [S] para confirmar ou [N] para abortar a operação!! \n");
+        leituraDados.nextLine();
         return leituraDados.nextLine();
     }
     

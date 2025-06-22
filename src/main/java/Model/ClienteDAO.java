@@ -15,7 +15,6 @@ public class ClienteDAO extends GenericDAO<Cliente>{
     }
        
     @Override
-    
     protected Comparable<?> getChave(Cliente cliente){
         return cliente.getIdCliente();
     }
@@ -90,8 +89,8 @@ public class ClienteDAO extends GenericDAO<Cliente>{
             return;
         }
         
-         if (removeDados(cliente)) {
-        System.out.println("Cliente removido com sucesso!");
+        if (removeDados(cliente)) {
+            System.out.println("Cliente removido com sucesso!");
         } 
         else {
             System.out.println("Falha ao remover cliente! :(");

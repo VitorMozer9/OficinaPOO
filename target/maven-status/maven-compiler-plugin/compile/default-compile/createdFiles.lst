@@ -4,6 +4,7 @@ Model\FuncionarioDAO.class
 controller\ProdutoEstoqueController.class
 Model\Cliente.class
 Model\Produto.class
+Model\AgendamentoDAO.class
 Model\Funcionario.class
 controller\ClienteController.class
 Model\ClienteDAO$1.class
@@ -20,6 +21,7 @@ View\FuncionarioView.class
 Model\OrdemDeServico.class
 Model\Elevador.class
 controller\AgendamentoController.class
+Model\AgendamentoDAO$1.class
 Model\Conta.class
 Model\GenericDAO.class
 Model\Cpf.class

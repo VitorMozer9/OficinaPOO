@@ -26,6 +26,10 @@ public class Elevador {
         this.pesoMaximo = pesoMaximo;
         this.tipoElevador = tipoElevador;
     }
+    
+    public int getIdElevador(){
+        return idElevador;
+    }
 
     /**
      * Obtém o tipo do elevador.
@@ -88,7 +92,7 @@ public class Elevador {
      */
     @Override
     public String toString() {
-        if (estaOcupado = true) {
+        if (estaOcupado) {
             return "O elevador " + idElevador + " do tipo " + tipoElevador + " esta ocupado."; 
         } else {
            return "O elevador " + idElevador + " do tipo " + tipoElevador + " esta livre.";  
