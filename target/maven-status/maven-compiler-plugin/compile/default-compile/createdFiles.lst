@@ -25,7 +25,6 @@ Model\AgendamentoDAO$1.class
 Model\Conta.class
 Model\GenericDAO.class
 Model\Cpf.class
-utilitarios\AgendamentoUtils.class
 controller\ElevadorController.class
 Model\ProdutoEstoqueDAO.class
 View\ClienteView.class

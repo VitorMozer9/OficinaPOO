@@ -19,7 +19,7 @@ public class Cpf {
 /**
  * Pega o cpf da pessoa.
  * 
- * @return numeroCPF pessoa.
+ * @return numeroCPF da pessoa.
  */     
     public String getNumeroCpf(){
         return numeroCPF;
@@ -35,11 +35,11 @@ public class Cpf {
     }
     
 /**
-* Verifica se um códifo ce CPF é válido.
+* Verifica se um código de CPF é válido.
 * Utiliza o cálculo de dígitos verificadores para validar o CPF.
 * 
 * @param codigoCpf Código do CPF a ser validado.
-* @return true se o cpf for válido e false caso seja inválido
+* @return true se o cpf for válido e false caso seja inválido.
 */
     public static boolean validaCPF(String codigoCpf){
         int soma, resto, primeiroDigito, segundoDigito;       

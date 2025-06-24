@@ -1,9 +1,9 @@
 package Model;
 
 /**
- * Representação dos elevadores da oficina, divididos por tipos(balanceamento, normal), apresentando suas capacidades máximas que conseguem levantar, seu número de identificação
- * e também o seu estado atual, se está sendo usado ou não.
- * 
+ * Representação dos elevadores da oficina, divididos por tipos(balanceamento, normal), apresentando
+ * suas capacidades máximas que conseguem levantar, seu número de identificação e também o seu estado atual,
+ * se está sendo usado ou não.
  */
 public class Elevador {
     private int idElevador;

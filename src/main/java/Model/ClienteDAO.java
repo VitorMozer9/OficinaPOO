@@ -7,13 +7,32 @@ import java.lang.reflect.Type;
 import com.google.gson.reflect.TypeToken;
 import java.util.List;
 
+/**
+ * Classe responsável por gerenciar operações de persistência e manipulação de dados
+ * relacionados a objetos {@link Cliente}. 
+ * Estende {@link GenericDAO} para utilizar operações genéricas de CRUD com armazenamento no JSON.
+ */
 public class ClienteDAO extends GenericDAO<Cliente>{
+    
+    /**
+     * Instância da View para interação com o usuário.
+     */
     private ClienteView viewCliente = new ClienteView();
     
+    /**
+     * Construtor da classe{@code ClienteDAO}.
+     * Inicializando o DAO com o caminho do JSON e o tipo da lista de Cliente.
+     */
     public ClienteDAO() {
         super("data/clientes.json", new TypeToken<List<Cliente>>() {}.getType());
     }
-       
+    
+    /**
+     * Obtém a chave primária de um objeto {@link Cliente}, utilizada nas operações de busca e remoção.
+     * 
+     * @param cliente o cliente do qual será extraído o ID.
+     * @return a chave(ID) do cliente.
+     */
     @Override
     protected Comparable<?> getChave(Cliente cliente){
         return cliente.getIdCliente();
@@ -34,10 +53,21 @@ public class ClienteDAO extends GenericDAO<Cliente>{
         return maiorIdCliente + 1;
     }
     
+    /**
+     * Busca um cliente pelo seu ID.
+     * 
+     * @param id o ID do cliente a ser buscado.
+     * @return o cliente correspondente, ou {@code null} se não for encontrado.
+     */
     public Cliente buscarCliente(int id) {
         return buscaPorChave(id); 
     }
     
+    /**
+     * Solicita os dados de um novo cliente via interface de visualização, valida o CPF e 
+     * adiciona o cliente ao repositório.
+     * Exibe mensagens apropriadas em caso de sucesso ou erro.
+     */
     public void adicionaCliente(){
         int idCliente = geraIdCliente();
         
@@ -98,8 +128,8 @@ public class ClienteDAO extends GenericDAO<Cliente>{
     }
     
     /**
-     * Edita os dados anteriores fornecidos para Cliente.
-     * Selecionando de acordo com a opção selecionada pelo usuário.
+     * Permite a edição de dados específicos (endereço, telefone ou e-mail) de um cliente.
+     * O cliente é selecionado por ID e a edição é feita com base na opção escolhida pelo usuário.
      */
     public void editarCliente(){
         editaDados(viewCliente::getIdCliente, cliente -> {
