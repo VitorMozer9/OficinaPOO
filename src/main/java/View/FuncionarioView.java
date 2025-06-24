@@ -20,13 +20,12 @@ public class FuncionarioView {
      * @return um número inteiro de acordo com a opção escolhida pelo usuário.
      */
     public int mostraOpcoesFuncionario(){
-        System.out.println("Digite a opção que deseja exucutar: \n");
+        System.out.println("Digite a opção que deseja exucutar: ");
         System.out.println("1 - Incluir Funcionário");
         System.out.println("2 - Editar Funcionário");
         System.out.println("3 - Remover Funcionário");
         System.out.println("4 - Mostrar dados de um Funcionário");
         System.out.println("5 - Sair");
-        System.out.println();
 
         int opcao = leituraDados.nextInt();
         leituraDados.nextLine();
@@ -156,7 +155,7 @@ public class FuncionarioView {
       * 
       * @return número inteiro correspondente ao campo selecionado (1, 2, 3, 4 ou 5).
       */
-    public int editaCliente(){
+    public int editaFuncionario(){
         System.out.println("Digite o campo que você gostaria de editar!");
         System.out.println("1 - Endereço");
         System.out.println("2 - Telefone");

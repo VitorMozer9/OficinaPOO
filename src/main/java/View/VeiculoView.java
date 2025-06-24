@@ -18,14 +18,13 @@ public class VeiculoView {
      * 
      * @return um número inteiro correspondente à opção selecionada pelo usuário.
      */
-    public int mostraOpcoesFuncionario(){
-        System.out.println("Digite a opção que deseja exucutar: \n");
+    public int mostraOpcoesVeiculo(){
+        System.out.println("Digite a opção que deseja exucutar: ");
         System.out.println("1 - Incluir Veículo");
         System.out.println("2 - Editar Veículo");
         System.out.println("3 - Remover Veículo");
         System.out.println("4 - Mostrar dados de um Veículo");
         System.out.println("5 - Sair");
-        System.out.println();
 
         int opcao = leituraDados.nextInt();
         leituraDados.nextLine();

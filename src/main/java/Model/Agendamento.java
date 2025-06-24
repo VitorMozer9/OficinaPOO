@@ -11,8 +11,11 @@ public class Agendamento {
     
     private int idAgendamento;
     private int idCliente;
-    private double valorInspecao;
+    private int idElevador;
+    private static final double VALOR_AGENDAMENTO = 50.00;
     private String mecanicoResponsavel;
+    private int tipoAgendamento;
+    private String statusAgendamento;
     public Calendar dataHora;
     
     /**
@@ -25,10 +28,13 @@ public class Agendamento {
      * @param mecanicoResponsavel   Nome do mecânico que fez a inspeção.
      * @param dataHora              Data e hora de retorno para manutenção do veículo.
      */
-    public Agendamento(int idAgendamento, int idCliente, double valorInspecao, String mecanicoResponsavel, Calendar dataHora){
+    public Agendamento(int idAgendamento, int idCliente,int idElevador ,int tipoAgendamento, String mecanicoResponsavel,String statusAgendamento ,Calendar dataHora){
         this.idAgendamento = idAgendamento;
         this.idCliente = idCliente;
+        this.idElevador = idElevador;
+        this.tipoAgendamento = tipoAgendamento;
         this.mecanicoResponsavel = mecanicoResponsavel;
+        this.statusAgendamento = statusAgendamento;
         this.dataHora = dataHora;
     }
     
@@ -37,8 +43,16 @@ public class Agendamento {
      * 
      * @return Número de agendamento.
      */
-    public int geIdAgendamento(){
+    public int getIdAgendamento(){
         return idAgendamento;
+    }
+    
+    public int getIdElevador(){
+        return idElevador;
+    }
+    
+    public void setIdElevador(int idElevador){
+        this.idElevador = idElevador;
     }
     
     /**
@@ -73,18 +87,18 @@ public class Agendamento {
      * 
      * @return Valor da inspeção.
      */
-    public double getValorInspecao(){
-        return valorInspecao;
+    public double getValorAgendamento(){
+        return VALOR_AGENDAMENTO;
     }
     
-    /**
-     * Define um valor para a inspeção do veículo.
-     * 
-     * @param valorInspecao Novo valor de inspeção.
-     */
-    public void setValorInspecao(double valorInspecao){
-        this.valorInspecao = valorInspecao;
+    public int getTipoAgendamento(){
+        return tipoAgendamento;
     }
+    
+    public void setTipoAgendamento(int tipoAgendamento){
+        this.tipoAgendamento = tipoAgendamento;
+    } 
+    
     
     /**
      * Obtém o nome do mecânico responsável pela inspeção.
@@ -120,6 +134,27 @@ public class Agendamento {
      */
     public void setDataHora(Calendar dataHora){
         this.dataHora = dataHora;
+    }
+    
+    public String getStatusAgendamento(){
+        return statusAgendamento;
+    }
+    
+    public void setStatusAgendamento(String statusAgendamento){
+        this.statusAgendamento = statusAgendamento;
+    }
+    
+    public String retornaTipoAgendamento(int tipoAgendamento){
+        if (tipoAgendamento == 1) {
+            return "Manutenção"; 
+        } 
+        else if (tipoAgendamento == 2) {
+            return "Revisão";
+        }
+        else if (tipoAgendamento == 3) {
+            return "Outro: ";
+        }
+        return null;
     }
     
     /**
