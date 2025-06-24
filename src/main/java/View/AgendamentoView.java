@@ -29,11 +29,18 @@ public class AgendamentoView {
     
     public int getIdCliente(){
         System.out.println("Digite o ID do cliente: ");
-        return leituraDados.nextInt();
+        int idCliente = leituraDados.nextInt();
+        leituraDados.nextLine();
+        return idCliente;
     }
     
     public String getMecanicoResponsavel(){
         System.out.println("Digite o nome do profissional responsável: ");
+        return leituraDados.nextLine();
+    }
+    
+    public String getDataHorarioAgendamento(){
+        System.out.println("Digite o Horario: [DD MM AAAA HH MM]");
         return leituraDados.nextLine();
     }
     
@@ -57,9 +64,12 @@ public class AgendamentoView {
         return null;
     }
     
-    public String getDataHorarioAgendamento(){
-        System.out.println("Digite o Horario: [DD MM AAAA HH MM]");
-        return leituraDados.nextLine();
+    public int getIdElevador(){
+        System.out.println(
+                "[ELEVADOR 1 - alinhamento | ELEVADOR 2 - Normal | Elevador 3 - Normal]\nDigite o ID do elevador necessário: ");
+        int idElevador = leituraDados.nextInt();
+        leituraDados.nextLine();
+        return idElevador;
     }
     
     public void mostraAgendamento(Agendamento agendamento){

@@ -6,11 +6,11 @@ import java.util.List;
 
 public class ElevadorController {
     
-    private static List<Elevador> getListaElevadores = List.of(
+    private static Elevador[] getListaElevadores = new Elevador[]{
         new Elevador(1, "ALINHAMENTO", false, 2000),
         new Elevador(2, "NORMAL", false, 3000),
         new Elevador(3, "NORMAL", false, 3000)
-    );
+    };
     
     public static Elevador verificaDisponibilidade(Calendar horario){
         for (Elevador cadaElevador : getListaElevadores) {

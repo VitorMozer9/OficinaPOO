@@ -24,26 +24,6 @@ public class AgendamentoController {
         return dataHorario;
     }
     
-    public void mostraVagasDisponiveis(List<Agendamento> agendamentos) {
-        System.out.println("\nAGENDAMENTOS");
-        for (int hora = 8; hora <= 18; hora++) {
-            boolean ocupado = false;
-            for (Agendamento agendamento : agendamentos) {
-                int agendamentoHora = agendamento.getDataHora().get(Calendar.HOUR_OF_DAY);
-                if (agendamentoHora == hora) {
-                    System.out.println(
-                            hora + " Horário OCUPADO pelo Cliente " + "ID: " + agendamento.getIdCliente() + " ID Elevador: " + agendamento.getIdElevador());
-                    ocupado = true;
-                    break;
-                }
-            }
-            
-            if (!ocupado) {
-                System.out.println(hora + " Horário DISPONÍVEL");
-            }
-        }
-    }
-    
     public void executaMenuAgendamento(){
         int opcao = 0; 
         
@@ -68,7 +48,7 @@ public class AgendamentoController {
                 }
                 
                 case 6 -> {
-                    mostraVagasDisponiveis(agendamentoDao.getLista());
+                    agendamentoDao.mostraVagasDisponiveis();
                 }
                 
                 default -> {
