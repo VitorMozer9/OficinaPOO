@@ -17,12 +17,13 @@ public class Veiculo {
  * Construtor da classe Veúculo (@code Veículo).
  * Inicializa um novo veículo com suas informações básicas.  
  * 
- * @param modeloVeiculo
- * @param placaVeiculo
- * @param statusVeiculo
- * @param anoDeFabricacao 
+ * @param idCliente                 ID do cliente proprietário do veículo.
+ * @param modeloVeiculo             Modelo do veículo.
+ * @param placaVeiculo              Placa do veículo.
+ * @param statusVeiculo             Status atual do veículo.
+ * @param anoDeFabricacao           Ano de fabricação do veículo.   
+ * @param peso                      Peso do veículo.
  */
-    
     public Veiculo(int idCliente,String modeloVeiculo, String placaVeiculo, String statusVeiculo, int anoDeFabricacao, double peso) {
         this.idCliente = idCliente; 
         this.anoDeFabricacao = anoDeFabricacao;

@@ -6,18 +6,40 @@ import controller.FuncionarioController;
 import com.google.gson.reflect.TypeToken;
 import java.util.List;
 
+/**
+ * Classe responsável por gerenciar os dados dos funcionários no sistesma.
+ * Estende a classe {@code GenericDAO<Funcionario>} e fornece operações para cadastrar, buscar, editar, remover
+ * e exibir funcionários.
+ */
 public class FuncionarioDAO extends GenericDAO<Funcionario> {
     private FuncionarioView viewFuncionario = new FuncionarioView();
 
+    /**
+     * Contrutor padrão da classe {@code FuncionarioDAO}.
+     * Inicializa o DAO com o caminho do arquivo de dados dos funcionários e o tipo da lista de funcionários 
+     * utilizado pelo Gson.
+     */
     public FuncionarioDAO() {
         super("data/funcionarios.json", new TypeToken<List<Funcionario>>() {}.getType());
     }
 
+    /**
+     * Obtém a chave identificadora de um funcionário.
+     * 
+     * @param funcionario Objeto {@code Funcionario} a ser identificado.
+     * @return ID do funcionário.
+     */
     @Override
     protected Comparable<?> getChave(Funcionario funcionario) {
         return funcionario.getIdFuncionario();
     }
 
+    /**
+     * Busca um funcionário pelo ID
+     * 
+     * @param id ID do funcionário a ser localizado.
+     * @return Objeto {@code Funcionario} correspondente ao ID, ou {@code null} se não encontrado.
+     */
     public Funcionario buscaFuncionario(int id) {
         return buscaPorChave(id);
     }
@@ -38,6 +60,11 @@ public class FuncionarioDAO extends GenericDAO<Funcionario> {
         return maiorID + 1;
     }
 
+    /**
+     * Adiciona um novo funcionário ao sistema.
+     * Os dados são coletados pela inteface de visualização {@code FuncionarioView}.
+     * CPF é validado antes de adicionar o funcionário.
+     */
     public void adicionaFuncionario() {
         int idFunc = geraIdFuncionario();
         String nome = viewFuncionario.getNomeFunc();
@@ -61,10 +88,17 @@ public class FuncionarioDAO extends GenericDAO<Funcionario> {
         System.out.println("Funcionário adicionado com sucesso! ID: " + idFunc);
     }
 
+    /**
+     * Mostra os dados de um funcionário com base no ID informado pela view. 
+     */
     public void mostrarFuncionario() {
         mostraDados(viewFuncionario::getIdFuncionario, viewFuncionario::mostraFuncionario);
     }
 
+    /**
+     * Remove um funcionário do sistema ápos confirmação do usuário.
+     * Exibe a mensagem de sucesso, falha ou cancelamento da operação.
+     */
        public void removeFuncionario(){
         int id = viewFuncionario.getIdFuncionario();
         Funcionario funcionario = buscaFuncionario(id);
@@ -90,6 +124,10 @@ public class FuncionarioDAO extends GenericDAO<Funcionario> {
         }       
     }
 
+       /**
+        * Edita os dados de um funcionário existente.
+        * Permite alterar endereço, telefone, e-mail, senha, cargo ou salário com base na opção escolhida.
+        */
     public void editaFuncionario() {
         editaDados(viewFuncionario::getIdFuncionario, funcionario -> {
             viewFuncionario.mostraFuncionario(funcionario);

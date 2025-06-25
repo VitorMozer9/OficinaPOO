@@ -9,20 +9,39 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
+/**
+ * Classe responsável por gerenciar os dados dos agendamentos, realizando operações 
+ * de persistência, verificação de disponibilidade e controle das interações com a view.
+ */
 public class AgendamentoDAO extends GenericDAO<Agendamento> {
 
     AgendamentoView viewAgendamento = new AgendamentoView();
 
+    /**
+     * Construtor padrão da classe.
+     * Inicializando o DAO com o caminho e tipo de dados utilizados.
+     */
     public AgendamentoDAO() {
         super("data/agendamentos.json", new TypeToken<List<Agendamento>>() {
         }.getType());
     }
 
+    /**
+     * Retorna a chave única do agendamento para a indentificação do mesmo.
+     * 
+     * @param agendamento Agendamento a ser analisado.
+     * @return ID do agendamento.
+     */
     @Override
     public Comparable<?> getChave(Agendamento agendamento) {
         return agendamento.getIdAgendamento();
     }
 
+    /**
+     * Gera um novo ID único baseado nos IDs existentes.
+     * 
+     * @return Novo ID gerado.
+     */
     public int geraIdAgendamento() {
         int maiorId = 0;
         for (Agendamento cadaAgendamento : getLista()) {
@@ -33,6 +52,13 @@ public class AgendamentoDAO extends GenericDAO<Agendamento> {
         return maiorId + 1;
     }
 
+    /**
+     * Verifica se há disponibilidade para agendar no horário informado.
+     * 
+     * @param horario Data e hora desejados.
+     * @param tipoAgendamento Tipo do agendamento (1, 2 usam elevador).
+     * @return true se o horário está disponível, false caso contrário. 
+     */
     private boolean isHorarioDisponivel(Calendar horario, int tipoAgendamento) {
         int totalAgendamentosNoHorario = 0;
         int agendamentosComElevador = 0;
@@ -70,6 +96,10 @@ public class AgendamentoDAO extends GenericDAO<Agendamento> {
         return totalAgendamentosNoHorario < 10;
     }
 
+    /**
+     * Adiciona um novo agendamento com base nas entradas do usuário.
+     * Validando o horário, disponibilidade e aloca o elevador se necessário.
+     */
     public void adicionaAgendamento() {
         int idAgendamento = geraIdAgendamento();
         int idElevador = 0;      
@@ -115,6 +145,9 @@ public class AgendamentoDAO extends GenericDAO<Agendamento> {
         }
     }
 
+    /**
+     * Confirma um agendamento existente, alterando o seu status.
+     */
     public void confirmaAgendamento() {
         int idAgendamento = viewAgendamento.getIdAgendamento();
 
@@ -130,6 +163,9 @@ public class AgendamentoDAO extends GenericDAO<Agendamento> {
         System.out.println("Agendamento confirmado!");
     }
 
+    /**
+     * Cancela um agendamento, solicitando a confirmação do usuário.
+     */
     public void cancelaAgendamento() {
         int idAgendamento = viewAgendamento.getIdAgendamento();
 
@@ -168,10 +204,16 @@ public class AgendamentoDAO extends GenericDAO<Agendamento> {
 
     }
 
+    /**
+     * Exibe um agendamento com base no ID informado pelo usuário.
+     */
     public void mostrarAgendamento() {
         mostraDados(viewAgendamento::getIdAgendamento, viewAgendamento::mostraAgendamento);
     }
 
+    /**
+     * Permite editar os dados de um agendamento: horário ou mecânico responsável.
+     */
     public void editaAgendamento() {
         editaDados(viewAgendamento::getIdAgendamento, agendamento -> {
             viewAgendamento.mostraAgendamento(agendamento);
@@ -200,6 +242,10 @@ public class AgendamentoDAO extends GenericDAO<Agendamento> {
         });
     }
 
+    /**
+     * Mostra a agenda do dia atual com os horários disponíveis e ocupados, indicando também a quantidade
+     * de vagas com elevador e totais.
+     */
     public void mostraVagasDisponiveis() {
         System.out.println("AGENDA");
         List<Agendamento> agendamentos = getLista();

@@ -5,22 +5,45 @@ import View.VeiculoView;
 import com.google.gson.reflect.TypeToken;
 import java.util.List;
 
+/**
+ * DAO responsável pela persistência e manipulação de dados da entidade {@code Veiculo}.
+ * Permite operações como adicionar, buscar, editar, remover e exibir veículos.
+ */
 public class VeiculoDAO extends GenericDAO<Veiculo> {
     private VeiculoView viewVeiculo = new VeiculoView();
 
+    /**
+     * Construtor padrão que define o caminho do arquivo JSON e o tipo da lista de veículos. 
+     */
     public VeiculoDAO() {
         super("data/veiculos.json", new TypeToken<List<Veiculo>>() {}.getType());
     }
 
+    /**
+     * Define a chave única usada para buscar veículos: a placa
+     * 
+     * @param veiculo O veículo a ser comparado com a lista.
+     * @return A placa do veículo que está sendo comparado.
+     */
     @Override
     protected Comparable<?> getChave(Veiculo veiculo) {
         return veiculo.getPlacaVeiculo();
     }
 
+    /**
+     * Busca um veículo a partir de sua placa.
+     * 
+     * @param placa Placa do veículo.
+     * @return Veículo correspondente ou {@code null} se não encontrado.
+     */
     public Veiculo buscaVeiculo(String placa) {
         return buscaPorChave(placa);
     }
 
+    /**
+     * Adiciona um novo veículo ao sistema.
+     * Realiza validação da placa antes de persistir.
+     */
     public void adicionaVeiculo() {
         int idCliente = viewVeiculo.getIdCliente();
         String modelo = viewVeiculo.getModeloVeiculo();
@@ -39,10 +62,17 @@ public class VeiculoDAO extends GenericDAO<Veiculo> {
         System.out.println("Veículo adicionado com sucesso!");
     }
 
+    /**
+     * Mostra os dados de um veículo com base na placa informada pela view. 
+     */
     public void mostrarVeiculo() {
         mostraDados(viewVeiculo::getPlacaVeiculo, viewVeiculo::mostraVeiculo);
     }
 
+    /**
+     * Remove um veículo do sistema, após confirmação do usuário.
+     * A placa é usada como chave para localizar o registro.
+     */
     public void removeVeiculo(){
         String placa = viewVeiculo.getPlacaVeiculo();
         Veiculo veiculo = buscaVeiculo(placa);
@@ -68,6 +98,9 @@ public class VeiculoDAO extends GenericDAO<Veiculo> {
         }       
     }
 
+    /**
+     * Permite editar o status do veículo com base na placa informada.
+     */
     public void editarVeiculo() {
         editaDados(viewVeiculo::getPlacaVeiculo, veiculo -> {
             viewVeiculo.mostraVeiculo(veiculo);

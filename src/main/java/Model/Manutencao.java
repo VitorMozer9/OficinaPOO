@@ -4,8 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Representação da manutenção realizada pelo mecanico especialista da Oficina, aprsentando o status da manutenção, a descrição dela, suas soluções,
- * o seu número para identificação, seu valor total e uma lista com todas as peças que foram necessárias na manutenção.
+ * Representa uma manutenção realizada por um mecânico especialista na oficina.
+ * Contém informações sobre o status do veículo, descrição da manutenção,
+ * solução aplicada, valor total e as peças utilizadas durante o processo.
  */
 public class Manutencao {
     private int idManutencao;
@@ -15,6 +16,7 @@ public class Manutencao {
     private double valorTotal;
     private List<Produto> pecasUtilizadas;
     
+    /** Controla o último ID de manutenção gerado. */
     public static int ultimoIdManutencao = 0;
 
     /**
