@@ -7,7 +7,9 @@ import controller.ElevadorController;
 import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class AgendamentoDAO extends GenericDAO<Agendamento> {
 
@@ -40,6 +42,9 @@ public class AgendamentoDAO extends GenericDAO<Agendamento> {
         for (Agendamento agendamento : getLista()) {
             Calendar agHora = agendamento.getDataHora();
 
+            long diffMillis = Math.abs(horario.getTimeInMillis() - agHora.getTimeInMillis());
+            long diffMinutos = diffMillis / (60 * 1000);
+
             boolean mesmoDiaHora
                     = agHora.get(Calendar.YEAR) == horario.get(Calendar.YEAR)
                     && agHora.get(Calendar.MONTH) == horario.get(Calendar.MONTH)
@@ -48,31 +53,28 @@ public class AgendamentoDAO extends GenericDAO<Agendamento> {
 
             if (mesmoDiaHora) {
                 totalAgendamentosNoHorario++;
-
                 if (agendamento.getTipoAgendamento() == 1 || agendamento.getTipoAgendamento() == 2) {
                     agendamentosComElevador++;
                 }
+            }
 
-                if (tipoAgendamento == 1 || tipoAgendamento == 2) {
-                    long diffMillis = Math.abs(horario.getTimeInMillis() - agHora.getTimeInMillis());
-                    long diffMinutos = diffMillis / (60 * 1000);
-                    if (diffMinutos < 60) {
-                        return false;
-                    }
+            if ((tipoAgendamento == 1 || tipoAgendamento == 2) && diffMinutos < 60) {
+                if (agendamento.getTipoAgendamento() == 1 || agendamento.getTipoAgendamento() == 2) {
+                    return false;
                 }
             }
         }
 
         if (tipoAgendamento == 1 || tipoAgendamento == 2) {
             return agendamentosComElevador < 3;
+        } else {
+            return totalAgendamentosNoHorario < 10;
         }
-
-        return totalAgendamentosNoHorario < 10;
     }
 
     public void adicionaAgendamento() {
         int idAgendamento = geraIdAgendamento();
-        int idElevador = 0;      
+        int idElevador = 0;
         int idCliente = viewAgendamento.getIdCliente();
         String mecanicoResponsavel = viewAgendamento.getMecanicoResponsavel();
         String dataHora = viewAgendamento.getDataHorarioAgendamento();
@@ -204,31 +206,55 @@ public class AgendamentoDAO extends GenericDAO<Agendamento> {
         System.out.println("AGENDA");
         List<Agendamento> agendamentos = getLista();
 
+        Map<String, List<Agendamento>> agendamentosPorData = new HashMap<>();
+
+        for (Agendamento ag : agendamentos) {
+            Calendar dataAg = ag.getDataHora();
+            String chaveData = String.format("%04d-%02d-%02d",
+                    dataAg.get(Calendar.YEAR),
+                    dataAg.get(Calendar.MONTH) + 1,
+                    dataAg.get(Calendar.DAY_OF_MONTH));
+
+            agendamentosPorData.computeIfAbsent(chaveData, k -> new ArrayList<>()).add(ag);
+        }
+
+        if (agendamentosPorData.isEmpty()) {
+            System.out.println("Nenhum agendamento encontrado.");
+            mostrarHorariosVazios();
+            return;
+        }
+
+        for (Map.Entry<String, List<Agendamento>> entry : agendamentosPorData.entrySet()) {
+            System.out.println("\n DATA: " + entry.getKey());
+            mostrarAgendamentosDaData(entry.getValue());
+        }
+    }
+
+    private void mostrarHorariosVazios() {
+        for (int hora = 8; hora <= 18; hora++) {
+            System.out.println(hora + "h - DISPONÍVEL | Vagas restantes: 10 | Vagas com elevador: 3");
+        }
+    }
+
+    private void mostrarAgendamentosDaData(List<Agendamento> agendamentosData) {
         for (int hora = 8; hora <= 18; hora++) {
             int totalClientesNoHorario = 0;
             int comElevador = 0;
-            
             List<Agendamento> agendamentosNoHorario = new ArrayList<>();
 
-            for (Agendamento agendamento : agendamentos) {
+            for (Agendamento agendamento : agendamentosData) {
                 Calendar agendamentoHora = agendamento.getDataHora();
-
-                if (agendamentoHora.get(Calendar.HOUR_OF_DAY) == hora
-                        && agendamentoHora.get(Calendar.YEAR) == Calendar.getInstance().get(Calendar.YEAR)
-                        && agendamentoHora.get(Calendar.MONTH) == Calendar.getInstance().get(Calendar.MONTH)
-                        && agendamentoHora.get(Calendar.DAY_OF_MONTH) == Calendar.getInstance().get(Calendar.DAY_OF_MONTH)) {
-
+                if (agendamentoHora.get(Calendar.HOUR_OF_DAY) == hora) {
                     totalClientesNoHorario++;
                     agendamentosNoHorario.add(agendamento);
-
                     if (agendamento.getTipoAgendamento() == 1 || agendamento.getTipoAgendamento() == 2) {
                         comElevador++;
                     }
                 }
             }
 
-            int vagasElevador = 3 - comElevador;
-            int vagasRestantes = 10 - totalClientesNoHorario;
+            int vagasElevador = Math.max(0, 3 - comElevador);
+            int vagasRestantes = Math.max(0, 10 - totalClientesNoHorario);
 
             if (totalClientesNoHorario >= 10) {
                 System.out.println(hora + "h - COMPLETO");
@@ -236,13 +262,16 @@ public class AgendamentoDAO extends GenericDAO<Agendamento> {
                 System.out.println(hora + "h - DISPONÍVEL | Vagas restantes: " + vagasRestantes
                         + " | Vagas com elevador: " + vagasElevador);
             }
-        }
-        for (Agendamento ag : agendamentos) {
-            System.out.println("    (Cliente ID: " + ag.getIdCliente() +
-                    ", Tipo: " + ag.retornaTipoAgendamento(ag.getTipoAgendamento()) +
-                    ", Mecânico: " + ag.getMecanicoResponsavel() +
-                    ", Status: " + ag.getStatusAgendamento() +
-                    ", Elevador: " + (ag.getIdElevador() > 0 ? ag.getIdElevador() : "Sem elevador") + ")");
+
+            if (!agendamentosNoHorario.isEmpty()) {
+                for (Agendamento ag : agendamentosNoHorario) {
+                    System.out.println("    → Cliente ID: " + ag.getIdCliente()
+                            + ", Tipo: " + ag.retornaTipoAgendamento(ag.getTipoAgendamento())
+                            + ", Mecânico: " + ag.getMecanicoResponsavel()
+                            + ", Status: " + ag.getStatusAgendamento()
+                            + ", Elevador: " + (ag.getIdElevador() > 0 ? ag.getIdElevador() : "Sem elevador"));
+                }
+            }
         }
     }
 

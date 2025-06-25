@@ -44,7 +44,7 @@ public class AgendamentoController {
                     agendamentoDao.editaAgendamento();
                 }
                 case 5 -> {
-                    agendamentoDao.mostrarAgendamento();
+                    agendamentoDao.mostraVagasDisponiveis();
                 }
                 
                 case 6 -> {
