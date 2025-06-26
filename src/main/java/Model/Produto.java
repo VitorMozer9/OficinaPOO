@@ -51,7 +51,7 @@ public class Produto {
      * 
      * @return Descrição da peça.
      */
-    public String getDescicao(){
+    public String getDescricao(){
         return descricao;
     }
     

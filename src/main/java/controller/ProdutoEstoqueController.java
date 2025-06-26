@@ -11,7 +11,7 @@ import View.ProdutoEstoqueView;
  */
 public class ProdutoEstoqueController {
     private ProdutoEstoqueView viewProduto = new ProdutoEstoqueView();
-    private ProdutoEstoqueDAO produtoEstoqueDao = new ProdutoEstoqueDAO();
+    private ProdutoEstoqueDAO produtoEstoqueDao = ProdutoEstoqueDAO.getInstancia();
      
     /**
      * Exibe o menu de opções para as Peças e executa a ação solicitada pelo usuário.
@@ -20,7 +20,7 @@ public class ProdutoEstoqueController {
     public void executaMenuProdutos(){
         int opcao = 0; 
         
-        while(opcao != 5){
+        while(opcao != 7){
             opcao = viewProduto.mostraOpcoesProduto();
             
             switch (opcao){
@@ -35,6 +35,12 @@ public class ProdutoEstoqueController {
                 }
                 case 4 -> {
                     produtoEstoqueDao.mostrarProduto();
+                }
+                case 5 -> {
+                    produtoEstoqueDao.alteraQuantidadeProduto();
+                }
+                case 6 -> {
+                    produtoEstoqueDao.mostraEstoqueCompleto();
                 }
                 default -> {
                     System.out.println("Opção inválida! Tente novamente.");
