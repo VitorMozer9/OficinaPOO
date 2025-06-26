@@ -53,7 +53,7 @@ public class Manutencao {
     public List<String> getListaDePecas(){
         ArrayList<String> listaPecas = new ArrayList<>();
         for(Produto peca : pecasUtilizadas){
-            listaPecas.add(peca.getDescicao());
+            listaPecas.add(peca.getDescricao());
         }
         return listaPecas; 
     }

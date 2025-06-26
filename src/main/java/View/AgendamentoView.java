@@ -126,9 +126,9 @@ public class AgendamentoView {
         String tipoTexto = agendamento.retornaTipoAgendamento(agendamento.getTipoAgendamento());
         String descricaoOutro = "";
         
-        if (agendamento.getTipoAgendamento() == 3) {
-            descricaoOutro = " (" + getDescricaoOutro() + ")";
-        }
+//        if (agendamento.getTipoAgendamento() == 3) {
+//            descricaoOutro = " (" + getDescricaoOutro() + ")";
+//        }
         
         System.out.println("ID do agendamento: " + agendamento.getIdAgendamento() + "\n" + 
                            "ID do cliente: " + agendamento.getIdCliente() + "\n" +

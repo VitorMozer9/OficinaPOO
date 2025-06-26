@@ -25,7 +25,9 @@ public class ProdutoEstoqueView {
         System.out.println("2 - Editar produto");
         System.out.println("3 - Remover produto");
         System.out.println("4 - Mostrar dados de um produto");
-        System.out.println("5 - Sair");
+        System.out.println("5 - Alterar quantidade produto (Aumentar/diminuir)");
+        System.out.println("6 - Conferir estoque completo");
+        System.out.println("7 - Sair");
 
         int opcao = leituraDados.nextInt();
         leituraDados.nextLine();
@@ -61,7 +63,9 @@ public class ProdutoEstoqueView {
      */
     public int getQuantidadeProduto(){
         System.out.println("Digite a quantidade do produto: ");
-        return leituraDados.nextInt();
+        int quantidadeProd = leituraDados.nextInt();
+        leituraDados.nextLine();
+        return quantidadeProd; 
     }
     
     /**
@@ -71,7 +75,9 @@ public class ProdutoEstoqueView {
      */
     public double getValorProduto(){
         System.out.println("Digite o valor do produto: ");
-        return leituraDados.nextDouble();
+        double valorProd = leituraDados.nextDouble();
+        leituraDados.nextLine();
+        return valorProd;
     }
     
     /**
@@ -81,10 +87,10 @@ public class ProdutoEstoqueView {
      */
     public void mostraProduto(Produto produto){
         System.out.println("ID: " +  produto.getIdProduto()                     + "\n" + 
-                           "Descrição: " + produto.getDescicao()             + "\n" +
+                           "Descrição: " + produto.getDescricao()             + "\n" +
                            "Quantidade: " + produto.getQuantidadeEmEstoque() + "\n" +
                            "Disponível em Estoque: " + produto.getDisponivel()          + "\n" + 
-                           "Valor: " + produto.getValorProduto()                + "\n");
+                           "Valor: R$" + produto.getValorProduto()                + "\n");
     }
     
     /**
@@ -111,6 +117,21 @@ public class ProdutoEstoqueView {
         int opcao = leituraDados.nextInt();
         leituraDados.nextLine();
         return opcao;
+    }
+    
+    public int editaQuantidadeProduto(Produto produto){
+        System.out.println("Quantidade atual: " + produto.getQuantidadeEmEstoque());
+        System.out.println("Como deseja alterar a quantidade do produto?");
+        System.out.println("1 - Aumentar");
+        System.out.println("2 - Diminuir");
+        
+        int opcao = leituraDados.nextInt();
+        leituraDados.nextLine();
+        return opcao;
+    }
+    
+    public void mostraEstoque(Produto produto){
+        System.out.println(produto.getDescricao() + "| Quantidade: " + produto.getQuantidadeEmEstoque());
     }
     
 }
