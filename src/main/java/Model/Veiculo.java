@@ -33,10 +33,20 @@ public class Veiculo {
         this.peso = peso;
     }
     
+    /**
+     * Pega o ID do cliente
+     * 
+     * @return ID do cliente.
+     */
     public int getIdCliente(){
         return idCliente;
     }
     
+    /**
+     * Determina o ID do cliente.
+     * 
+     * @param idCliente novo ID do cliente.
+     */
     public void setIdCliente(int idCliente){
         this.idCliente = idCliente;
     }
