@@ -32,6 +32,11 @@ public class FuncionarioView {
         return opcao;
     }
     
+    /**
+     * Solicita e retorna o ID do funcionário.
+     * 
+     * @return ID do funcionário. 
+     */
     public int getIdFuncionario(){
         System.out.println("Digite o ID do FUncionário!");
         int id = leituraDados.nextInt();
@@ -131,6 +136,11 @@ public class FuncionarioView {
         return salario;
     }
      
+     /**
+      * Exibe as informações de um fincionário.
+      * 
+      * @param funcionario Funcionário a ser exibido. 
+      */
      public void mostraFuncionario(Funcionario funcionario){
          System.out.println("ID: " + funcionario.getIdFuncionario() + "\n" +
                             "Nome: " + funcionario.getNome() + "\n" +
@@ -144,6 +154,11 @@ public class FuncionarioView {
                             "Salário: " + funcionario.getSalario());
      }
      
+     /**
+      * Confirma a exclusão de um funcionário.
+      * 
+      * @return "S" para confirmar, outro valor para cancelar. 
+      */
      public String confirmaExclusaoFuncionario(){
         System.out.println("Tem certeza que deseja remover este funcionário? \n"
                          + "Digite [S] para confirmar ou [N] para abortar a operação!!");

@@ -54,6 +54,11 @@ public class ProdutoEstoqueView {
         return leituraDados.nextLine();
     }
     
+    /**
+     * Solicita e retorna a quantidade do produto.
+     * 
+     * @return Quantidade em estoque. 
+     */
     public int getQuantidadeProduto(){
         System.out.println("Digite a quantidade do produto: ");
         return leituraDados.nextInt();
@@ -69,6 +74,11 @@ public class ProdutoEstoqueView {
         return leituraDados.nextDouble();
     }
     
+    /**
+     * Exibe os dados de um produto.
+     * 
+     * @param produto Produto cujos dados serão exibidos.
+     */
     public void mostraProduto(Produto produto){
         System.out.println("ID: " +  produto.getIdProduto()                     + "\n" + 
                            "Descrição: " + produto.getDescicao()             + "\n" +
@@ -77,6 +87,11 @@ public class ProdutoEstoqueView {
                            "Valor: " + produto.getValorProduto()                + "\n");
     }
     
+    /**
+     * Solicita confirmação para exclusão do produto.
+     * 
+     * @return "S" para confirmar, qualquer outra tecla para cancelar.
+     */
     public String confirmaExclusaoProduto(){
         System.out.println("Tem certeza que deseja remover este produto? \n"
                          + "Digite [S] para confirmar ou [N] para abortar a operação!!");
