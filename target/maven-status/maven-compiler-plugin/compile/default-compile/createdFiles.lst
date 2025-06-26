@@ -1,4 +1,5 @@
 Model\Manutencao.class
+Model\Venda.class
 controller\VeiculoController.class
 Model\FuncionarioDAO.class
 controller\ProdutoEstoqueController.class
@@ -8,12 +9,14 @@ Model\AgendamentoDAO.class
 Model\Funcionario.class
 controller\ClienteController.class
 Model\ClienteDAO$1.class
+Model\VendaDAO$1.class
 View\TelaInicial.class
 controller\Sistema.class
 Model\ProdutoEstoqueDAO$1.class
 Main\OficinaPOO.class
 View\VeiculoView.class
 controller\FuncionarioController.class
+Model\VendaDAO.class
 Model\Veiculo.class
 Model\ClienteDAO.class
 Model\Agendamento.class
@@ -25,11 +28,13 @@ Model\AgendamentoDAO$1.class
 Model\Conta.class
 Model\GenericDAO.class
 Model\Cpf.class
+controller\VendaController.class
 controller\ElevadorController.class
 Model\ProdutoEstoqueDAO.class
 View\ClienteView.class
 Model\FuncionarioDAO$1.class
 View\ProdutoEstoqueView.class
+View\VendaAvulsaView.class
 Model\VeiculoDAO.class
 View\AgendamentoView.class
 Model\Pessoa.class

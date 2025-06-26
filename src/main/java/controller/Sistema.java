@@ -6,6 +6,7 @@ import Model.ClienteDAO;
 import Model.FuncionarioDAO;
 import Model.ProdutoEstoqueDAO;
 import Model.VeiculoDAO;
+import Model.VendaDAO;
 import View.TelaInicial;
 
 /**
@@ -20,13 +21,15 @@ public class Sistema {
     private ClienteController clienteController = new ClienteController();
     private FuncionarioController funcionarioController = new FuncionarioController();
     private VeiculoController veiculoController = new VeiculoController();
-    private ProdutoEstoqueController pecasController = new ProdutoEstoqueController();
+    private ProdutoEstoqueController produtoController = new ProdutoEstoqueController();
     private AgendamentoController agendamentoController = new AgendamentoController();
+    private VendaController vendaController = new VendaController();
     
     private ClienteDAO clienteDao = new ClienteDAO();
     private FuncionarioDAO funcionarioDao = new FuncionarioDAO();
     private VeiculoDAO veiculoDao = new VeiculoDAO();
-    private ProdutoEstoqueDAO produtoDao = new ProdutoEstoqueDAO();
+    private ProdutoEstoqueDAO produtoDao = ProdutoEstoqueDAO.getInstancia();
+    private VendaDAO vendaDao = VendaDAO.getInstancia();
     private AgendamentoDAO agendamentoDao = new AgendamentoDAO();
     
     /**
@@ -56,12 +59,12 @@ public class Sistema {
                 }
                 
                 case 4 -> {
-                    pecasController.executaMenuProdutos();
+                    produtoController.executaMenuProdutos();
                 }
                 
-//                case 5 -> {
-//                    loja.executaMenuLoja();
-//                }
+                case 5 -> {
+                    vendaController.executaMenuVendas();
+                }
                 
                 case 6 ->{
                     agendamentoController.executaMenuAgendamento();
@@ -83,6 +86,7 @@ public class Sistema {
                     veiculoDao.salvarDados();
                     produtoDao.salvarDados();
                     agendamentoDao.salvarDados();
+                    vendaDao.salvarDados();
                     rodando = false;
                 }
                 

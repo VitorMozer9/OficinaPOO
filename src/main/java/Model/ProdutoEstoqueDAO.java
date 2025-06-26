@@ -7,10 +7,18 @@ import com.google.gson.reflect.TypeToken;
 import java.util.List;
 
 public class ProdutoEstoqueDAO extends GenericDAO<Produto> {
+    private static ProdutoEstoqueDAO instancia;
     private ProdutoEstoqueView viewProduto = new ProdutoEstoqueView();
 
-    public ProdutoEstoqueDAO() {
+    private ProdutoEstoqueDAO() {
         super("data/produtos.json", new TypeToken<List<Produto>>() {}.getType());
+    }
+    
+    public static ProdutoEstoqueDAO getInstancia(){
+        if (instancia == null) {
+            instancia = new ProdutoEstoqueDAO();
+        }
+        return instancia;
     }
 
     @Override
@@ -29,9 +37,9 @@ public class ProdutoEstoqueDAO extends GenericDAO<Produto> {
      */
     public int geraIdProduto(){
         int maiorIdProduto = 0;
-        for(Produto cadaPeca : getLista()){
-            if(cadaPeca.getIdProduto() > maiorIdProduto){
-                maiorIdProduto = cadaPeca.getIdProduto();
+        for(Produto cadaProd : getLista()){
+            if(cadaProd.getIdProduto() > maiorIdProduto){
+                maiorIdProduto = cadaProd.getIdProduto();
             }
             
         }
@@ -44,8 +52,8 @@ public class ProdutoEstoqueDAO extends GenericDAO<Produto> {
         double valor = viewProduto.getValorProduto();
         int quantidade = viewProduto.getQuantidadeProduto();
 
-        Produto novaPeca = new Produto(idProduto, descricao, valor, quantidade, true);
-        adicionaDados(novaPeca);
+        Produto novoProduto = new Produto(idProduto, descricao, valor, quantidade, true);
+        adicionaDados(novoProduto);
         System.out.println("Produto adicionado com sucesso! ID: " + idProduto);
     }
 
@@ -88,4 +96,50 @@ public class ProdutoEstoqueDAO extends GenericDAO<Produto> {
             }
         });
     }
+    
+    public void alteraQuantidadeProduto(){
+        int idProduto = viewProduto.getIdProduto();
+        Produto produto = buscaProduto(idProduto);
+        
+        if (produto == null) {
+            System.out.println("Produto não encontrado! :(");
+            return;
+        }
+        
+        int opcao = viewProduto.editaQuantidadeProduto(produto);
+        
+        switch (opcao) {
+            case 1 -> {
+                produto.setQuantidadeEmEstoque(produto.getQuantidadeEmEstoque() + viewProduto.getQuantidadeProduto());
+            }
+            case 2 -> {
+                produto.setQuantidadeEmEstoque(produto.getQuantidadeEmEstoque() - viewProduto.getQuantidadeProduto());
+            }
+            default -> {
+                System.out.println("Opção inválida, tente novamente");
+            }
+        }
+        
+        if (salvarDados()) {
+            System.out.println("Quantidade alterada com sucesso!");
+        } else {
+            System.out.println("Erro ao salvar alterações! :(");
+    }
+    }
+    
+    public void mostraEstoqueCompleto() {
+    List<Produto> listaProdutos = getLista();
+    
+    if (listaProdutos == null) {
+        System.out.println("Nenhum produto encontrado no estoque! :(");
+        return;
+    }
+    
+    System.out.println("\nESTOQUE:");
+    System.out.println("Total de produtos: " + listaProdutos.size());
+    
+    for (Produto produto : listaProdutos) {
+        viewProduto.mostraEstoque(produto);
+    }
+}
 }
