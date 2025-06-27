@@ -25,10 +25,15 @@ public class AgendamentoController {
     }
     
     public void executaMenuAgendamento(){
-        int opcao = 0; 
+        int opcao = 0;
         
         while(opcao != 7){
             opcao = viewAgendamento.mostraOpcoesAgendamento();
+            
+            if (opcao == 7) {
+                System.out.println("Saindo do menu de agendamentos...");
+                break; 
+            }
             
             switch (opcao){
                 case 1 -> {

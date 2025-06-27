@@ -21,6 +21,11 @@ public class VeiculoController {
         while(opcao != 5){
             opcao = viewVeiculo.mostraOpcoesVeiculo();
             
+            if (opcao == 5) {
+                System.out.println("Saindo do menu de veículos...");
+                break; 
+            }
+            
             switch (opcao){
                 case 1 -> {
                     veiculoDao.adicionaVeiculo();

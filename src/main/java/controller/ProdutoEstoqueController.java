@@ -23,6 +23,11 @@ public class ProdutoEstoqueController {
         while(opcao != 7){
             opcao = viewProduto.mostraOpcoesProduto();
             
+            if (opcao == 7) {
+                System.out.println("Saindo do controle de estoque...");
+                break; 
+            }
+            
             switch (opcao){
                 case 1 -> {
                     produtoEstoqueDao.adicionaProduto();
