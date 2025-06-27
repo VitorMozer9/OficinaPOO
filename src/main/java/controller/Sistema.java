@@ -3,6 +3,7 @@ package controller;
 import Main.OficinaPOO;
 import Model.AgendamentoDAO;
 import Model.ClienteDAO;
+import Model.FinanceiroDAO;
 import Model.FuncionarioDAO;
 import Model.ProdutoEstoqueDAO;
 import Model.VeiculoDAO;
@@ -11,8 +12,8 @@ import View.TelaInicial;
 
 /**
  * A classe Sistema é a principal classe de controle e gerenciamento da oficina.
- * Ela orquestra a interaçõa entre as diferentes funcionalidades (clientes, funcionários, veículos, produtos) e gerencia
- * o fluxo geral do programa, exibindo o menu principal e delegando as operações para os respectivos controladores.
+ * Ela orquestra a interação entre as diferentes funcionalidades (clientes, funcionários, veículos, produtos) e gerencia
+ * o fluxo geral do sistema, exibindo o menu principal e delegando as operações para os respectivos controladores.
  * O sistema carrega os dados persistidos no ínicio e salva-os ao ser encerrado.
  */
 public class Sistema {
@@ -24,6 +25,7 @@ public class Sistema {
     private ProdutoEstoqueController produtoController = new ProdutoEstoqueController();
     private AgendamentoController agendamentoController = new AgendamentoController();
     private VendaController vendaController = new VendaController();
+    private FinanceiroController financeiroController = new FinanceiroController();
     
     private ClienteDAO clienteDao = new ClienteDAO();
     private FuncionarioDAO funcionarioDao = new FuncionarioDAO();
@@ -31,6 +33,7 @@ public class Sistema {
     private ProdutoEstoqueDAO produtoDao = ProdutoEstoqueDAO.getInstancia();
     private VendaDAO vendaDao = VendaDAO.getInstancia();
     private AgendamentoDAO agendamentoDao = new AgendamentoDAO();
+    private FinanceiroDAO financeiroDAO = FinanceiroDAO.getInstancia();
     
     /**
      * Inicia o sistema da oficina.
@@ -75,9 +78,9 @@ public class Sistema {
 //                }
 //                
                 
-//                case 8 -> {
-//                    financeiroController.executaMenuFinanceiro();
-//                }    
+                case 8 -> {
+                    financeiroController.executaMenuFinanceiro();
+                }    
                
                 case 9 -> {
                     System.out.println("Encerrando sistema...");
@@ -87,6 +90,7 @@ public class Sistema {
                     produtoDao.salvarDados();
                     agendamentoDao.salvarDados();
                     vendaDao.salvarDados();
+                    financeiroDAO.salvarDados();
                     rodando = false;
                 }
                 

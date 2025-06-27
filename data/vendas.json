@@ -1,1 +1,1 @@
-[{"idVenda":1,"idCliente":2,"idProduto":4,"quantidade":2,"valorUnitario":2000.0,"valorTotal":4000.0}]
+[{"idVenda":1,"idCliente":2,"idProduto":4,"quantidade":2,"valorUnitario":2000.0,"valorTotal":4000.0},{"idVenda":2,"idCliente":12,"idProduto":5,"quantidade":2,"valorUnitario":200.0,"valorTotal":400.0}]

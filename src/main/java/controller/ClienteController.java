@@ -24,6 +24,11 @@ public class ClienteController {
         while(opcao != 5){
             opcao = viewCliente.mostraOpcoesCliente();
             
+            if (opcao == 5) {
+                System.out.println("Saindo do menu de clientes...");
+                break; 
+            }
+            
             switch (opcao){
                 case 1 -> {
                     clienteDao.adicionaCliente();

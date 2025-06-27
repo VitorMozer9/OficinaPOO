@@ -17,6 +17,11 @@ public class VendaController {
         while(opcao != 6){
             opcao = viewVenda.mostraOpcoesVenda();
             
+            if (opcao == 6) {
+                System.out.println("Saindo do menu de vendas...");
+                break; 
+            }
+            
             switch (opcao){
                 case 1 -> {
                     vendaDao.mostraCatalogo();

@@ -171,7 +171,7 @@ public class VendaAvulsaView {
      */
     public void mostraListaVendas(List<Venda> vendas) {
 
-        if (vendas == null || vendas.isEmpty()) {
+        if (vendas == null) {
             System.out.println("Nenhuma venda registrada.");
             return;
         }
