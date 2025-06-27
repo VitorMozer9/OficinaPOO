@@ -121,6 +121,11 @@ public class Manutencao {
         return pecasUtilizadas;
     }
     
+    /**
+     * Sobrescreva o método {@code toString} para retornar a descrição da manutanção.
+     * 
+     * @return Uma {@code String} contendo a descrição da manutenção.
+     */
     @Override
     public String toString(){
         return descricaoManutencao;

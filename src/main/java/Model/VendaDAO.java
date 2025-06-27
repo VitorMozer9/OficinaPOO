@@ -7,16 +7,26 @@ import java.util.List;
 /**
  * Classe DAO para gerenciar operações de vendas avulsas. Responsável pela
  * persistência e manipulação dos dados de vendas.
+ * Implementa o padrão Singleton para garantir uma única instância.
  */
 public class VendaDAO extends GenericDAO<Venda> {
     private static VendaDAO instancia;
     private VendaAvulsaView viewVenda = new VendaAvulsaView();
     private ProdutoEstoqueDAO produtoDAO = ProdutoEstoqueDAO.getInstancia();
 
+    /**
+     * Construtor privado para implementar o padrão Singleton.
+     * Define o caminho do arquivo JSON e o tipo da lista manipulada.
+     */
     private VendaDAO() {
         super("data/vendas.json", new TypeToken<List<Venda>>() {}.getType());
     }
 
+    /**
+     * Retorna a instância única de {@code VendaDAO}.
+     * 
+     * @return Instância única de {@code VendaDAO}.
+     */
     public static VendaDAO getInstancia() {
         if (instancia == null) {
             instancia = new VendaDAO();
@@ -24,11 +34,23 @@ public class VendaDAO extends GenericDAO<Venda> {
         return instancia;
     }
 
+    /**
+     * Define a chave de identificação única da venda.
+     * 
+     * @param venda Objeto {@code Venda}.
+     * @return ID da venda.
+     */
     @Override
     protected Comparable<?> getChave(Venda venda) {
         return venda.getIdVenda();
     }
 
+    /**
+     * Busca uma venda pelo ID.
+     * 
+     * @param id ID da venda.
+     * @return Objeto {@code Venda} correspondente, ou {@code null} se não encontrado.
+     */
     public Venda buscaVenda(int id) {
         return buscaPorChave(id);
     }

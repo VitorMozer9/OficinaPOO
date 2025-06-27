@@ -23,6 +23,11 @@ public class ProdutoEstoqueDAO extends GenericDAO<Produto> {
         super("data/produtos.json", new TypeToken<List<Produto>>() {}.getType());
     }
     
+    /**
+     * Retorna uma instância única da classe ProdutoEstoqueDAO (Singleton).
+     * 
+     * @return Instância única de {@code ProdutoEstoqueDAO}.
+     */
     public static ProdutoEstoqueDAO getInstancia(){
         if (instancia == null) {
             instancia = new ProdutoEstoqueDAO();
@@ -132,6 +137,10 @@ public class ProdutoEstoqueDAO extends GenericDAO<Produto> {
         });
     }
     
+    /**
+     * Altera a quantidade de um produto em estoque.
+     * O usuário pode adicionar ou remover unidades da quantidade atual.
+     */
     public void alteraQuantidadeProduto(){
         int idProduto = viewProduto.getIdProduto();
         Produto produto = buscaProduto(idProduto);
@@ -162,6 +171,10 @@ public class ProdutoEstoqueDAO extends GenericDAO<Produto> {
     }
     }
     
+    /**
+     * Exibe todos os produtos cadastrados no estoque.
+     * Mostra também o total de produtos registrados.
+     */
     public void mostraEstoqueCompleto() {
     List<Produto> listaProdutos = getLista();
     

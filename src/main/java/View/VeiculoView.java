@@ -4,7 +4,7 @@ import Model.Veiculo;
 import java.util.Scanner;
 
 /**
- * Classe respnsável pelas interações com o usuário relacionadas ao veículo.
+ * Classe responsável pelas interações com o usuário relacionadas ao veículo.
  * Realizando entradas e saída de dados para operações como incluir, editar, remover e mostrar dados de um veículo.
  */
 public class VeiculoView {
@@ -83,6 +83,11 @@ public class VeiculoView {
         return leituraDados.nextInt();
     }
     
+    /**
+     * Exibe os dados do veículo fornecido.
+     * 
+     * @param veiculo Veículo a ser exibido.
+     */
         public void mostraVeiculo(Veiculo veiculo){
         System.out.println("ID Cliente: " + veiculo.getIdCliente()              + "\n" + 
                            "Modelo: " + veiculo.getModeloVeiculo()              + "\n" +
@@ -92,6 +97,11 @@ public class VeiculoView {
                            "Peso: " + veiculo.getPeso()                         + "\n");
     }
         
+    /**
+     * Solicita confirmação do usuário para excluir o veículo.
+     * 
+     * @return "S" para confirmação do usuário para excluir o veículo.
+     */
     public String confirmaExclusaoVeiculo(){
         System.out.println("Tem certeza que deseja remover este veículo? \n"
                          + "Digite [S] para confirmar ou [N] para abortar a operação!!");

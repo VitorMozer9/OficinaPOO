@@ -56,6 +56,11 @@ public class ProdutoEstoqueView {
         return leituraDados.nextLine();
     }
     
+    /**
+     * Solicita e retorna a quantidade do produto.
+     * 
+     * @return Quantidade em estoque. 
+     */
     public int getQuantidadeProduto(){
         System.out.println("Digite a quantidade do produto: ");
         int quantidadeProd = leituraDados.nextInt();
@@ -75,6 +80,11 @@ public class ProdutoEstoqueView {
         return valorProd;
     }
     
+    /**
+     * Exibe os dados de um produto.
+     * 
+     * @param produto Produto cujos dados serão exibidos.
+     */
     public void mostraProduto(Produto produto){
         System.out.println("ID: " +  produto.getIdProduto()                     + "\n" + 
                            "Descrição: " + produto.getDescricao()             + "\n" +
@@ -83,6 +93,11 @@ public class ProdutoEstoqueView {
                            "Valor: R$" + produto.getValorProduto()                + "\n");
     }
     
+    /**
+     * Solicita confirmação para exclusão do produto.
+     * 
+     * @return "S" para confirmar, qualquer outra tecla para cancelar.
+     */
     public String confirmaExclusaoProduto(){
         System.out.println("Tem certeza que deseja remover este produto? \n"
                          + "Digite [S] para confirmar ou [N] para abortar a operação!!");
@@ -104,6 +119,12 @@ public class ProdutoEstoqueView {
         return opcao;
     }
     
+    /**
+     * Exibe opções para alterar a quantidade do produto (aumentar ou diminuir).
+     * 
+     * @param produto Produto cuja quantidade será alterada.
+     * @return Número inteiro correspondente à opção selecionada.
+     */
     public int editaQuantidadeProduto(Produto produto){
         System.out.println("Quantidade atual: " + produto.getQuantidadeEmEstoque());
         System.out.println("Como deseja alterar a quantidade do produto?");
@@ -115,6 +136,11 @@ public class ProdutoEstoqueView {
         return opcao;
     }
     
+    /**
+     * Exibe uma linha simplificada com a descrição e quantidade de um produto no estoque.
+     * 
+     * @param produto Produto a ser exibido.
+     */
     public void mostraEstoque(Produto produto){
         System.out.println(produto.getDescricao() + "| Quantidade: " + produto.getQuantidadeEmEstoque());
     }
