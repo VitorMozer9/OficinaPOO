@@ -53,4 +53,9 @@ public class VendaController {
             }
         }
     }
+    
+    @Override
+    public String toString(){
+        return String.format("VendaController: %d vendas registrados.", vendaDao.getLista().size());
+    }
 }

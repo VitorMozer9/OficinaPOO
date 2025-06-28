@@ -48,4 +48,9 @@ public class FuncionarioController {
             }
         }
     }
+    
+    @Override
+    public String toString(){
+        return String.format("FuncionarioController: %d funcionários registrados.", funcionarioDAO.getLista().size());
+    }
 }

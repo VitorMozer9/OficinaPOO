@@ -166,4 +166,9 @@ public class AgendamentoView {
         return opcao;
     }
     
+    @Override
+    public String toString(){
+        return "- Interface do Agendamento -";
+    }
+    
 }

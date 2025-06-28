@@ -231,4 +231,9 @@ public class FinanceiroView {
         System.out.println("Tem certeza que deseja remover esta conta? [S/N]: ");
         return leituraDados.nextLine().trim().toUpperCase();
     }
+    
+    @Override 
+    public String toString(){
+        return "- Interface financeira -";
+    }
 }

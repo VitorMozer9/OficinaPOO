@@ -34,4 +34,9 @@ public class TelaInicial {
         
         return leituraDados.nextInt();
     }
+    
+    @Override
+    public String toString(){
+        return "- Interface da Tela Inicial -";
+    }
 }

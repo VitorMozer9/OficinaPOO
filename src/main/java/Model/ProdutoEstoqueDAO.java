@@ -190,4 +190,8 @@ public class ProdutoEstoqueDAO extends GenericDAO<Produto> {
         viewProduto.mostraEstoque(produto);
     }
 }
+    
+    public String toStirg(){
+        return "ProdutoEstoqueDAO | Produtos cadastrados: " + getLista().size();
+    }
 }

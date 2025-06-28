@@ -216,4 +216,9 @@ public class FinanceiroDAO extends GenericDAO<Financeiro> {
         List<Financeiro> contas = getLista();
         viewFinanceiro.mostraListaContas(contas);
     }
+    
+    @Override
+    public String toString(){
+       return String.format("FinanceiroDAO | Contas cadastradas: %d", getLista().size());
+    }
 }

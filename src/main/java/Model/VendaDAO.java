@@ -207,4 +207,9 @@ public class VendaDAO extends GenericDAO<Venda> {
             System.out.println("Erro ao cancelar venda!");
         }
     }
+    
+    @Override
+    public String toString(){
+        return "VendaDAO | Quantidade vendas: " + getLista().size();
+    }
 }

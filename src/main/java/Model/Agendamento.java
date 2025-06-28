@@ -203,7 +203,7 @@ public class Agendamento {
     @Override
     public String toString() {
         
-        return "Agendamento realizado. Traga o veícilo no dia" + this.dataHora; 
+        return "Agendamento " + getIdAgendamento() + "realizado. Traga o veícilo no dia" + this.dataHora; 
                 
     }
     

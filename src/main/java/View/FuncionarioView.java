@@ -186,4 +186,8 @@ public class FuncionarioView {
         return opcao;
     }
     
+    @Override
+    public String toString(){
+        return "- Interface Funcionário -";
+    }
 }

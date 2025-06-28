@@ -75,4 +75,13 @@ public class ElevadorController {
         }
     }
     
+    @Override
+    public String toString(){
+        StringBuilder status = new StringBuilder("Status dos elevadores:\n");
+    for (Elevador elevador : getListaElevadores) {
+        status.append(elevador.toString()).append("\n");
+    }
+    return status.toString();
+    }
+    
 }

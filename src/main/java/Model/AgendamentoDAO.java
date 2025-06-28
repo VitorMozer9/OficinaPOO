@@ -321,4 +321,11 @@ public class AgendamentoDAO extends GenericDAO<Agendamento> {
         }
     }
 
+    
+    @Override
+    public String toString() {
+        return "AgendamentoDAO | Total de agendamentos: " + getLista().size();
+    }
 }
+
+

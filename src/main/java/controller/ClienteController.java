@@ -49,4 +49,9 @@ public class ClienteController {
             }
         }
     }
+    
+    @Override
+    public String toString(){
+        return String.format("ClienteController: %d clientes registrados.", clienteDao.getLista().size());
+    }
 } 

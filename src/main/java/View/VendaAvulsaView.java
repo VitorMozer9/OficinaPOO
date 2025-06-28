@@ -181,5 +181,10 @@ public class VendaAvulsaView {
         }
         System.out.println("Total de vendas: " + vendas.size());
     }
+    
+    @Override
+    public String toString(){
+        return "- Interface de Vendas -";
+    }
 
 }
