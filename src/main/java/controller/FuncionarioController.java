@@ -23,6 +23,11 @@ public class FuncionarioController {
         while(opcao != 5){
             opcao = viewFuncionario.mostraOpcoesFuncionario();
             
+            if (opcao == 5) {
+                System.out.println("Saindo do menu de Funcionários...");
+                break; 
+            }
+            
             switch (opcao){
                 case 1 -> {
                     funcionarioDAO.adicionaFuncionario();
