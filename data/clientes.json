@@ -1,1 +1,22 @@
-[{"idCliente":15,"nome":"Balita","endereco":"rua farinha dry","telefone":"56565656","email":"balitao@gmail.com","cpf":{"numeroCPF":"024.451.860-21"}},{"idCliente":16,"nome":"teste","endereco":"teste","telefone":"teste","email":"teste","cpf":{"numeroCPF":"576.173.270-05"}}]
+[
+  {
+    "idCliente": 15,
+    "nome": "Balita",
+    "endereco": "rua farinha dry",
+    "telefone": "56565656",
+    "email": "balitao@gmail.com",
+    "cpf": {
+      "numeroCPF": "024.451.860-21"
+    }
+  },
+  {
+    "idCliente": 16,
+    "nome": "teste",
+    "endereco": "teste",
+    "telefone": "teste",
+    "email": "teste",
+    "cpf": {
+      "numeroCPF": "576.173.270-05"
+    }
+  }
+]

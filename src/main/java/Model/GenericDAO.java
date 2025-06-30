@@ -12,6 +12,9 @@ import Main.OficinaPOO;
 import java.util.List;
 import java.util.function.Consumer;
 import java.util.function.Supplier;
+import com.google.gson.GsonBuilder;
+import utilitarios.AdaptadorLocalDateTime;
+import java.time.LocalDateTime;
 
 /**
  * Classe abstrata que implementa o padrão DAO (Data Acess Object) de forma genérica.
@@ -31,6 +34,8 @@ public abstract class GenericDAO<T> {
     /** Lista em memória contendo os objetos da entidade. */
     private List<T> listaObjeto;
     
+    private final Gson gson;
+    
     /**
      * Contrutor da classe GenericDAO.
      * Inicializa o DAO com caminho do JSON e o tipo da lista usada pelo Gson.
@@ -43,6 +48,7 @@ public abstract class GenericDAO<T> {
         this.caminhoDoJson = caminhoDoJson;
         this.tipoDaLista = tipoDaLista;
         this.listaObjeto = new ArrayList<>();
+        this.gson = new GsonBuilder().registerTypeAdapter(LocalDateTime.class, new AdaptadorLocalDateTime()).setPrettyPrinting().create();
         carregaDados();
     } 
     
@@ -71,7 +77,7 @@ public abstract class GenericDAO<T> {
      */
     public boolean salvarDados(){
         try (FileWriter writer = new FileWriter(caminhoDoJson)) {
-            new Gson().toJson(listaObjeto, writer);
+            gson.toJson(listaObjeto, writer);
             return true;
         } catch (IOException e) {
             System.out.println("Erro ao salvar dados: " + e.getMessage());
@@ -87,7 +93,7 @@ public abstract class GenericDAO<T> {
      */
     public boolean carregaDados(){
         try(FileReader reader = new FileReader(caminhoDoJson)){
-            this.listaObjeto = new Gson().fromJson(reader, tipoDaLista);
+            this.listaObjeto = gson.fromJson(reader, tipoDaLista);
             return true;
             
         } catch (Exception e){

@@ -2,6 +2,7 @@ package View;
 
 import Model.Produto;
 import Model.Venda;
+import java.util.Calendar;
 import java.util.List;
 import java.util.Scanner;
 
@@ -31,7 +32,8 @@ public class VendaAvulsaView {
         System.out.println("3 - Consultar venda");
         System.out.println("4 - Listar todas as vendas");
         System.out.println("5 - Cancelar venda");
-        System.out.println("6 - Sair");
+        System.out.println("6 - Gerar nota fiscal da venda");
+        System.out.println("7 - Sair");
 
         int opcao = leituraDados.nextInt();
         leituraDados.nextLine();
@@ -180,6 +182,30 @@ public class VendaAvulsaView {
             System.out.println(venda.toString());
         }
         System.out.println("Total de vendas: " + vendas.size());
+    }
+    
+    /**
+     * Exibe a nota fiscal de uma vendao.
+     *
+     * @param venda venda
+     * @param cpfAnonimizado CPF do cliente
+     * @param produto produto vendido
+     */
+    public void mostraNotaFiscal(Venda venda, String cpfAnonimizado, String produtoDesc) {
+        System.out.println("============================================================");
+        System.out.println("                      NOTA FISCAL");
+        System.out.println("============================================================");
+        System.out.println("Venda: #" + venda.getIdVenda());
+        System.out.println("CPF Cliente: " + cpfAnonimizado);
+        System.out.println("Data: " + java.text.DateFormat.getDateInstance().format(Calendar.getInstance().getTime()));
+        System.out.println("------------------------------------------------------------");
+        System.out.println("PRODUTO VENDIDO:");
+        System.out.println("Produto: " + produtoDesc);
+        System.out.println("Quantidade: " + venda.getQuantidade());
+        System.out.println("Valor Unitário: R$ " + String.format("%.2f", venda.getValorUnitario()));
+        System.out.println("------------------------------------------------------------");
+        System.out.println("VALOR TOTAL: R$ " + String.format("%.2f", venda.getValorTotal()));
+        System.out.println("============================================================");
     }
 
 }

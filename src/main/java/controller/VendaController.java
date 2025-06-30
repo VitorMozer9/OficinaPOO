@@ -23,10 +23,10 @@ public class VendaController {
     public void executaMenuVendas(){
         int opcao = 0; 
         
-        while(opcao != 6){
+        while(opcao != 7){
             opcao = viewVenda.mostraOpcoesVenda();
             
-            if (opcao == 6) {
+            if (opcao == 7) {
                 System.out.println("Saindo do menu de vendas...");
                 break; 
             }
@@ -46,6 +46,9 @@ public class VendaController {
                 }
                 case 5 -> {
                     vendaDao.cancelarVenda();
+                }
+                case 6 -> {
+                    vendaDao.geraNotaFiscalVenda();
                 }
                 default -> {
                     System.out.println("Opção inválida! Tente novamente.");

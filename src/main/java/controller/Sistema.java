@@ -2,13 +2,15 @@ package controller;
 
 import Main.OficinaPOO;
 import Model.AgendamentoDAO;
+import Model.BatePontoDAO;
 import Model.ClienteDAO;
 import Model.FinanceiroDAO;
 import Model.FuncionarioDAO;
+import Model.OrdemDeServicoDAO;
 import Model.ProdutoEstoqueDAO;
 import Model.VeiculoDAO;
 import Model.VendaDAO;
-import View.TelaInicial;
+import View.ViewPrincipal;
 
 /**
  * A classe Sistema é a principal classe de controle e gerenciamento da oficina.
@@ -18,7 +20,7 @@ import View.TelaInicial;
  */
 public class Sistema {
     
-    private TelaInicial telaInicial = new TelaInicial();
+    private ViewPrincipal telaInicial = new ViewPrincipal();
     private ClienteController clienteController = new ClienteController();
     private FuncionarioController funcionarioController = new FuncionarioController();
     private VeiculoController veiculoController = new VeiculoController();
@@ -26,6 +28,8 @@ public class Sistema {
     private AgendamentoController agendamentoController = new AgendamentoController();
     private VendaController vendaController = new VendaController();
     private FinanceiroController financeiroController = new FinanceiroController();
+    private OrdemDeServicoController osController = new OrdemDeServicoController();
+    private BatePontoController pontoController = new BatePontoController();
     
     private ClienteDAO clienteDao = new ClienteDAO();
     private FuncionarioDAO funcionarioDao = new FuncionarioDAO();
@@ -34,10 +38,12 @@ public class Sistema {
     private VendaDAO vendaDao = VendaDAO.getInstancia();
     private AgendamentoDAO agendamentoDao = new AgendamentoDAO();
     private FinanceiroDAO financeiroDAO = FinanceiroDAO.getInstancia();
+    private OrdemDeServicoDAO osDAO = OrdemDeServicoDAO.getInstancia();
+    private BatePontoDAO pontoDAO = new BatePontoDAO();
     
     /**
      * Inicia o sistema da oficina.
-     * Este método carrega os dados persistidos, exibe o menu de opções principal para o usuário e, com base na seleção,
+     * Este método, exibe o menu de opções principal para o usuário e, com base na seleção,
      * delegando a execução para o controlador correspondente.
      * O loop continua até que o usuário escolha a opção de sair.
      * Ao sair, os dados são salvos.
@@ -50,39 +56,41 @@ public class Sistema {
             
             switch (opcaoDisponivel) {
                 case 1 -> {
+                    pontoController.executaMenuPonto();
+                }
+                case 2 -> {
                     clienteController.executaMenuCliente();
                 }
                 
-                case 2 -> {
+                case 3 -> {
                     funcionarioController.executaMenuFuncionario();
                 }
                 
-                case 3 -> {
+                case 4 -> {
                     veiculoController.executaMenuVeiculo();
                 }
                 
-                case 4 -> {
+                case 5 -> {
                     produtoController.executaMenuProdutos();
                 }
                 
-                case 5 -> {
+                case 6 -> {
                     vendaController.executaMenuVendas();
                 }
                 
-                case 6 ->{
+                case 7 ->{
                     agendamentoController.executaMenuAgendamento();
                 }
-//                
-//                case 7 -> {
-//                    os.executaMenuOrdemDeServico();
-//                }
-//                
                 
                 case 8 -> {
+                    osController.executaMenuOrdemDeServico();
+                }
+                
+                case 9 -> {
                     financeiroController.executaMenuFinanceiro();
                 }    
                
-                case 9 -> {
+                case 10 -> {
                     System.out.println("Encerrando sistema...");
                     clienteDao.salvarDados(); 
                     funcionarioDao.salvarDados();
@@ -91,6 +99,8 @@ public class Sistema {
                     agendamentoDao.salvarDados();
                     vendaDao.salvarDados();
                     financeiroDAO.salvarDados();
+                    osDAO.salvarDados();
+                    pontoDAO.salvarDados();
                     rodando = false;
                 }
                 

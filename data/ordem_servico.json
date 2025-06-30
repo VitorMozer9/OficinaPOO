@@ -1,0 +1,21 @@
+[
+  {
+    "idOrdemServico": 1,
+    "idCliente": 16,
+    "mecanicoResponsavel": "Roberto pereira",
+    "data": {
+      "year": 2025,
+      "month": 8,
+      "dayOfMonth": 23,
+      "hourOfDay": 18,
+      "minute": 4,
+      "second": 59
+    },
+    "status": "CONFIRMADO",
+    "tipoServico": "MANUTENCAO",
+    "descricaoServico": "alinhamento de motor ",
+    "valor": 450.0,
+    "produtos": [],
+    "valorProdutos": 0.0
+  }
+]
