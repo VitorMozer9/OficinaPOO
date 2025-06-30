@@ -9,6 +9,7 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
 public class AdaptadorLocalDateTime extends TypeAdapter<LocalDateTime> {
+
     private static final DateTimeFormatter formatter = DateTimeFormatter.ISO_LOCAL_DATE_TIME;
 
     @Override
@@ -18,7 +19,12 @@ public class AdaptadorLocalDateTime extends TypeAdapter<LocalDateTime> {
 
     @Override
     public LocalDateTime read(JsonReader in) throws IOException {
+        if (in.peek() == com.google.gson.stream.JsonToken.NULL) {
+            in.nextNull();
+            return null;
+        }
+
         String value = in.nextString();
-        return value != null ? LocalDateTime.parse(value, formatter) : null;
+        return LocalDateTime.parse(value, formatter);
     }
 }

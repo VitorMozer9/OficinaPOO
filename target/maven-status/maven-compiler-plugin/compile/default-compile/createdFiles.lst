@@ -2,6 +2,7 @@ Model\FuncionarioDAO.class
 Model\OrdemDeServicoDAO.class
 Model\BatidaDePonto.class
 Model\ClienteDAO$1.class
+View\LoginView.class
 controller\FinanceiroController.class
 controller\FuncionarioController.class
 Model\Financeiro.class
@@ -36,6 +37,7 @@ Model\Produto.class
 Model\AgendamentoDAO.class
 Model\Funcionario.class
 controller\ClienteController.class
+controller\LoginController.class
 Model\VendaDAO$1.class
 View\ViewPrincipal.class
 controller\Sistema.class

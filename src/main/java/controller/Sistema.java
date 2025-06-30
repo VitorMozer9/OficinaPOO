@@ -14,15 +14,18 @@ import View.ViewPrincipal;
 
 /**
  * A classe Sistema é a principal classe de controle e gerenciamento da oficina.
- * Ela orquestra a interação entre as diferentes funcionalidades (clientes, funcionários, veículos, produtos) e gerencia
- * o fluxo geral do sistema, exibindo o menu principal e delegando as operações para os respectivos controladores.
- * O sistema carrega os dados persistidos no ínicio e salva-os ao ser encerrado.
+ * Ela orquestra a interação entre as diferentes funcionalidades (clientes,
+ * funcionários, veículos, produtos) e gerencia o fluxo geral do sistema,
+ * exibindo o menu principal e delegando as operações para os respectivos
+ * controladores. O sistema carrega os dados persistidos no ínicio e salva-os ao
+ * ser encerrado.
  */
 public class Sistema {
-    
+
+    private LoginController loginController = new LoginController();
     private ViewPrincipal telaInicial = new ViewPrincipal();
     private ClienteController clienteController = new ClienteController();
-    private FuncionarioController funcionarioController = new FuncionarioController();
+    private FuncionarioController funcionarioController = new FuncionarioController(loginController);
     private VeiculoController veiculoController = new VeiculoController();
     private ProdutoEstoqueController produtoController = new ProdutoEstoqueController();
     private AgendamentoController agendamentoController = new AgendamentoController();
@@ -30,7 +33,8 @@ public class Sistema {
     private FinanceiroController financeiroController = new FinanceiroController();
     private OrdemDeServicoController osController = new OrdemDeServicoController();
     private BatePontoController pontoController = new BatePontoController();
-    
+
+    // DAOs
     private ClienteDAO clienteDao = new ClienteDAO();
     private FuncionarioDAO funcionarioDao = new FuncionarioDAO();
     private VeiculoDAO veiculoDao = new VeiculoDAO();
@@ -40,59 +44,49 @@ public class Sistema {
     private FinanceiroDAO financeiroDAO = FinanceiroDAO.getInstancia();
     private OrdemDeServicoDAO osDAO = OrdemDeServicoDAO.getInstancia();
     private BatePontoDAO pontoDAO = new BatePontoDAO();
-    
+
     /**
-     * Inicia o sistema da oficina.
-     * Este método, exibe o menu de opções principal para o usuário e, com base na seleção,
-     * delegando a execução para o controlador correspondente.
-     * O loop continua até que o usuário escolha a opção de sair.
-     * Ao sair, os dados são salvos.
+     * Inicia o sistema com tela de login.
      */
     public void iniciaSistema() {
+//        if (!loginController.realizarLogin()) {
+//            System.out.println("Falha no login. Sistema encerrado.");
+//            return;
+//        }
+
         boolean rodando = true;
-        
+
         while (rodando) {
             int opcaoDisponivel = telaInicial.mostraOpcoesDisponiveis();
-            
+
             switch (opcaoDisponivel) {
-                case 1 -> {
+                case 1 ->
                     pontoController.executaMenuPonto();
-                }
-                case 2 -> {
+                case 2 ->
                     clienteController.executaMenuCliente();
-                }
-                
                 case 3 -> {
+                    //if (loginController.podeCadastrarFuncionario()) {
                     funcionarioController.executaMenuFuncionario();
+                    //}
                 }
-                
-                case 4 -> {
+                case 4 ->
                     veiculoController.executaMenuVeiculo();
-                }
-                
-                case 5 -> {
+                case 5 ->
                     produtoController.executaMenuProdutos();
-                }
-                
-                case 6 -> {
+                case 6 ->
                     vendaController.executaMenuVendas();
-                }
-                
-                case 7 ->{
+                case 7 ->
                     agendamentoController.executaMenuAgendamento();
-                }
-                
-                case 8 -> {
+                case 8 ->
                     osController.executaMenuOrdemDeServico();
-                }
-                
                 case 9 -> {
-                    financeiroController.executaMenuFinanceiro();
-                }    
-               
+                    if (loginController.podeAcessarAreaFinanceira()) {
+                        financeiroController.executaMenuFinanceiro();
+                    }
+                }
                 case 10 -> {
                     System.out.println("Encerrando sistema...");
-                    clienteDao.salvarDados(); 
+                    clienteDao.salvarDados();
                     funcionarioDao.salvarDados();
                     veiculoDao.salvarDados();
                     produtoDao.salvarDados();
@@ -103,17 +97,17 @@ public class Sistema {
                     pontoDAO.salvarDados();
                     rodando = false;
                 }
-                
-                default -> {
+                default ->
                     System.out.println("Opção inválida! Tente novamente.");
-                }
             }
         }
     }
-    
+
+
     @Override
-    public String toString(){
-        return "Sistema da Oficina POO: controladores ativos = [Cliente, Funcionário, Veículo, Produto, Venda, Agendamento, Financeiro]";
+    public String toString() {
+        return "Sistema da Oficina POO - Usuário logado: "
+                + (loginController.getUsuarioLogado() != null
+                ? loginController.getUsuarioLogado().getNome() : "Nenhum");
     }
-    
 }
