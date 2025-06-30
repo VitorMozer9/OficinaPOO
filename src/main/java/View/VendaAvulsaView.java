@@ -206,6 +206,11 @@ public class VendaAvulsaView {
         System.out.println("------------------------------------------------------------");
         System.out.println("VALOR TOTAL: R$ " + String.format("%.2f", venda.getValorTotal()));
         System.out.println("============================================================");
-    }
 
-}
+    }
+    @Override
+    public String toString(){
+        return "- Interface de Vendas -";
+
+    }
+}    

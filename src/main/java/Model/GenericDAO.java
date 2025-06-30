@@ -187,4 +187,9 @@ public abstract class GenericDAO<T> {
         }
     }
     
+    @Override 
+    public String toString(){
+        return "Total de registros armazenados: " + getLista().size();
+    }
+    
 }

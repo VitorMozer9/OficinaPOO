@@ -47,4 +47,9 @@ public class VeiculoController {
             }
         }
     
+    @Override
+    public String toString(){
+        return String.format("VeiculoController: %d veículos registrados.", veiculoDao.getLista().size());
+    }
+    
 }

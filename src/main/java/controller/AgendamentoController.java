@@ -83,5 +83,10 @@ public class AgendamentoController {
         }
     }
     
+    @Override 
+    public String toString(){
+        return String.format("AgendamentoController: %d agendamentos registrados.", agendamentoDao.getLista().size());
+    }
+    
     
 }

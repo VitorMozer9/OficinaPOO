@@ -138,5 +138,10 @@ public class ClienteDAO extends GenericDAO<Cliente>{
             }
         });
             
-    }    
+    }
+
+    @Override
+    public String toString(){
+        return "ClienteDAO | Total de Clientes: " + getLista().size();
+    }
 }

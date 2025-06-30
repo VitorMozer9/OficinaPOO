@@ -111,4 +111,9 @@ public class Sistema {
         }
     }
     
+    @Override
+    public String toString(){
+        return "Sistema da Oficina POO: controladores ativos = [Cliente, Funcionário, Veículo, Produto, Venda, Agendamento, Financeiro]";
+    }
+    
 }

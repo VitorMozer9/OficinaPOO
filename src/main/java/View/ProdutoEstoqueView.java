@@ -145,4 +145,8 @@ public class ProdutoEstoqueView {
         System.out.println(produto.getDescricao() + "| Quantidade: " + produto.getQuantidadeEmEstoque());
     }
     
+    @Override
+    public String toString(){
+        return "- Interface do Estoque -";
+    }
 }

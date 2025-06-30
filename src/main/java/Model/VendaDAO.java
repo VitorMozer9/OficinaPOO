@@ -247,3 +247,9 @@ public class VendaDAO extends GenericDAO<Venda> {
         viewVenda.mostraNotaFiscal(venda, cpf, produtoDesc);
     }
 }
+    
+    @Override
+    public String toString(){
+        return "VendaDAO | Quantidade vendas: " + getLista().size();
+    }
+}

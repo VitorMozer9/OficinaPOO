@@ -118,6 +118,11 @@ public class VeiculoView {
         return leituraDados.nextDouble();
     }
     
+    @Override
+    public String toString(){
+        return "- Interface do Veículo -";
+    }
+    
 }
 
     

@@ -51,4 +51,9 @@ public class FinanceiroController {
         }
     }
     
+    @Override
+    public String toString(){
+        return "FinanceiroController: gerencia o fluxo de contas financeiras e relatórios de vendas.";
+    }
+    
 }

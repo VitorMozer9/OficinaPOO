@@ -107,4 +107,9 @@ public class VeiculoDAO extends GenericDAO<Veiculo> {
             veiculo.setStatstusVeiculo(viewVeiculo.getStatusVeiculo());
         });
     }
+    
+    @Override
+    public String toString(){
+        return "VeiculoDAO | Veículos cadastrados: " + getLista().size();
+    }
 }

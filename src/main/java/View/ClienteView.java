@@ -134,5 +134,10 @@ public class ClienteView {
         leituraDados.nextLine();
         return opcao;
     }
+    
+    @Override
+    public String toString(){
+        return "- Interface do Cliente - ";
+    }
 
 }
