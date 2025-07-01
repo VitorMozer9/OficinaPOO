@@ -11,6 +11,7 @@ import java.util.ArrayList;
  * e exibir registros de batida de ponto.
  */
 public class BatePontoDAO extends GenericDAO<BatePonto> {
+    private static BatePontoDAO instancia;
     private BatePontoView viewBatePonto = new BatePontoView();
 
     /**
@@ -18,8 +19,15 @@ public class BatePontoDAO extends GenericDAO<BatePonto> {
      * Inicializa o DAO com o caminho do arquivo de dados dos registros de ponto e o tipo da lista
      * utilizado pelo Gson.
      */
-    public BatePontoDAO() {
+    private BatePontoDAO() {
         super("data/RegistroPontos.json", new TypeToken<List<BatePonto>>() {}.getType());
+    }
+    
+    public static BatePontoDAO getInstancia(){
+        if (instancia == null) {
+            instancia = new BatePontoDAO();
+        }
+        return instancia;
     }
 
     /**
@@ -213,5 +221,15 @@ public class BatePontoDAO extends GenericDAO<BatePonto> {
             viewBatePonto.mostrarResumoRegistro(registro);
         }
         
+    }
+    
+    /**
+     * Sobrescreve o método toString para retornar informações do registro.
+     * 
+     * @return String com informações básicas do registro.
+     */
+    @Override
+    public String toString() {
+        return "BatePontoDAO | Total de pontos: " + getLista().size();
     }
 }

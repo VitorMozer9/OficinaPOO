@@ -14,10 +14,10 @@ public class OrdemDeServicoController {
     public void executaMenuOrdemDeServico(){
         int opcao = 0; 
         
-        while(opcao != 8){
+        while(opcao != 9){
             opcao = viewOS.mostraOpcoesOrdemServico();
             
-            if (opcao == 8) {
+            if (opcao == 9) {
                 System.out.println("Saindo do meno de Ordem de Serviço...");
                 break; 
             }
@@ -44,11 +44,19 @@ public class OrdemDeServicoController {
                 case 7 -> {
                     osDao.listarOrdensServico();
                 }
+                case 8 -> {
+                    osDao.mostraOsIdCliente();
+                }
                 default -> {
                     System.out.println("Opção inválida! Tente novamente.");
                 }
             }
         }
+    }
+    
+    @Override 
+    public String toString(){
+        return String.format("OrdemDeServicoController: %d OS registrados.", osDao.getLista().size());
     }
     
 }

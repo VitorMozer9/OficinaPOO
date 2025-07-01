@@ -27,4 +27,9 @@ public class AdaptadorLocalDateTime extends TypeAdapter<LocalDateTime> {
         String value = in.nextString();
         return LocalDateTime.parse(value, formatter);
     }
+    
+    @Override 
+    public String toString(){
+        return "AdaptadorLocalDateTime, auxilixar na Serialização dos dados LocalDateTime";
+    }
 }

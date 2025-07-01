@@ -6,6 +6,16 @@ package Model;
 
 public class Veiculo {
     
+    private static int contadorInstanciasPrivado = 0; 
+
+    public static int getContadorInstanciasPrivado() {
+        return contadorInstanciasPrivado;
+    }
+
+    private static void incrementaContador() {
+        contadorInstanciasPrivado++;
+    }
+    
     private int idCliente;
     private String modeloVeiculo;
     private String placaVeiculo;
@@ -31,6 +41,8 @@ public class Veiculo {
         this.placaVeiculo = placaVeiculo;
         this.anoDeFabricacao = anoDeFabricacao;
         this.peso = peso;
+        
+        incrementaContador();
     }
     
     /**

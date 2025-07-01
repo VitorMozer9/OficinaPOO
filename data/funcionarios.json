@@ -1,0 +1,44 @@
+[
+  {
+    "idFuncionario": 1,
+    "usuario": "ADMIN",
+    "senha": "123",
+    "cargo": "GERENTE",
+    "salario": 4500.0,
+    "nome": "ADMIN",
+    "endereco": "teste",
+    "telefone": "1234567",
+    "email": "teste@gmail.com",
+    "cpf": {
+      "numeroCPF": "265.700.770-82"
+    }
+  },
+  {
+    "idFuncionario": 2,
+    "usuario": "lucas123",
+    "senha": "123",
+    "cargo": "MECANICO",
+    "salario": 2000.0,
+    "nome": "Lucas",
+    "endereco": "Milho Verde",
+    "telefone": "23434234",
+    "email": "lucas@gmail.com",
+    "cpf": {
+      "numeroCPF": "728.334.120-02"
+    }
+  },
+  {
+    "idFuncionario": 3,
+    "usuario": "robson123",
+    "senha": "123",
+    "cargo": "VENDEDOR",
+    "salario": 1800.0,
+    "nome": "Robson",
+    "endereco": "turmalina",
+    "telefone": "3453453445",
+    "email": "robson@gmail.com ",
+    "cpf": {
+      "numeroCPF": "287.593.820-74"
+    }
+  }
+]

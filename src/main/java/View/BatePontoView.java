@@ -139,4 +139,9 @@ public class BatePontoView {
         return resposta.equalsIgnoreCase("S");
     }
     
+    @Override
+    public String toString(){
+        return "- Interface do registro de pontos -";
+    }
+    
 }

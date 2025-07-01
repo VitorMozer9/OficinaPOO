@@ -43,4 +43,9 @@ public class LoginView {
     public void exibeAcessoNegado() {
         System.out.println("\nACESSO NEGADO! Apenas gerentes podem acessar esta funcionalidade.\n");
     }
+    
+    @Override
+    public String toString(){
+        return "- Interface de Login -";
+    }
 }

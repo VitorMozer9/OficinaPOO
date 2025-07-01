@@ -35,8 +35,10 @@ Model\OrdemDeServicoDAO$2.class
 Model\Cliente.class
 Model\Produto.class
 Model\AgendamentoDAO.class
+ModelComparator\ComparatorAgendDataHora.class
 Model\Funcionario.class
 controller\ClienteController.class
+ModelComparator\ComparatorClientID.class
 controller\LoginController.class
 Model\VendaDAO$1.class
 View\ViewPrincipal.class
@@ -51,10 +53,12 @@ Model\Agendamento.class
 View\FuncionarioView.class
 Model\OrdemDeServico.class
 Model\Elevador.class
+ModelComparator\ComparatorClientNome.class
 Model\TipoServico.class
 Model\GenericDAO.class
 View\OrdemDeServicoView.class
 Model\ProdutoEstoqueDAO.class
+ModelComparator\ComparatorAgendID.class
 View\ClienteView.class
 Model\FuncionarioDAO$1.class
 View\ProdutoEstoqueView.class

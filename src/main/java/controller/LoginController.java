@@ -10,7 +10,7 @@ import View.LoginView;
  */
 public class LoginController {
     private LoginView loginView = new LoginView();
-    private FuncionarioDAO funcionarioDAO = new FuncionarioDAO();
+    private FuncionarioDAO funcionarioDAO = FuncionarioDAO.getInstancia();
     private Funcionario usuarioLogado = null;
     
     /**
@@ -83,5 +83,10 @@ public class LoginController {
     
     public Funcionario getUsuarioLogado() {
         return usuarioLogado;
+    }
+    
+    @Override 
+    public String toString(){
+        return "LoginController: usuário logado? " + usuarioLogado;
     }
 }

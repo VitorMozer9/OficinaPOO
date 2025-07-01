@@ -217,7 +217,7 @@ public class VendaDAO extends GenericDAO<Venda> {
     public void geraNotaFiscalVenda() {
         int idVenda = viewVenda.getIdVenda();
         Venda venda = buscaVenda(idVenda);
-        ClienteDAO clienteDAO = new ClienteDAO();
+        ClienteDAO clienteDAO = ClienteDAO.getInstancia();
 
         ProdutoEstoqueDAO produtoDAO = ProdutoEstoqueDAO.getInstancia();
 
@@ -234,6 +234,7 @@ public class VendaDAO extends GenericDAO<Venda> {
         }
         
         String cpf = cliente.getCpf().toString();
+        String nome = cliente.getNome();
 
         Produto produto = produtoDAO.buscaProduto(venda.getIdProduto());
         
@@ -244,7 +245,7 @@ public class VendaDAO extends GenericDAO<Venda> {
         
         String produtoDesc = produto.getDescricao();
 
-        viewVenda.mostraNotaFiscal(venda, cpf, produtoDesc);
+        viewVenda.mostraNotaFiscal(venda, cpf, produtoDesc, nome);
     }
     
     @Override

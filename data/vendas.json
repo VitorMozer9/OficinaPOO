@@ -1,0 +1,10 @@
+[
+  {
+    "idVenda": 1,
+    "idCliente": 1,
+    "idProduto": 1,
+    "quantidade": 2,
+    "valorUnitario": 300.0,
+    "valorTotal": 600.0
+  }
+]

@@ -3,6 +3,7 @@ C:\Users\vecto\OneDrive\Documentos\NetBeansProjects\OficinaPOO\src\main\java\Mod
 C:\Users\vecto\OneDrive\Documentos\NetBeansProjects\OficinaPOO\src\main\java\controller\ProdutoEstoqueController.java
 C:\Users\vecto\OneDrive\Documentos\NetBeansProjects\OficinaPOO\src\main\java\View\BatePontoView.java
 C:\Users\vecto\OneDrive\Documentos\NetBeansProjects\OficinaPOO\src\main\java\View\ClienteView.java
+C:\Users\vecto\OneDrive\Documentos\NetBeansProjects\OficinaPOO\src\main\java\ModelComparator\ComparatorClientNome.java
 C:\Users\vecto\OneDrive\Documentos\NetBeansProjects\OficinaPOO\src\main\java\Model\TipoConta.java
 C:\Users\vecto\OneDrive\Documentos\NetBeansProjects\OficinaPOO\src\main\java\Model\VendaDAO.java
 C:\Users\vecto\OneDrive\Documentos\NetBeansProjects\OficinaPOO\src\main\java\controller\Sistema.java
@@ -11,6 +12,7 @@ C:\Users\vecto\OneDrive\Documentos\NetBeansProjects\OficinaPOO\src\main\java\Mod
 C:\Users\vecto\OneDrive\Documentos\NetBeansProjects\OficinaPOO\src\main\java\Model\ProdutoEstoqueDAO.java
 C:\Users\vecto\OneDrive\Documentos\NetBeansProjects\OficinaPOO\src\main\java\Model\VeiculoDAO.java
 C:\Users\vecto\OneDrive\Documentos\NetBeansProjects\OficinaPOO\src\main\java\View\FinanceiroView.java
+C:\Users\vecto\OneDrive\Documentos\NetBeansProjects\OficinaPOO\src\main\java\ModelComparator\ComparatorAgendID.java
 C:\Users\vecto\OneDrive\Documentos\NetBeansProjects\OficinaPOO\src\main\java\View\OrdemDeServicoView.java
 C:\Users\vecto\OneDrive\Documentos\NetBeansProjects\OficinaPOO\src\main\java\Model\FinanceiroDAO.java
 C:\Users\vecto\OneDrive\Documentos\NetBeansProjects\OficinaPOO\src\main\java\controller\FuncionarioController.java
@@ -24,11 +26,13 @@ C:\Users\vecto\OneDrive\Documentos\NetBeansProjects\OficinaPOO\src\main\java\Mai
 C:\Users\vecto\OneDrive\Documentos\NetBeansProjects\OficinaPOO\src\main\java\controller\ElevadorController.java
 C:\Users\vecto\OneDrive\Documentos\NetBeansProjects\OficinaPOO\src\main\java\Model\Elevador.java
 C:\Users\vecto\OneDrive\Documentos\NetBeansProjects\OficinaPOO\src\main\java\Model\Produto.java
+C:\Users\vecto\OneDrive\Documentos\NetBeansProjects\OficinaPOO\src\main\java\ModelComparator\ComparatorAgendDataHora.java
 C:\Users\vecto\OneDrive\Documentos\NetBeansProjects\OficinaPOO\src\main\java\Model\Cpf.java
 C:\Users\vecto\OneDrive\Documentos\NetBeansProjects\OficinaPOO\src\main\java\controller\AgendamentoController.java
 C:\Users\vecto\OneDrive\Documentos\NetBeansProjects\OficinaPOO\src\main\java\Model\BatidaDePonto.java
 C:\Users\vecto\OneDrive\Documentos\NetBeansProjects\OficinaPOO\src\main\java\View\LoginView.java
 C:\Users\vecto\OneDrive\Documentos\NetBeansProjects\OficinaPOO\src\main\java\controller\ClienteController.java
+C:\Users\vecto\OneDrive\Documentos\NetBeansProjects\OficinaPOO\src\main\java\ModelComparator\ComparatorClientID.java
 C:\Users\vecto\OneDrive\Documentos\NetBeansProjects\OficinaPOO\src\main\java\controller\VeiculoController.java
 C:\Users\vecto\OneDrive\Documentos\NetBeansProjects\OficinaPOO\src\main\java\controller\FinanceiroController.java
 C:\Users\vecto\OneDrive\Documentos\NetBeansProjects\OficinaPOO\src\main\java\Model\BatePonto.java

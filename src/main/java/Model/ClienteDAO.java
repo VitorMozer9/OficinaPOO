@@ -13,14 +13,23 @@ import java.util.List;
  * Herda os métodos genéricos de persistência da classe GenericDAO.
  */
 public class ClienteDAO extends GenericDAO<Cliente>{
+    
+    private static ClienteDAO instancia;
     private ClienteView viewCliente = new ClienteView();
     
     /**
      * Contrutor padrão.
      * Inicializa o DAO com o caminho do JSON e o tipo da lista de cliente. 
      */
-    public ClienteDAO() {
+    private ClienteDAO() {
         super("data/clientes.json", new TypeToken<List<Cliente>>() {}.getType());
+    }
+    
+    public static ClienteDAO getInstancia(){
+        if (instancia == null) {
+            instancia = new ClienteDAO();
+        }
+        return instancia;
     }
     
     /**

@@ -5,7 +5,7 @@ import View.FuncionarioView;
 
 public class FuncionarioController {
     private FuncionarioView viewFuncionario = new FuncionarioView();
-    private FuncionarioDAO funcionarioDAO = new FuncionarioDAO();
+    private FuncionarioDAO funcionarioDAO = FuncionarioDAO.getInstancia();
     private LoginController loginController;
     
     public FuncionarioController(LoginController loginController) {
@@ -25,9 +25,9 @@ public class FuncionarioController {
             
             switch (opcao){
                 case 1 -> {
-                    //if (loginController.podeCadastrarFuncionario()) {
+                    if (loginController.podeCadastrarFuncionario()) {
                         funcionarioDAO.adicionaFuncionario();
-                    //}
+                    }
                 }
                 case 2 -> funcionarioDAO.editaFuncionario();
                 case 3 -> {
@@ -41,5 +41,10 @@ public class FuncionarioController {
                 default -> System.out.println("Opção inválida! Tente novamente.");
             }
         }
+    }
+    
+    @Override 
+    public String toString(){
+        return String.format("FuncionarioController: %d funcionários registrados.", funcionarioDAO.getLista().size());
     }
 }

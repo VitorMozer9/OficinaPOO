@@ -12,7 +12,7 @@ import java.util.List;
  * cadastrar, buscar, editar, remover e exibir funcionários.
  */
 public class FuncionarioDAO extends GenericDAO<Funcionario> {
-
+    private static FuncionarioDAO instancia;
     private FuncionarioView viewFuncionario = new FuncionarioView();
 
     /**
@@ -20,9 +20,15 @@ public class FuncionarioDAO extends GenericDAO<Funcionario> {
      * caminho do arquivo de dados dos funcionários e o tipo da lista de
      * funcionários utilizado pelo Gson.
      */
-    public FuncionarioDAO() {
-        super("data/funcionarios.json", new TypeToken<List<Funcionario>>() {
-        }.getType());
+    private FuncionarioDAO() {
+        super("data/funcionarios.json", new TypeToken<List<Funcionario>>() {}.getType());
+    }
+    
+    public static FuncionarioDAO getInstancia(){
+        if (instancia == null) {
+            instancia = new FuncionarioDAO();
+        }
+        return instancia;
     }
 
     /**
@@ -189,5 +195,15 @@ public class FuncionarioDAO extends GenericDAO<Funcionario> {
         } else {
             System.out.println("Erro ao salvar os dados!");
         }
+    }
+    
+     /**
+     * Sobrescreve o método toString para retornar informações dos funcionários.
+     * 
+     * @return String com informações básicas do registro.
+     */
+    @Override
+    public String toString() {
+        return "FuncionarioDAO | Total de funcionários: " + getLista().size();
     }
 }

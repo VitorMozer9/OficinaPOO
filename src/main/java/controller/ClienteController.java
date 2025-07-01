@@ -11,7 +11,7 @@ import View.ClienteView;
  * Fornece métodos para adicionar, remover, buscar e exibir iformações dos clientes.
  */
 public class ClienteController {
-    private ClienteDAO clienteDao = new ClienteDAO();
+    private ClienteDAO clienteDao = ClienteDAO.getInstancia();
     private ClienteView viewCliente = new ClienteView();
      
     /**

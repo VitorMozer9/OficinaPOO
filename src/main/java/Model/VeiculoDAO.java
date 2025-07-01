@@ -10,13 +10,22 @@ import java.util.List;
  * Permite operações como adicionar, buscar, editar, remover e exibir veículos.
  */
 public class VeiculoDAO extends GenericDAO<Veiculo> {
+    
+    private static VeiculoDAO instancia;
     private VeiculoView viewVeiculo = new VeiculoView();
 
     /**
      * Construtor padrão que define o caminho do arquivo JSON e o tipo da lista de veículos. 
      */
-    public VeiculoDAO() {
+    private VeiculoDAO() {
         super("data/veiculos.json", new TypeToken<List<Veiculo>>() {}.getType());
+    }
+    
+    public static VeiculoDAO getInstancia(){
+        if (instancia == null) {
+            instancia = new VeiculoDAO();
+        }
+        return instancia;
     }
 
     /**

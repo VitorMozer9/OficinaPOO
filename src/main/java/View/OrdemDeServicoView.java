@@ -33,7 +33,8 @@ public class OrdemDeServicoView {
         System.out.println("5 - Mostrar Ordem de Serviço");
         System.out.println("6 - Gerar Nota Fiscal");
         System.out.println("7 - Listar Todas as Ordens de Serviço");
-        System.out.println("8 - Sair");
+        System.out.println("8 - Busca Ordem de Serviço pelo ID do Cliente");
+        System.out.println("9 - Sair");
 
         int opcao = leituraDados.nextInt();
         leituraDados.nextLine();
@@ -220,9 +221,7 @@ public class OrdemDeServicoView {
         int totalConfirmadas = 0;
         int totalCanceladas = 0;
         
-        System.out.println("============================================================");
-        System.out.println("                LISTA DE ORDENS DE SERVIÇO");
-        System.out.println("============================================================");
+        System.out.println("LISTA DE ORDENS DE SERVIÇO");
         
         for (OrdemDeServico os : ordensServico) {
             System.out.println("ID: " + os.getIdOrdemServico() + 
@@ -297,5 +296,10 @@ public class OrdemDeServicoView {
     public String confirmaOperacao(String mensagem) {
         System.out.println(mensagem + " [S/N]: ");
         return leituraDados.nextLine().trim().toUpperCase();
+    }
+    
+    @Override
+    public String toString(){
+        return "- Interface OS -";
     }
 }

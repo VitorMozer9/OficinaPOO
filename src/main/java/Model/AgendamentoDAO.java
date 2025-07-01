@@ -15,17 +15,23 @@ import java.util.Map;
  * Classe responsável por gerenciar os dados dos agendamentos, realizando operações 
  * de persistência, verificação de disponibilidade e controle das interações com a view.
  */
-public class AgendamentoDAO extends GenericDAO<Agendamento> {
-
+public class AgendamentoDAO extends GenericDAO<Agendamento> {    
+    private static AgendamentoDAO instancia;
     AgendamentoView viewAgendamento = new AgendamentoView();
 
     /**
      * Construtor padrão da classe.
      * Inicializando o DAO com o caminho e tipo de dados utilizados.
      */
-    public AgendamentoDAO() {
-        super("data/agendamentos.json", new TypeToken<List<Agendamento>>() {
-        }.getType());
+    private AgendamentoDAO() {
+        super("data/agendamentos.json", new TypeToken<List<Agendamento>>() {}.getType());
+    }
+    
+    public static AgendamentoDAO getInstancia(){
+        if (instancia == null) {
+            instancia = new AgendamentoDAO();
+        }
+        return instancia;
     }
 
     /**

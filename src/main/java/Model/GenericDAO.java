@@ -40,6 +40,8 @@ public abstract class GenericDAO<T> {
      * Lista em memória contendo os objetos da entidade.
      */
     private List<T> listaObjeto;
+    
+    private final Gson gson;
 
 
     /**
@@ -55,6 +57,7 @@ public abstract class GenericDAO<T> {
         this.caminhoDoJson = caminhoDoJson;
         this.tipoDaLista = tipoDaLista;
         this.listaObjeto = new ArrayList<>();
+        this.gson = new GsonBuilder().registerTypeAdapter(LocalDateTime.class, new AdaptadorLocalDateTime()).setPrettyPrinting().create();
         carregaDados();
     }
 
@@ -66,6 +69,8 @@ public abstract class GenericDAO<T> {
     public List<T> getLista() {
         return listaObjeto;
     }
+    
+    
     
     /**
      * Define a chave identificadora de um objeto.
@@ -84,7 +89,7 @@ public abstract class GenericDAO<T> {
      */
      public boolean salvarDados(){
         try (FileWriter writer = new FileWriter(caminhoDoJson)) {
-            new Gson().toJson(listaObjeto,writer);
+            gson.toJson(listaObjeto,writer);
             writer.flush();
             return true;
         } catch (IOException e) {
@@ -102,7 +107,8 @@ public abstract class GenericDAO<T> {
      */
     public boolean carregaDados(){
         try(FileReader reader = new FileReader(caminhoDoJson)){
-            this.listaObjeto = new Gson().fromJson(reader, tipoDaLista);
+            List<T> dados = gson.fromJson(reader, tipoDaLista);
+            this.listaObjeto = (dados != null) ? dados : new ArrayList<>();
             return true;
             
         } catch (Exception e){

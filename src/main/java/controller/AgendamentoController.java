@@ -17,7 +17,7 @@ public class AgendamentoController {
     AgendamentoView viewAgendamento = new AgendamentoView();
     
     /** Objeto responsável pelo acesso aos dados pesistidos dos agendamentos. */
-    AgendamentoDAO agendamentoDao = new AgendamentoDAO();
+    AgendamentoDAO agendamentoDao =AgendamentoDAO.getInstancia();
     
     /**
      * Converte uma string contendo data e hora no formato "DD MM YYYY HH MM" para um objeto {@link Calendar}

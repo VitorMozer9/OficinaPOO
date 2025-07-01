@@ -22,6 +22,12 @@ import View.ViewPrincipal;
  */
 public class Sistema {
 
+    // Estrategia A 
+    private static int quantVeiculosPrivado = 0;
+    
+    // Estrategia B C
+    protected static int quantClientesProtegido = 0;
+
     private LoginController loginController = new LoginController();
     private ViewPrincipal telaInicial = new ViewPrincipal();
     private ClienteController clienteController = new ClienteController();
@@ -34,25 +40,71 @@ public class Sistema {
     private OrdemDeServicoController osController = new OrdemDeServicoController();
     private BatePontoController pontoController = new BatePontoController();
 
-    // DAOs
-    private ClienteDAO clienteDao = new ClienteDAO();
-    private FuncionarioDAO funcionarioDao = new FuncionarioDAO();
-    private VeiculoDAO veiculoDao = new VeiculoDAO();
+    private ClienteDAO clienteDao = ClienteDAO.getInstancia();
+    private FuncionarioDAO funcionarioDao = FuncionarioDAO.getInstancia();
+    private VeiculoDAO veiculoDao = VeiculoDAO.getInstancia();
     private ProdutoEstoqueDAO produtoDao = ProdutoEstoqueDAO.getInstancia();
     private VendaDAO vendaDao = VendaDAO.getInstancia();
-    private AgendamentoDAO agendamentoDao = new AgendamentoDAO();
+    private AgendamentoDAO agendamentoDao = AgendamentoDAO.getInstancia();
     private FinanceiroDAO financeiroDAO = FinanceiroDAO.getInstancia();
     private OrdemDeServicoDAO osDAO = OrdemDeServicoDAO.getInstancia();
-    private BatePontoDAO pontoDAO = new BatePontoDAO();
+    private BatePontoDAO pontoDAO = BatePontoDAO.getInstancia();
+
+    // Métodos para Estratégia A - Encapsulamento (private static)
+    
+    /**
+     * Obtém a quantidade de veículos cadastrados no sistema.
+     * 
+     * @return Quantidade de veículos privados.
+     */
+    public static int getQuantVeiculosPrivado() {
+        return quantVeiculosPrivado;
+    }
+
+    /**
+     * Define a quantidade de veículos cadastrados no sistema.
+     * 
+     * @param quantVeiculosPrivado Nova quantidade de veículos.
+     */
+    public static void setQuantVeiculosPrivado(int quantVeiculosPrivado) {
+        Sistema.quantVeiculosPrivado = quantVeiculosPrivado;
+    }
+    
+    /**
+     * Incrementa o contador de veículos.
+     */
+    public static void incrementarVeiculos() {
+        quantVeiculosPrivado++;
+    }
+
+    // Métodos para Estratégia B - Protected (acesso direto limitado)
+    
+    /**
+     * Obtém a quantidade de clientes cadastrados no sistema.
+     * 
+     * @return Quantidade de clientes protegidos.
+     */
+    public static int getQuantClientesProtegido() {
+        return quantClientesProtegido;
+    }
+
+    /**
+     * Define a quantidade de clientes cadastrados no sistema.
+     * 
+     * @param quantClientesProtegido Nova quantidade de clientes.
+     */
+    public static void setQuantClientesProtegido(int quantClientesProtegido) {
+        Sistema.quantClientesProtegido = quantClientesProtegido;
+    }
 
     /**
      * Inicia o sistema com tela de login.
      */
     public void iniciaSistema() {
-//        if (!loginController.realizarLogin()) {
-//            System.out.println("Falha no login. Sistema encerrado.");
-//            return;
-//        }
+        if (!loginController.realizarLogin()) {
+            System.out.println("Falha no login. Sistema encerrado.");
+            return;
+        }
 
         boolean rodando = true;
 
@@ -65,9 +117,9 @@ public class Sistema {
                 case 2 ->
                     clienteController.executaMenuCliente();
                 case 3 -> {
-                    //if (loginController.podeCadastrarFuncionario()) {
+                    if (loginController.podeCadastrarFuncionario()) {
                     funcionarioController.executaMenuFuncionario();
-                    //}
+                    }
                 }
                 case 4 ->
                     veiculoController.executaMenuVeiculo();
@@ -86,6 +138,10 @@ public class Sistema {
                 }
                 case 10 -> {
                     System.out.println("Encerrando sistema...");
+                    System.out.println("Estatísticas do sistema:");
+                    System.out.println("Total de veículos cadastrados: " + veiculoDao.toString());
+                    System.out.println("Total de clientes cadastrados: " + clienteDao.toString());
+                    
                     clienteDao.salvarDados();
                     funcionarioDao.salvarDados();
                     veiculoDao.salvarDados();
@@ -103,11 +159,12 @@ public class Sistema {
         }
     }
 
-
     @Override
     public String toString() {
         return "Sistema da Oficina POO - Usuário logado: "
                 + (loginController.getUsuarioLogado() != null
-                ? loginController.getUsuarioLogado().getNome() : "Nenhum");
+                ? loginController.getUsuarioLogado().getNome() : "Nenhum")
+                + " | Veículos: " + quantVeiculosPrivado 
+                + " | Clientes: " + quantClientesProtegido;
     }
 }

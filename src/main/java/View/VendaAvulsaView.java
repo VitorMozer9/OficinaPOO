@@ -191,11 +191,12 @@ public class VendaAvulsaView {
      * @param cpfAnonimizado CPF do cliente
      * @param produto produto vendido
      */
-    public void mostraNotaFiscal(Venda venda, String cpfAnonimizado, String produtoDesc) {
+    public void mostraNotaFiscal(Venda venda, String cpfAnonimizado, String produtoDesc, String nomeCliente) {
         System.out.println("============================================================");
         System.out.println("                      NOTA FISCAL");
         System.out.println("============================================================");
         System.out.println("Venda: #" + venda.getIdVenda());
+        System.out.println("Nome Cliente:" + nomeCliente);
         System.out.println("CPF Cliente: " + cpfAnonimizado);
         System.out.println("Data: " + java.text.DateFormat.getDateInstance().format(Calendar.getInstance().getTime()));
         System.out.println("------------------------------------------------------------");

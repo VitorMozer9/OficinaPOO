@@ -1,0 +1,16 @@
+[
+  {
+    "idConta": 1,
+    "descricao": "Receita OS #3 - Manutenção",
+    "tipoConta": "RECEITA",
+    "valor": 100.0,
+    "data": {
+      "year": 2025,
+      "month": 1,
+      "dayOfMonth": 22,
+      "hourOfDay": 23,
+      "minute": 17,
+      "second": 29
+    }
+  }
+]

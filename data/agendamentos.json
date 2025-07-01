@@ -1,0 +1,34 @@
+[
+  {
+    "idAgendamento": 1,
+    "idCliente": 2,
+    "idElevador": 1,
+    "mecanicoResponsavel": "Lucas",
+    "tipoAgendamento": 1,
+    "statusAgendamento": "PENDENTE",
+    "dataHora": {
+      "year": 2025,
+      "month": 2,
+      "dayOfMonth": 12,
+      "hourOfDay": 10,
+      "minute": 0,
+      "second": 0
+    }
+  },
+  {
+    "idAgendamento": 2,
+    "idCliente": 3,
+    "idElevador": 2,
+    "mecanicoResponsavel": "Robson",
+    "tipoAgendamento": 2,
+    "statusAgendamento": "PENDENTE",
+    "dataHora": {
+      "year": 2025,
+      "month": 2,
+      "dayOfMonth": 12,
+      "hourOfDay": 13,
+      "minute": 0,
+      "second": 0
+    }
+  }
+]

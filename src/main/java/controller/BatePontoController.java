@@ -5,7 +5,7 @@ import View.BatePontoView;
 
 public class BatePontoController {
     private BatePontoView viewBatePonto = new BatePontoView();   
-    private BatePontoDAO batePontoDao = new BatePontoDAO();
+    private BatePontoDAO batePontoDao = BatePontoDAO.getInstancia();
      
     /**
      * Exibe o menu de opções para os pontos e executa a ação solicitada pelo usuário.
@@ -41,6 +41,11 @@ public class BatePontoController {
                 }
             }
         }
+    }
+    
+    @Override 
+    public String toString(){
+        return String.format("BatePontoController: %d pontos registrados.", batePontoDao.getLista().size());
     }
     
 }

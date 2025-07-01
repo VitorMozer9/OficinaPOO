@@ -1,0 +1,37 @@
+[
+  {
+    "idProduto": 1,
+    "descricao": "Radiador",
+    "valorProduto": 300.0,
+    "quantidadeEmEstoque": 398,
+    "disponivel": true
+  },
+  {
+    "idProduto": 2,
+    "descricao": "Motor",
+    "valorProduto": 7000.0,
+    "quantidadeEmEstoque": 30,
+    "disponivel": true
+  },
+  {
+    "idProduto": 3,
+    "descricao": "Cabeçote",
+    "valorProduto": 1500.0,
+    "quantidadeEmEstoque": 30,
+    "disponivel": true
+  },
+  {
+    "idProduto": 4,
+    "descricao": "Carter",
+    "valorProduto": 150.0,
+    "quantidadeEmEstoque": 50,
+    "disponivel": true
+  },
+  {
+    "idProduto": 5,
+    "descricao": "Beleta",
+    "valorProduto": 70.0,
+    "quantidadeEmEstoque": 20,
+    "disponivel": true
+  }
+]

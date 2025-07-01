@@ -90,11 +90,10 @@ public class OrdemDeServicoDAO extends GenericDAO<OrdemDeServico> {
         int idOrdemServico = geraIdOrdemServico();
         OrdemDeServico novaOS;
 
-        if (tipoServico == TipoServico.TROCA_PECA){
-            novaOS = new OrdemDeServico(idOrdemServico, idCliente, mecanicoResponsavel,data, StatusOrdemServico.PENDENTE, tipoServico,descricaoServico, valor, produtos, valorProdutos);
-        } 
-        else{
-            novaOS = new OrdemDeServico(idOrdemServico, idCliente, mecanicoResponsavel,data, StatusOrdemServico.PENDENTE, tipoServico,descricaoServico, valor);
+        if (tipoServico == TipoServico.TROCA_PECA) {
+            novaOS = new OrdemDeServico(idOrdemServico, idCliente, mecanicoResponsavel, data, StatusOrdemServico.PENDENTE, tipoServico, descricaoServico, valor, produtos, valorProdutos);
+        } else {
+            novaOS = new OrdemDeServico(idOrdemServico, idCliente, mecanicoResponsavel, data, StatusOrdemServico.PENDENTE, tipoServico, descricaoServico, valor);
         }
 
         adicionaDados(novaOS);
@@ -135,7 +134,7 @@ public class OrdemDeServicoDAO extends GenericDAO<OrdemDeServico> {
 
         String descricaoFinanceira = "Receita OS #" + os.getIdOrdemServico() + " - "
                 + os.getTipoServico().getDescricao();
-        Financeiro receita = new Financeiro(financeiroDAO.geraIdConta(),descricaoFinanceira,TipoConta.RECEITA,os.getValorTotal(),os.getData());
+        Financeiro receita = new Financeiro(financeiroDAO.geraIdConta(), descricaoFinanceira, TipoConta.RECEITA, os.getValorTotal(), os.getData());
 
         financeiroDAO.adicionaDados(receita);
 
@@ -257,12 +256,12 @@ public class OrdemDeServicoDAO extends GenericDAO<OrdemDeServico> {
     }
 
     /**
-     * Gera nota fiscal para uma ordem de serviço. 
+     * Gera nota fiscal para uma ordem de serviço.
      */
     public void gerarNotaFiscal() {
         int idOrdemServico = viewOrdemServico.getIdOrdemServico();
         OrdemDeServico os = buscaOrdemServico(idOrdemServico);
-        ClienteDAO clienteDAO = new ClienteDAO();
+        ClienteDAO clienteDAO = ClienteDAO.getInstancia();
 
         if (os == null) {
             System.out.println("Ordem de Serviço não encontrada!");
@@ -305,7 +304,33 @@ public class OrdemDeServicoDAO extends GenericDAO<OrdemDeServico> {
      * @return Lista de ordens do cliente especificado
      */
     public List<OrdemDeServico> buscarPorCliente(int idCliente) {
-        return getLista().stream().filter(os -> os.getIdCliente() == idCliente).collect(java.util.stream.Collectors.toList());
+        return getLista().stream()
+            .filter(os -> os.getIdCliente() == idCliente)
+            .toList();
+    }
+
+    /**
+     * Permite buscar e exibir as Ordens de Serviço de um cliente informando o
+     * ID.
+     */
+    public void mostraOsIdCliente() {
+        int idCliente = viewOrdemServico.getIdCliente(); 
+        ClienteDAO clienteDAO = ClienteDAO.getInstancia();
+        Cliente cliente = clienteDAO.buscarCliente(idCliente);
+
+        if (cliente == null) {
+            System.out.println("Cliente com ID " + idCliente + " não encontrado.");
+            return;
+        }
+
+        List<OrdemDeServico> ordensCliente = buscarPorCliente(idCliente);
+
+        if (ordensCliente.isEmpty()) {
+            System.out.println("Nenhuma ordem de serviço encontrada para o cliente " + cliente.getNome() + ".");
+        } else {
+            System.out.println("Ordens de Serviço para o cliente " + cliente.getNome() + ":");
+            viewOrdemServico.mostraListaOrdemServico(ordensCliente);
+        }
     }
 
     /**
@@ -329,5 +354,16 @@ public class OrdemDeServicoDAO extends GenericDAO<OrdemDeServico> {
             Calendar data = os.getData();
             return data.get(Calendar.MONTH) + 1 == mes && data.get(Calendar.YEAR) == ano;
         }).mapToDouble(OrdemDeServico::getValorTotal).sum();
+    }
+
+    /**
+     * Sobrescreve o método toString para retornar informações do registro de
+     * OS.
+     *
+     * @return String com informações básicas do registro.
+     */
+    @Override
+    public String toString() {
+        return "OrdemDeServicoDAO | Total de OS: " + getLista().size();
     }
 }
