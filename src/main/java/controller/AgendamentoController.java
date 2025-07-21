@@ -6,10 +6,25 @@ import View.AgendamentoView;
 import java.util.Calendar;
 import java.util.List;
 
+/**
+ * Controlador responsável por gerenciar as operações relacionadas aos agendamentos, como adicionar
+ * , confirmar, cancelar, editar e exibir agendamentos. 
+ * Também lida com a interação com o usuário através da classe {@link AgendamentoView}.
+ */
 public class AgendamentoController {
-    AgendamentoView viewAgendamento = new AgendamentoView();
-    AgendamentoDAO agendamentoDao = new AgendamentoDAO();
     
+    /** Objeto responsável pela interface de entrada e saída com o usuário para agendamentos. */
+    AgendamentoView viewAgendamento = new AgendamentoView();
+    
+    /** Objeto responsável pelo acesso aos dados pesistidos dos agendamentos. */
+    AgendamentoDAO agendamentoDao =AgendamentoDAO.getInstancia();
+    
+    /**
+     * Converte uma string contendo data e hora no formato "DD MM YYYY HH MM" para um objeto {@link Calendar}
+     * 
+     * @param strDataHora Um objeto {@link Calendar} representado a data e hora formatadas. 
+     * @return NumberFormatException se a string não contiver valores numéricos válidos.
+     */
     public static Calendar formataDataHora(String strDataHora){
         String[] dataHoraSplit = strDataHora.split(" ");
         int dia = Integer.parseInt(dataHoraSplit[0]);
@@ -24,6 +39,11 @@ public class AgendamentoController {
         return dataHorario;
     }
     
+    /**
+     * Executa o menu principal de agendamentos, permitindo ao usuário realizar diversas operações atráves 
+     * do terminal.
+     * A execução permanece ativa até que o usuário selecione a opção de "Sair".
+     */
     public void executaMenuAgendamento(){
         int opcao = 0;
         
@@ -61,6 +81,11 @@ public class AgendamentoController {
                 }
             }
         }
+    }
+    
+    @Override 
+    public String toString(){
+        return String.format("AgendamentoController: %d agendamentos registrados.", agendamentoDao.getLista().size());
     }
     
     

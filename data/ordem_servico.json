@@ -1,0 +1,59 @@
+[
+  {
+    "idOrdemServico": 1,
+    "idCliente": 9,
+    "mecanicoResponsavel": "TESTE",
+    "data": {
+      "year": 2025,
+      "month": 0,
+      "dayOfMonth": 22,
+      "hourOfDay": 21,
+      "minute": 35,
+      "second": 26
+    },
+    "status": "PENDENTE",
+    "tipoServico": "MANUTENCAO",
+    "descricaoServico": "teste",
+    "valor": 3456.0,
+    "produtos": [],
+    "valorProdutos": 0.0
+  },
+  {
+    "idOrdemServico": 2,
+    "idCliente": 1,
+    "mecanicoResponsavel": "Matheus",
+    "data": {
+      "year": 2025,
+      "month": 0,
+      "dayOfMonth": 22,
+      "hourOfDay": 21,
+      "minute": 38,
+      "second": 43
+    },
+    "status": "PENDENTE",
+    "tipoServico": "REVISAO",
+    "descricaoServico": "Alinhamento",
+    "valor": 150.0,
+    "produtos": [],
+    "valorProdutos": 0.0
+  },
+  {
+    "idOrdemServico": 3,
+    "idCliente": 2,
+    "mecanicoResponsavel": "Lucas",
+    "data": {
+      "year": 2025,
+      "month": 1,
+      "dayOfMonth": 22,
+      "hourOfDay": 23,
+      "minute": 17,
+      "second": 29
+    },
+    "status": "CONFIRMADO",
+    "tipoServico": "MANUTENCAO",
+    "descricaoServico": "Troca de Oleo",
+    "valor": 100.0,
+    "produtos": [],
+    "valorProdutos": 0.0
+  }
+]

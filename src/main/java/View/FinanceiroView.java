@@ -1,6 +1,7 @@
 package View;
 
 import Model.Financeiro;
+import Model.OrdemDeServico;
 import Model.TipoConta;
 import java.util.Calendar;
 import java.util.List;
@@ -176,11 +177,13 @@ public class FinanceiroView {
      * @param ano Ano do balanço
      */
     public void mostraBalancoMensal(List<Financeiro> contas, double totalReceitas, 
-                                   double totalDespesas, int mes, int ano) {
+                                   double totalDespesas, int mes, int ano, double faturamentoOS) {
         System.out.println("Balanço mensal - " + mes + "/" + ano);
-        System.out.println("Total de Receitas: R$ " + String.format("%.2f", totalReceitas));
+        System.out.println("Receitas Financeiras: R$ " + String.format("%.2f", totalReceitas));
+        System.out.println("Faturamento OS: R$ " + String.format("%.2f", faturamentoOS));
+        System.out.println("Total Receitas: R$ " + String.format("%.2f", totalReceitas + faturamentoOS));
         System.out.println("Total de Despesas: R$ " + String.format("%.2f", totalDespesas));
-        System.out.println("Saldo: R$ " + String.format("%.2f", (totalReceitas - totalDespesas)));
+        System.out.println("Saldo: R$ " + String.format("%.2f", (totalReceitas + faturamentoOS - totalDespesas)));
         System.out.println("");
         
         System.out.println("Dados mensais");
@@ -230,5 +233,10 @@ public class FinanceiroView {
     public String confirmaRemocao(){
         System.out.println("Tem certeza que deseja remover esta conta? [S/N]: ");
         return leituraDados.nextLine().trim().toUpperCase();
+    }
+    
+    @Override 
+    public String toString(){
+        return "- Interface financeira -";
     }
 }

@@ -1,69 +1,209 @@
 package Model;
 
 import java.text.SimpleDateFormat;
-import java.util.Date;
+import java.util.Calendar;
+import java.util.List;
+import java.util.ArrayList;
 
 /**
- * Representação de um chamado para uma ordem de serviço, que irá aparecer no sistema indicando o nome do cliente, o funcionário responsável
- * pelo atendimento e análise inicial do veículo, o tipo da manutenção, e a data em que esse serviço foi solicitado.
- * 
+ * Classe que representa uma Ordem de Serviço na oficina.
+ * Contém todas as informações necessárias para o controle de serviços.
  */
 public class OrdemDeServico {
-    private Cliente cliente;
-    private Funcionario tecnicoResponsavel;
-    private Manutencao manutencao;
-    private Date dataServico;
-
+    private int idOrdemServico;
+    private int idCliente;
+    private String mecanicoResponsavel;
+    private Calendar data;
+    private StatusOrdemServico status;
+    private TipoServico tipoServico;
+    private String descricaoServico;
+    private double valor;
+    private List<String> produtos;
+    private double valorProdutos;
+    
     /**
-     * Construtor da classe (@code OrdemDeServico).
-     * Inicia uma nova ordem de serviço com as informações forncecidas pelo usuário.
-     * 
-     * @param cliente               Pega as informações do cliente.
-     * @param tecnicoResponsavel    Nome do funcionário reponsável.
-     * @param manutencao            Pega as informações da manutenção.
+     * Construtor completo da Ordem de Serviço.
      */
-    public OrdemDeServico(Cliente cliente, Funcionario tecnicoResponsavel, Manutencao manutencao) {
-        this.cliente = cliente;
-        this.tecnicoResponsavel = tecnicoResponsavel;
-        this.manutencao = manutencao;
-        this.dataServico = new Date();
+    public OrdemDeServico(int idOrdemServico, int idCliente, String mecanicoResponsavel,
+                         Calendar data, StatusOrdemServico status, TipoServico tipoServico,
+                         String descricaoServico, double valor) {
+        this.idOrdemServico = idOrdemServico;
+        this.idCliente = idCliente;
+        this.mecanicoResponsavel = mecanicoResponsavel;
+        this.data = data;
+        this.status = status;
+        this.tipoServico = tipoServico;
+        this.descricaoServico = descricaoServico;
+        this.valor = valor;
+        this.produtos = new ArrayList<>();
+        this.valorProdutos = 0.0;
     }
-
+    
     /**
-     * Sobrescreve o método toString para retornar no sistema uma representação da ordem de serviço com suas informações separadas e detalhadas
-     * para cada um dos pontos (cliente, tecnico responsavel e manutenção).
-     * 
-     * @return Informações da ordem de serviço.
+     * Construtor para serviços de troca de peças.
      */
+    public OrdemDeServico(int idOrdemServico, int idCliente, String mecanicoResponsavel,
+                         Calendar data, StatusOrdemServico status, TipoServico tipoServico,
+                         String descricaoServico, double valor, List<String> produtos, double valorProdutos) {
+        this(idOrdemServico, idCliente, mecanicoResponsavel, data, status, tipoServico, descricaoServico, valor);
+        this.produtos = produtos != null ? new ArrayList<>(produtos) : new ArrayList<>();
+        this.valorProdutos = valorProdutos;
+    }
+    
+    public int getIdOrdemServico() {
+        return idOrdemServico;
+    }
+    
+    public int getIdCliente() {
+        return idCliente;
+    }
+    
+    public String getMecanicoResponsavel() {
+        return mecanicoResponsavel;
+    }
+    
+    public Calendar getData() {
+        return data;
+    }
+    
+    public StatusOrdemServico getStatus() {
+        return status;
+    }
+    
+    public TipoServico getTipoServico() {
+        return tipoServico;
+    }
+    
+    public String getDescricaoServico() {
+        return descricaoServico;
+    }
+    
+    public double getValor() {
+        return valor;
+    }
+    
+    public List<String> getProdutos() {
+        return new ArrayList<>(produtos);
+    }
+    
+    public double getValorProdutos() {
+        return valorProdutos;
+    }
+    
+    /**
+     * Calcula o valor total da ordem de serviço (serviço + produtos).
+     * 
+     * @return Valor total
+     */
+    public double getValorTotal() {
+        return valor + valorProdutos;
+    }
+    
+    public void setIdOrdemServico(int idOrdemServico) {
+        this.idOrdemServico = idOrdemServico;
+    }
+    
+    public void setIdCliente(int idCliente) {
+        this.idCliente = idCliente;
+    }
+    
+    public void setMecanicoResponsavel(String mecanicoResponsavel) {
+        this.mecanicoResponsavel = mecanicoResponsavel;
+    }
+    
+    public void setData(Calendar data) {
+        this.data = data;
+    }
+    
+    public void setStatus(StatusOrdemServico status) {
+        this.status = status;
+    }
+    
+    public void setTipoServico(TipoServico tipoServico) {
+        this.tipoServico = tipoServico;
+    }
+    
+    public void setDescricaoServico(String descricaoServico) {
+        this.descricaoServico = descricaoServico;
+    }
+    
+    public void setValor(double valor) {
+        this.valor = valor;
+    }
+    
+    public void setProdutos(List<String> produtos) {
+        this.produtos = produtos != null ? new ArrayList<>(produtos) : new ArrayList<>();
+    }
+    
+    public void setValorProdutos(double valorProdutos) {
+        this.valorProdutos = valorProdutos;
+    }
+    
+    /**
+     * Adiciona um produto à lista de produtos.
+     * 
+     * @param produto Nome do produto
+     */
+    public void adicionarProduto(String produto) {
+        if (produto != null) {
+            this.produtos.add(produto.trim());
+        }
+    }
+    
+    /**
+     * Remove um produto da lista de produtos.
+     * 
+     * @param produto Nome do produto a ser removido
+     * @return true se o produto foi removido, false caso contrário
+     */
+    public boolean removerProduto(String produto) {
+        return this.produtos.remove(produto);
+    }
+    
     @Override
     public String toString() {
-        SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy 'às' HH:mm");
-        StringBuilder ordemServico = new StringBuilder();
-
-        ordemServico.append("============================================================\n");
-        ordemServico.append("  Ordem de Serviço ").append(this.manutencao).append("\n");
-        ordemServico.append("============================================================\n");
-        ordemServico.append("CLIENTE:\n");
-        ordemServico.append("Nome: ").append(cliente.getNome()).append("\n");
-        ordemServico.append("Endereço: ").append(cliente.getEndereco()).append("\n");
-        ordemServico.append("Telefone: ").append(cliente.getTelefone()).append("\n");
-        ordemServico.append("------------------------------------------------------------\n");
-        ordemServico.append("DIAGNÓSTICO:\n");
-        ordemServico.append(manutencao.getDescricaoManutencao()).append("\n");
-        ordemServico.append("------------------------------------------------------------\n");
-        ordemServico.append("SOLUÇÃO APLICADA:\n");
-        ordemServico.append(manutencao.getSolucaoManutencao()).append("\n");
-        ordemServico.append("------------------------------------------------------------\n");
-        ordemServico.append("PEÇAS TROCADAS:\n");
-        for (String descricaoPecas : manutencao.getListaDePecas()) {
-            ordemServico.append("- ").append(descricaoPecas).append("\n");
+        SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy HH:mm");
+        StringBuilder sb = new StringBuilder();
+        
+        sb.append("============================================================\n");
+        sb.append("                    ORDEM DE SERVIÇO #").append(idOrdemServico).append("\n");
+        sb.append("============================================================\n");
+        sb.append("Cliente ID: ").append(idCliente).append("\n");
+        sb.append("Mecânico Responsável: ").append(mecanicoResponsavel).append("\n");
+        sb.append("Data: ").append(formato.format(data.getTime())).append("\n");
+        sb.append("Status: ").append(status.getDescricao()).append("\n");
+        sb.append("------------------------------------------------------------\n");
+        sb.append("SERVIÇO:\n");
+        sb.append("Tipo: ").append(tipoServico.getDescricao()).append("\n");
+        sb.append("Descrição: ").append(descricaoServico).append("\n");
+        sb.append("Valor do Serviço: R$ ").append(String.format("%.2f", valor)).append("\n");
+        
+        if (tipoServico == TipoServico.TROCA_PECA && !produtos.isEmpty()) {
+            sb.append("------------------------------------------------------------\n");
+            sb.append("PRODUTOS/PEÇAS:\n");
+            for (String produto : produtos) {
+                sb.append("- ").append(produto).append("\n");
+            }
+            sb.append("Valor dos Produtos: R$ ").append(String.format("%.2f", valorProdutos)).append("\n");
         }
-        ordemServico.append("------------------------------------------------------------\n");
-        ordemServico.append("Data do Serviço: ").append(formato.format(dataServico)).append("\n");
-        ordemServico.append("Técnico responsável: ").append(tecnicoResponsavel.getNome()).append("\n");
-        ordemServico.append("Total do Serviço: R$ xxxxx\n");
-        ordemServico.append("============================================================\n");
-
-        return ordemServico.toString();
+        
+        sb.append("------------------------------------------------------------\n");
+        sb.append("VALOR TOTAL: R$ ").append(String.format("%.2f", getValorTotal())).append("\n");
+        sb.append("============================================================\n");
+        
+        return sb.toString();
+    }
+    
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) return true;
+        if (obj == null || getClass() != obj.getClass()) return false;
+        OrdemDeServico that = (OrdemDeServico) obj;
+        return idOrdemServico == that.idOrdemServico;
+    }
+    
+    @Override
+    public int hashCode() {
+        return Integer.hashCode(idOrdemServico);
     }
 }

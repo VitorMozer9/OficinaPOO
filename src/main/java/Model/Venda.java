@@ -141,6 +141,7 @@ public class Venda {
      */
     @Override
     public String toString() {
-        return "ID da Venda: " + getIdVenda();
+        return String.format("Venda ID: %d | Cliente: %d | Produto: %d | Qtd: %d | Valor Unit: R$%.2f | Total: R$%.2f", 
+                           idVenda, idCliente, idProduto, quantidade, valorUnitario, valorTotal);
     }
 }

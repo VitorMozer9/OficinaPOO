@@ -6,6 +6,16 @@ package Model;
 
 public class Veiculo {
     
+    private static int contadorInstanciasPrivado = 0; 
+
+    public static int getContadorInstanciasPrivado() {
+        return contadorInstanciasPrivado;
+    }
+
+    private static void incrementaContador() {
+        contadorInstanciasPrivado++;
+    }
+    
     private int idCliente;
     private String modeloVeiculo;
     private String placaVeiculo;
@@ -17,12 +27,13 @@ public class Veiculo {
  * Construtor da classe Veúculo (@code Veículo).
  * Inicializa um novo veículo com suas informações básicas.  
  * 
- * @param modeloVeiculo
- * @param placaVeiculo
- * @param statusVeiculo
- * @param anoDeFabricacao 
+ * @param idCliente                 ID do cliente proprietário do veículo.
+ * @param modeloVeiculo             Modelo do veículo.
+ * @param placaVeiculo              Placa do veículo.
+ * @param statusVeiculo             Status atual do veículo.
+ * @param anoDeFabricacao           Ano de fabricação do veículo.   
+ * @param peso                      Peso do veículo.
  */
-    
     public Veiculo(int idCliente,String modeloVeiculo, String placaVeiculo, String statusVeiculo, int anoDeFabricacao, double peso) {
         this.idCliente = idCliente; 
         this.anoDeFabricacao = anoDeFabricacao;
@@ -30,12 +41,24 @@ public class Veiculo {
         this.placaVeiculo = placaVeiculo;
         this.anoDeFabricacao = anoDeFabricacao;
         this.peso = peso;
+        
+        incrementaContador();
     }
     
+    /**
+     * Pega o ID do cliente
+     * 
+     * @return ID do cliente.
+     */
     public int getIdCliente(){
         return idCliente;
     }
     
+    /**
+     * Determina o ID do cliente.
+     * 
+     * @param idCliente novo ID do cliente.
+     */
     public void setIdCliente(int idCliente){
         this.idCliente = idCliente;
     }

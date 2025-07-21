@@ -1,4 +1,5 @@
 [
+<<<<<<< HEAD
     {
         "idConta": 1,
         "descricao": "CoNta testee",
@@ -83,4 +84,20 @@
             "second": 25
         }
     }
+=======
+  {
+    "idConta": 1,
+    "descricao": "Receita OS #3 - Manutenção",
+    "tipoConta": "RECEITA",
+    "valor": 100.0,
+    "data": {
+      "year": 2025,
+      "month": 1,
+      "dayOfMonth": 22,
+      "hourOfDay": 23,
+      "minute": 17,
+      "second": 29
+    }
+  }
+>>>>>>> 5dcca20ec5119abab0cedc6f7fb3280f3a929f44
 ]

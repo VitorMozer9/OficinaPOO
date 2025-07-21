@@ -3,8 +3,17 @@ package controller;
 import Model.VendaDAO;
 import View.VendaAvulsaView;
 
+/**
+ * Controlador responsável por gerenciar as interações relacionadas ao processo de vendas avulsas.
+ * Ele atua como intermediário entre a {@link VendaAvulsaView} (interface do usuário) e o {@link VendaDAO} (acesso a dados de vendas). 
+ * @author Estudo
+ */
 public class VendaController {
+    
+    /** Interface responsável por capturar e exibir informações da venda para o usuário. */
     private VendaAvulsaView viewVenda = new VendaAvulsaView();
+    
+    /** Objeto DAO responsável por persistir e manipular os dados de venda. */
     private VendaDAO vendaDao = VendaDAO.getInstancia();
      
     /**
@@ -14,10 +23,10 @@ public class VendaController {
     public void executaMenuVendas(){
         int opcao = 0; 
         
-        while(opcao != 6){
+        while(opcao != 7){
             opcao = viewVenda.mostraOpcoesVenda();
             
-            if (opcao == 6) {
+            if (opcao == 7) {
                 System.out.println("Saindo do menu de vendas...");
                 break; 
             }
@@ -38,10 +47,18 @@ public class VendaController {
                 case 5 -> {
                     vendaDao.cancelarVenda();
                 }
+                case 6 -> {
+                    vendaDao.geraNotaFiscalVenda();
+                }
                 default -> {
                     System.out.println("Opção inválida! Tente novamente.");
                 }
             }
         }
+    }
+    
+    @Override
+    public String toString(){
+        return String.format("VendaController: %d vendas registrados.", vendaDao.getLista().size());
     }
 }

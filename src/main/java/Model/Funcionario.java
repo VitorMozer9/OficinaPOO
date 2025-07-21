@@ -38,6 +38,11 @@ public class Funcionario extends Pessoa{
         
     }
     
+    /** 
+     * Obtém o ID do funcionário.
+     * 
+     * @return ID do funcionário.
+     */
     public int getIdFuncionario(){
         return idFuncionario;
     }

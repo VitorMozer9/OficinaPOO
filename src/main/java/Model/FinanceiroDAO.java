@@ -173,40 +173,43 @@ public class FinanceiroDAO extends GenericDAO<Financeiro> {
     /**
      * Gera um balanço mensal das contas financeiras.
      */
-    public void gerarBalancoMensal(){
-        int mes = viewFinanceiro.getMes();
-        int ano = viewFinanceiro.getAno();
-        
-        List<Financeiro> contas = getLista();
-        
-        if (contas == null){
-            System.out.println("Nenhuma conta registrada no sistema.");
-            return;
-        }
+    public void gerarBalancoMensal() {
+    int mes = viewFinanceiro.getMes();
+    int ano = viewFinanceiro.getAno();
+    
+    List<Financeiro> contas = getLista();
+    
+    OrdemDeServicoDAO osDAO = OrdemDeServicoDAO.getInstancia();
+    double faturamentoOS = osDAO.calcularFaturamentoPeriodo(mes, ano);
+    
+    if (contas == null) {
+        System.out.println("Nenhuma conta registrada no sistema.");
+        return;
+    }
 
-        double totalReceitas = 0;
-        double totalDespesas = 0;
-        List<Financeiro> contasDoMes = new ArrayList<>();
-        
-        for (Financeiro conta : contas) {
-            Calendar dataConta = conta.getData();
-            if (dataConta.get(Calendar.MONTH) + 1 == mes && dataConta.get(Calendar.YEAR) == ano) {
-                contasDoMes.add(conta);
-                
-                if (conta.getTipoConta() == TipoConta.RECEITA) {
-                    totalReceitas += conta.getValor();
-                } else {
-                    totalDespesas += conta.getValor();
-                }
+    double totalReceitas = 0;
+    double totalDespesas = 0;
+    List<Financeiro> contasDoMes = new ArrayList<>();
+    
+    for (Financeiro conta : contas) {
+        Calendar dataConta = conta.getData();
+        if (dataConta.get(Calendar.MONTH) + 1 == mes && dataConta.get(Calendar.YEAR) == ano) {
+            contasDoMes.add(conta);
+            
+            if (conta.getTipoConta() == TipoConta.RECEITA) {
+                totalReceitas += conta.getValor();
+            } else {
+                totalDespesas += conta.getValor();
             }
         }
+    }
         
         if (contasDoMes.isEmpty()) {
             System.out.println("Nenhuma movimentação encontrada para " + mes + "/" + ano);
             return;
         }
         
-        viewFinanceiro.mostraBalancoMensal(contasDoMes, totalReceitas, totalDespesas, mes, ano);
+        viewFinanceiro.mostraBalancoMensal(contasDoMes, totalReceitas, totalDespesas, mes, ano, faturamentoOS);
     }
 
     /**
@@ -215,5 +218,10 @@ public class FinanceiroDAO extends GenericDAO<Financeiro> {
     public void listarContas() {
         List<Financeiro> contas = getLista();
         viewFinanceiro.mostraListaContas(contas);
+    }
+    
+    @Override
+    public String toString(){
+       return String.format("FinanceiroDAO | Contas cadastradas: %d", getLista().size());
     }
 }
