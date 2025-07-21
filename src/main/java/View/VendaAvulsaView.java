@@ -189,7 +189,8 @@ public class VendaAvulsaView {
      *
      * @param venda venda
      * @param cpfAnonimizado CPF do cliente
-     * @param produto produto vendido
+     * @param produtoDesc produto vendido
+     * @param nomeCliente 
      */
     public void mostraNotaFiscal(Venda venda, String cpfAnonimizado, String produtoDesc, String nomeCliente) {
         System.out.println("============================================================");

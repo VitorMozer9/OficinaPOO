@@ -253,7 +253,7 @@ public class OrdemDeServicoView {
      * Exibe a nota fiscal de uma ordem de serviço.
      *
      * @param os Ordem de serviço
-     * @param cpfAnonimizado CPF do cliente
+     * @param cpf CPF do cliente
      */
     public void mostraNotaFiscal(OrdemDeServico os, String cpf) {
         if (os.getStatus() != StatusOrdemServico.CONFIRMADO) {

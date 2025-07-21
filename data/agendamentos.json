@@ -30,5 +30,53 @@
       "minute": 0,
       "second": 0
     }
+  },
+  {
+    "idAgendamento": 3,
+    "idCliente": 4,
+    "idElevador": 1,
+    "mecanicoResponsavel": "Robson",
+    "tipoAgendamento": 2,
+    "statusAgendamento": "PENDENTE",
+    "dataHora": {
+      "year": 2025,
+      "month": 3,
+      "dayOfMonth": 12,
+      "hourOfDay": 12,
+      "minute": 0,
+      "second": 0
+    }
+  },
+  {
+    "idAgendamento": 4,
+    "idCliente": 4,
+    "idElevador": 2,
+    "mecanicoResponsavel": "lucas",
+    "tipoAgendamento": 2,
+    "statusAgendamento": "PENDENTE",
+    "dataHora": {
+      "year": 2025,
+      "month": 1,
+      "dayOfMonth": 12,
+      "hourOfDay": 15,
+      "minute": 0,
+      "second": 0
+    }
+  },
+  {
+    "idAgendamento": 5,
+    "idCliente": 6,
+    "idElevador": 0,
+    "mecanicoResponsavel": "robson",
+    "tipoAgendamento": 3,
+    "statusAgendamento": "PENDENTE",
+    "dataHora": {
+      "year": 2025,
+      "month": 4,
+      "dayOfMonth": 12,
+      "hourOfDay": 17,
+      "minute": 0,
+      "second": 0
+    }
   }
 ]
