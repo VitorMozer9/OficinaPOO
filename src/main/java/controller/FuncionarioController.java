@@ -1,22 +1,17 @@
 package controller;
 
-import Main.OficinaPOO;
-import Model.Funcionario;
 import Model.FuncionarioDAO;
 import View.FuncionarioView;
 
-/**
- * Classe responsável pela gerencia dos funcionários.
- * Fornece métodos para adicionar e mostrar o menu de informações de funcionário.
- */
 public class FuncionarioController {
     private FuncionarioView viewFuncionario = new FuncionarioView();
-    private FuncionarioDAO funcionarioDAO = new FuncionarioDAO();
+    private FuncionarioDAO funcionarioDAO = FuncionarioDAO.getInstancia();
+    private LoginController loginController;
     
-    /**
-     * Exibe o menu de opções do funcionário e executa a ação selecionada pelo usuário.
-     * O menu permanece até que o usuário escolha a opção de sair.
-     */
+    public FuncionarioController(LoginController loginController) {
+        this.loginController = loginController;
+    }
+    
     public void executaMenuFuncionario(){
         int opcao = 0; 
         
@@ -30,22 +25,26 @@ public class FuncionarioController {
             
             switch (opcao){
                 case 1 -> {
-                    funcionarioDAO.adicionaFuncionario();
+                    if (loginController.podeCadastrarFuncionario()) {
+                        funcionarioDAO.adicionaFuncionario();
+                    }
                 }
-                case 2 -> {
-                    funcionarioDAO.editaFuncionario();
-                }
+                case 2 -> funcionarioDAO.editaFuncionario();
                 case 3 -> {
-                    funcionarioDAO.removeFuncionario();
+                    if (loginController.isGerente()) {
+                        funcionarioDAO.removeFuncionario();
+                    } else {
+                        System.out.println("Apenas gerentes podem remover funcionários.");
+                    }
                 }
-                case 4 -> {
-                    funcionarioDAO.mostrarFuncionario();
-                }
-                default -> {
-                    System.out.println("Opção inválida! Tente novamente.");
-                }
-            
+                case 4 -> funcionarioDAO.mostrarFuncionario();
+                default -> System.out.println("Opção inválida! Tente novamente.");
             }
         }
+    }
+    
+    @Override 
+    public String toString(){
+        return String.format("FuncionarioController: %d funcionários registrados.", funcionarioDAO.getLista().size());
     }
 }

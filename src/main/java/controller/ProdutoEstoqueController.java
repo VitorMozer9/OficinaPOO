@@ -53,4 +53,8 @@ public class ProdutoEstoqueController {
             }
         }
     }
+    
+    public String toSting(){
+        return String.format("ProdutoEstoqueController: %d produtos registrados.", produtoEstoqueDao.getLista().size());
+    }
 }

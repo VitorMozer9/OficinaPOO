@@ -1,1 +1,102 @@
-[{"idCliente":15,"nome":"Balita","endereco":"rua farinha dry","telefone":"56565656","email":"balitao@gmail.com","cpf":{"numeroCPF":"024.451.860-21"}},{"idCliente":16,"nome":"teste","endereco":"teste","telefone":"teste","email":"teste","cpf":{"numeroCPF":"576.173.270-05"}}]
+[
+  {
+    "idCliente": 1,
+    "nome": "Vitor",
+    "endereco": "teste",
+    "telefone": "12323545",
+    "email": "teste",
+    "cpf": {
+      "numeroCPF": "889.538.410-54"
+    }
+  },
+  {
+    "idCliente": 2,
+    "nome": "Matheus",
+    "endereco": "Curvelo",
+    "telefone": "23456785",
+    "email": "Matheus@gmail.com",
+    "cpf": {
+      "numeroCPF": "394.794.650-35"
+    }
+  },
+  {
+    "idCliente": 3,
+    "nome": "Alan",
+    "endereco": "Novo Cruzeiro",
+    "telefone": "34576335466",
+    "email": "alan@gmail.com",
+    "cpf": {
+      "numeroCPF": "198.266.660-92"
+    }
+  },
+  {
+    "idCliente": 4,
+    "nome": "Juan Pablo",
+    "endereco": "Salinas",
+    "telefone": "2353454345",
+    "email": "Juan@gmail.com",
+    "cpf": {
+      "numeroCPF": "497.140.820-72"
+    }
+  },
+  {
+    "idCliente": 5,
+    "nome": "Luan",
+    "endereco": "Bocaiuva",
+    "telefone": "24353453435",
+    "email": "Luan@gmail.com",
+    "cpf": {
+      "numeroCPF": "537.748.910-10"
+    }
+  },
+  {
+    "idCliente": 6,
+    "nome": "Luiz Felipe",
+    "endereco": "Serro",
+    "telefone": "234234345345",
+    "email": "Luiz@gmail.com",
+    "cpf": {
+      "numeroCPF": "288.911.190-32"
+    }
+  },
+  {
+    "idCliente": 7,
+    "nome": "Brenno",
+    "endereco": "Serro",
+    "telefone": "324234234234",
+    "email": "breno@gmail.com",
+    "cpf": {
+      "numeroCPF": "122.842.270-23"
+    }
+  },
+  {
+    "idCliente": 8,
+    "nome": "Otavio",
+    "endereco": "Capelinha",
+    "telefone": "234234232",
+    "email": "otavio@gmail.com",
+    "cpf": {
+      "numeroCPF": "136.197.040-58"
+    }
+  },
+  {
+    "idCliente": 9,
+    "nome": "João Pedro",
+    "endereco": "Turmalina",
+    "telefone": "3453453453",
+    "email": "joao@gmail.com",
+    "cpf": {
+      "numeroCPF": "715.897.990-38"
+    }
+  },
+  {
+    "idCliente": 10,
+    "nome": "Gabriel",
+    "endereco": "Diamantina",
+    "telefone": "23423423423",
+    "email": "gabriel@gmail.com",
+    "cpf": {
+      "numeroCPF": "359.728.490-62"
+    }
+  }
+]

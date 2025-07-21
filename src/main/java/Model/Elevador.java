@@ -27,6 +27,11 @@ public class Elevador {
         this.tipoElevador = tipoElevador;
     }
     
+    /**
+     * Obtém o ID do elevador.
+     * 
+     * @return ID do elevador.
+     */
     public int getIdElevador(){
         return idElevador;
     }

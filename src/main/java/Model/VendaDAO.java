@@ -6,17 +6,29 @@ import java.util.List;
 
 /**
  * Classe DAO para gerenciar operações de vendas avulsas. Responsável pela
- * persistência e manipulação dos dados de vendas.
+ * persistência e manipulação dos dados de vendas. Implementa o padrão Singleton
+ * para garantir uma única instância.
  */
 public class VendaDAO extends GenericDAO<Venda> {
+
     private static VendaDAO instancia;
     private VendaAvulsaView viewVenda = new VendaAvulsaView();
     private ProdutoEstoqueDAO produtoDAO = ProdutoEstoqueDAO.getInstancia();
 
+    /**
+     * Construtor privado para implementar o padrão Singleton. Define o caminho
+     * do arquivo JSON e o tipo da lista manipulada.
+     */
     private VendaDAO() {
-        super("data/vendas.json", new TypeToken<List<Venda>>() {}.getType());
+        super("data/vendas.json", new TypeToken<List<Venda>>() {
+        }.getType());
     }
 
+    /**
+     * Retorna a instância única de {@code VendaDAO}.
+     *
+     * @return Instância única de {@code VendaDAO}.
+     */
     public static VendaDAO getInstancia() {
         if (instancia == null) {
             instancia = new VendaDAO();
@@ -24,17 +36,32 @@ public class VendaDAO extends GenericDAO<Venda> {
         return instancia;
     }
 
+    /**
+     * Define a chave de identificação única da venda.
+     *
+     * @param venda Objeto {@code Venda}.
+     * @return ID da venda.
+     */
     @Override
     protected Comparable<?> getChave(Venda venda) {
         return venda.getIdVenda();
     }
 
+    /**
+     * Busca uma venda pelo ID.
+     *
+     * @param id ID da venda.
+     * @return Objeto {@code Venda} correspondente, ou {@code null} se não
+     * encontrado.
+     */
     public Venda buscaVenda(int id) {
         return buscaPorChave(id);
     }
 
     /**
-     * Gera um novo ID para uma venda, baseado no maior ID já registrado no sistema.
+     * Gera um novo ID para uma venda, baseado no maior ID já registrado no
+     * sistema.
+     *
      * * @return O novo ID da venda, incrementado em relação ao maior ID atual.
      */
     public int geraIdVenda() {
@@ -99,8 +126,7 @@ public class VendaDAO extends GenericDAO<Venda> {
         int idVenda = geraIdVenda();
         Venda novaVenda = new Venda(idVenda, idCliente, idProduto, quantidade, produto.getValorProduto(), valorTotal);
 
-        
-        adicionaDados(novaVenda); 
+        adicionaDados(novaVenda);
         produto.setQuantidadeEmEstoque(produto.getQuantidadeEmEstoque() - quantidade);
 
         if (produto.getQuantidadeEmEstoque() <= 0) {
@@ -114,7 +140,6 @@ public class VendaDAO extends GenericDAO<Venda> {
             System.out.println("Erro ao atualizar estoque!");
         }
     }
-
 
     /**
      * Consulta uma venda específica pelo ID.
@@ -185,4 +210,48 @@ public class VendaDAO extends GenericDAO<Venda> {
             System.out.println("Erro ao cancelar venda!");
         }
     }
+
+    /**
+     * Gera nota fiscal para uma venda.
+     */
+    public void geraNotaFiscalVenda() {
+        int idVenda = viewVenda.getIdVenda();
+        Venda venda = buscaVenda(idVenda);
+        ClienteDAO clienteDAO = ClienteDAO.getInstancia();
+
+        ProdutoEstoqueDAO produtoDAO = ProdutoEstoqueDAO.getInstancia();
+
+        if (venda == null) {
+            System.out.println("Venda não encontrada :(");
+            return;
+        }
+
+        Cliente cliente = clienteDAO.buscarCliente(venda.getIdCliente());
+        
+        if (cliente == null) {
+            System.out.println("Cliente da venda não encontrado.");
+            return;
+        }
+        
+        String cpf = cliente.getCpf().toString();
+        String nome = cliente.getNome();
+
+        Produto produto = produtoDAO.buscaProduto(venda.getIdProduto());
+        
+        if (produto == null) {
+            System.out.println("produto da venda não encontrado.");
+            return;
+        }
+        
+        String produtoDesc = produto.getDescricao();
+
+        viewVenda.mostraNotaFiscal(venda, cpf, produtoDesc, nome);
+    }
+    
+    @Override
+    public String toString(){
+        return "VendaDAO | Quantidade vendas: " + getLista().size();
+    }
 }
+    
+    

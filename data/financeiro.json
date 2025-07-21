@@ -1,1 +1,16 @@
-[{"idConta":1,"descricao":"CoNta testee","tipoConta":"RECEITA","valor":35000.0,"data":{"year":2025,"month":9,"dayOfMonth":23,"hourOfDay":17,"minute":45,"second":39}},{"idConta":2,"descricao":"conta teste 2","tipoConta":"RECEITA","valor":4500.0,"data":{"year":2024,"month":9,"dayOfMonth":12,"hourOfDay":17,"minute":52,"second":46}},{"idConta":3,"descricao":"Pangas","tipoConta":"DESPESA","valor":892.0,"data":{"year":2005,"month":11,"dayOfMonth":6,"hourOfDay":18,"minute":25,"second":5}},{"idConta":4,"descricao":"materiais","tipoConta":"DESPESA","valor":3500.0,"data":{"year":2025,"month":2,"dayOfMonth":2,"hourOfDay":18,"minute":58,"second":27}},{"idConta":5,"descricao":"lucros","tipoConta":"RECEITA","valor":4000.0,"data":{"year":2025,"month":2,"dayOfMonth":21,"hourOfDay":19,"minute":0,"second":21}}]
+[
+  {
+    "idConta": 1,
+    "descricao": "Receita OS #3 - Manutenção",
+    "tipoConta": "RECEITA",
+    "valor": 100.0,
+    "data": {
+      "year": 2025,
+      "month": 1,
+      "dayOfMonth": 22,
+      "hourOfDay": 23,
+      "minute": 17,
+      "second": 29
+    }
+  }
+]

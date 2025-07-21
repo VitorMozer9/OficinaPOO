@@ -9,7 +9,7 @@ import View.VeiculoView;
  */
 public class VeiculoController {
     private VeiculoView viewVeiculo = new VeiculoView();
-    private VeiculoDAO veiculoDao = new VeiculoDAO();
+    private VeiculoDAO veiculoDao = VeiculoDAO.getInstancia();
      
     /**
      * Exibe um menu de opções do veículo e executa a ação solicitada pelo usuário.
@@ -46,5 +46,10 @@ public class VeiculoController {
                 }
             }
         }
+    
+    @Override
+    public String toString(){
+        return String.format("VeiculoController: %d veículos registrados.", veiculoDao.getLista().size());
+    }
     
 }

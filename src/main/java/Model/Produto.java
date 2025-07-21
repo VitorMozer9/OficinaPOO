@@ -13,9 +13,9 @@ public class Produto {
     /**
      * Construtor da classe (@code Pecas).Innicia uma nova verificação da peça no estoque, mostrando seu código, valor, quantidade no estoque, se ainda há no estoque e uma breve descrição sobre ela.
      * 
-     * @param idPeca                Código de identificação da peça.
+     * @param idProduto             ID da peça
      * @param descricao             Descrição da peça.
-     * @param valorProduto             Valor da peça.
+     * @param valorProduto          Valor da peça.
      * @param quantidadeEmEstoque   Quantidade existente da peça no estoque.
      * @param disponivel            Verificação de disponibilidade da peça.
      */

@@ -7,13 +7,37 @@ import java.lang.reflect.Type;
 import com.google.gson.reflect.TypeToken;
 import java.util.List;
 
+/**
+ * Classe reponsável por gerenciar os dados dos clientes no sistema.
+ * Realiza operações como adicionar, remover, editar e buscar clientes.
+ * Herda os métodos genéricos de persistência da classe GenericDAO.
+ */
 public class ClienteDAO extends GenericDAO<Cliente>{
+    
+    private static ClienteDAO instancia;
     private ClienteView viewCliente = new ClienteView();
     
-    public ClienteDAO() {
+    /**
+     * Contrutor padrão.
+     * Inicializa o DAO com o caminho do JSON e o tipo da lista de cliente. 
+     */
+    private ClienteDAO() {
         super("data/clientes.json", new TypeToken<List<Cliente>>() {}.getType());
     }
-       
+    
+    public static ClienteDAO getInstancia(){
+        if (instancia == null) {
+            instancia = new ClienteDAO();
+        }
+        return instancia;
+    }
+    
+    /**
+     * Obtém a chave única (ID) do cliente.
+     * 
+     * @param cliente Objeto cliente a ser analisado.
+     * @return ID do cliente.
+     */
     @Override
     protected Comparable<?> getChave(Cliente cliente){
         return cliente.getIdCliente();
@@ -34,10 +58,20 @@ public class ClienteDAO extends GenericDAO<Cliente>{
         return maiorIdCliente + 1;
     }
     
+    /**
+     * Busca um cliente pelo seu ID.
+     * 
+     * @param id ID do cliente a ser buscado.
+     * @return Cliente correspondente ao ID, ou null se não encontrado.
+     */
     public Cliente buscarCliente(int id) {
         return buscaPorChave(id); 
     }
     
+    /**
+     * Coleta os dados da view, valida o CPF e adiciona um novo cliente ao sistema.
+     * Caso o CPF seja inválido, a operação é cancelada.
+     */
     public void adicionaCliente(){
         int idCliente = geraIdCliente();
         
@@ -113,5 +147,10 @@ public class ClienteDAO extends GenericDAO<Cliente>{
             }
         });
             
-    }    
+    }
+
+    @Override
+    public String toString(){
+        return "ClienteDAO | Total de Clientes: " + getLista().size();
+    }
 }

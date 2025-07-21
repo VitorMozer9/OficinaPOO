@@ -22,6 +22,7 @@ public class Cliente extends Pessoa{
 * @param telefone      Telefone do cliente.
 * @param email         Email do cliente.
 * @param cpf           CPF do cliente.
+* @param idCliente     ID do cliente.
 */
     public Cliente(String nome, String endereco, String telefone, String email, Cpf cpf, int idCliente) {
         super(nome, endereco, telefone, email, cpf);
